@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <>
-      <div className="navbar bg-base-200">
+      <div className="navbar bg-white">
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         {/* search bar */}
         <div className="form-control">
