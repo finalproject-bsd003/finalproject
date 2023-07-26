@@ -7,7 +7,7 @@ const errorHandler = async (err, request, response, next) => {
         })
     } else if (err.name === 'Invalid') {
         response.status(401).json({
-            message: 'error invalid username or email or password'
+            message: 'error invalid email or password'
         })
     } else {
         response.status(500).json({
