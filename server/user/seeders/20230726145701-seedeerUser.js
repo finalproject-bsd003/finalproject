@@ -1,8 +1,9 @@
 'use strict';
 
 const user = require('../sampleData/user.json')
-
+const { hashPassword } = require('../helpers/bcrypt')
 user.forEach((el) => {
+  el.password = hashPassword(el.password)
   el.createdAt = new Date()
   el.updatedAt = new Date()
 })

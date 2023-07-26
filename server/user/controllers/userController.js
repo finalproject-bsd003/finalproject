@@ -3,7 +3,6 @@ const { createToken } = require('../helpers/jwt')
 const { User } = require('../models/index')
 
 class UserController {
-
     static async registerUser(request, response, next) {
         try {
             const { username, email, password, phoneNumber, address } = request.body
@@ -64,6 +63,7 @@ class UserController {
             next(err)
         }
     }
+
 }
 
 module.exports = UserController
