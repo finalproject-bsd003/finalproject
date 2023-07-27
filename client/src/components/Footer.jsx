@@ -1,10 +1,11 @@
 function Footer() {
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-grow">{/* Your main content goes here */}</main>
-        <footer className="footer footer-center p-10 bg-gray-200 text-base-content rounded">
-          <div className="flex flex-col flex-grow text-black">
+      {/* <div className="flex flex-col min-h-screen pt-12"> */}
+      <main className="flex-grow pt-12">
+        {/* Your main content goes here */}
+        <footer className="footer footer-center p-28 bg-black text-base-content">
+          <div className="flex flex-col flex-grow text-white">
             <h3 className="mb-4">
               HACK Community - A constructive and inclusive social network for
               software developers. With you every step of your journey.
@@ -16,13 +17,14 @@ function Footer() {
               <a className="link link-hover">Press kit</a>
             </div>
           </div>
-          <div className="mt-auto text-black">
+          <div className="mt-auto text-white">
             <p className="text-center">
               Copyright © 2023 - All right reserved by ACME Industries Ltd
             </p>
           </div>
         </footer>
-      </div>
+      </main>
+      {/* </div> */}
     </>
   );
 }
