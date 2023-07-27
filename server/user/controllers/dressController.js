@@ -34,7 +34,11 @@ class DressController {
     }
 
     static async deleteDress(request, response, next) {
+        try {
 
+        } catch (err) {
+
+        }
     }
 }
 
