@@ -2,12 +2,12 @@ const express = require('express')
 const router = express.Router()
 const userRouter = require('./users')
 const categoryRouter = require('./categories')
-// const companyRouter = require('./companies')
+const dressRouter = require('./dress')
 // const { authentication } = require('../middlewares/authentication')
 
 router.use(userRouter)
 router.use(categoryRouter)
 // router.use(authentication)
-// router.use(companyRouter)
+router.use(dressRouter)
 
 module.exports = router
