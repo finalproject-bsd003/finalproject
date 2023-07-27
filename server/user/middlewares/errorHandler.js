@@ -33,6 +33,26 @@ const errorHandler = async (err, request, response, next) => {
         response.status(404).json({
             message: 'Error not found'
         })
+    } else if (err.name === 'Minimum page is 1') {
+        response.status(400).json({
+            message: 'Minimum page is 1'
+        })
+    } else if (err.name === 'Dress Not Found') {
+        response.status(404).json({
+            message: 'Dress not found'
+        })
+    } else if (err.name === 'ErrorData') {
+        response.status(404).json({
+            message: 'Error not found'
+        })
+    } else if (err.name === 'ErrorDelete') {
+        response.status(404).json({
+            message: 'Error not found'
+        })
+    } else if (err.name == 'Minimum add 3 images') {
+        response.status(401).json({
+            message: 'Minimum/Maximum 3 additional images required'
+        })
     } else {
         response.status(500).json({
             message: 'Internal Server Error'

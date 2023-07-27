@@ -8,4 +8,6 @@ router.post('/dress', DressController.createDress)
 router.put('/dress/:id', DressController.updateDress)
 router.delete('dress/:id', DressController.deleteDress)
 
+// Tambahin edit isBooked
+
 module.exports = router

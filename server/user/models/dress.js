@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Dress.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     grade: DataTypes.STRING,

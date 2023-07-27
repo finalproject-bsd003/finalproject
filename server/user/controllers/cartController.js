@@ -29,7 +29,7 @@ class CartController {
                 },
                 defaults: {
                     DressId: request.additionalData.userId,
-                    TourId: id,
+                    DressId: id,
                     // totalPerson: 1
                     // Nanti buat booking
                 }
