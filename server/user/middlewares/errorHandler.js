@@ -21,6 +21,18 @@ const errorHandler = async (err, request, response, next) => {
         response.status(404).json({
             message: 'Data not found'
         })
+    } else if (err.name === 'Cart Not Found') {
+        response.status(404).json({
+            message: 'Cart not found'
+        })
+    } else if (err.name === 'Favorite Not Found') {
+        response.status(404).json({
+            message: 'Favorite not found'
+        })
+    } else if (err.name === 'ErrorDelete') {
+        response.status(404).json({
+            message: 'Error not found'
+        })
     } else {
         response.status(500).json({
             message: 'Internal Server Error'
