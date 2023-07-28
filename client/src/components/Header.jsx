@@ -1,18 +1,35 @@
 function Header() {
   return (
     <>
-      {/* <div className="flex justify-end bg-black ">
-        <div className="flex justify-end">
-          <button className="btn btn-sm btn-ghost mr-2 text-sm text-white text">
-            Login
+      <div
+        className="bg-black"
+        style={{ display: "flex", justifyContent: "space-between" }}
+      >
+        <div>
+          <button
+            className="btn btn-sm btn-ghost text-sm text-white"
+            style={{
+              fontFamily: "CustomFont",
+              fontSize: "16px",
+              color: "white",
+              fontWeight: "normal",
+            }}
+          >
+            List Products
           </button>
-          <button className="btn btn-sm btn-ghost text-sm text-white">
-            Register
+          <button
+            className="btn btn-sm btn-ghost text-sm text-white"
+            style={{
+              fontFamily: "CustomFont",
+              fontSize: "16px",
+              color: "white",
+              fontWeight: "normal",
+            }}
+          >
+            List Store
           </button>
         </div>
-      </div> */}
-      <div className="flex justify-end bg-black">
-        <div className="flex justify-end">
+        <div>
           <button
             className="btn btn-sm btn-ghost mr-2 text-sm text-white"
             style={{
