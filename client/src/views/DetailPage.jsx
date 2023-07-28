@@ -44,5 +44,3 @@ function DetailPage() {
 }
 
 export default DetailPage;
-
-// border-2 border-black 
