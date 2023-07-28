@@ -1,4 +1,4 @@
-const { Dress, Image } = require('../models')
+const { Dress, Image, Store, Category } = require('../models')
 const { getPagination } = require('../helpers/pagination')
 const { Op } = require('sequelize')
 const { sequelize } = require('../models')
@@ -24,6 +24,7 @@ class DressController {
             const { count, rows } = await Dress.findAndCountAll(
                 {
                     where,
+                    include: Store,
                     offset: (page - 1) * perPage,
                     limit: perPage,
                     distinct: true,
@@ -60,6 +61,7 @@ class DressController {
                 where: {
                     id
                 },
+                include: [Store, Category],
                 transaction: trx
             })
 
@@ -86,7 +88,7 @@ class DressController {
     static async createDress(request, response, next) {
         const trx = await sequelize.transaction()
         try {
-            const { name, description, grade, price, size, mainImage, CategoryId, imageUrl1, imageUrl2, imageUrl3 } = request.body
+            const { name, description, grade, price, size, mainImage, CategoryId, StoreId, imageUrl1, imageUrl2, imageUrl3 } = request.body
             if (!imageUrl1 || !imageUrl2 || !imageUrl3) {
                 throw { name: 'Minimum add 3 images' }
             }
@@ -98,7 +100,8 @@ class DressController {
                 price,
                 size,
                 mainImage,
-                CategoryId
+                CategoryId,
+                StoreId
             }, { transaction: trx })
 
             console.log(result)
@@ -134,7 +137,13 @@ class DressController {
             const { name, description, grade, price, size, mainImage, CategoryId, imageUrl1, imageUrl2, imageUrl3 } = request.body
 
             const result = await Dress.update({
-                name, description, grade, price, size, mainImage, CategoryId
+                name,
+                description,
+                grade,
+                price,
+                size,
+                mainImage,
+                CategoryId
             }, {
                 where: {
                     id

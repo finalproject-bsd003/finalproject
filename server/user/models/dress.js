@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Dress.belongsTo(models.Category, { foreignKey: 'CategoryId' })
+      Dress.belongsTo(models.Store, { foreignKey: 'StoreId' })
 
       Dress.hasMany(models.Image, { foreignKey: 'DressId' })
     }
@@ -108,7 +109,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    CategoryId: DataTypes.INTEGER
+    CategoryId: DataTypes.INTEGER,
+    StoreId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Dress',
