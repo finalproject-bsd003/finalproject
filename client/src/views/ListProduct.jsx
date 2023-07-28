@@ -1,8 +1,13 @@
+import Header from "../components/Header";
+import Navbar from "../components/Navbar";
+
 function ListProduct() {
   return (
     <>
-      <div className="flex flex-col justify-center items-center mt-5">
+      <div className="flex justify-end mt-5">
         <button className="btn mr-3">Add New Products</button>
+      </div>
+      <div className="flex flex-col justify-center items-center mt-5">
         <h2
           style={{
             fontSize: "28px",

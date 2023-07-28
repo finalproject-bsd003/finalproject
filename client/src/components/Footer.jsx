@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <main className="flex-grow pt-12">
+      <main className="flex-grow pt-12 ">
         {/* Your main content goes here */}
         <footer className="footer footer-center p-28 bg-black text-base-content">
           <div className="flex flex-col flex-grow text-white">

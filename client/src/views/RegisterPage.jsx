@@ -17,7 +17,7 @@ const RegisterPage = () => {
               <input
                 type="username"
                 name="username"
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -30,7 +30,7 @@ const RegisterPage = () => {
               <input
                 type="email"
                 name="email"
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -43,7 +43,7 @@ const RegisterPage = () => {
               <input
                 type="password"
                 name="password"
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -53,7 +53,7 @@ const RegisterPage = () => {
               <input
                 type="text"
                 name="phoneNumber"
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
@@ -63,8 +63,19 @@ const RegisterPage = () => {
               <input
                 type="text"
                 name="address"
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
+            </div>
+            <div className="mb-2">
+              <label className="block text-sm font-semibold text-gray-800">
+                Role
+              </label>
+              <select
+                type="text"
+                id="role"
+                name="role"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-gray-500 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              ></select>
             </div>
             <div className="mt-6">
               <button

@@ -17,20 +17,20 @@ function AddProduct() {
               <input
                 type="text"
                 name="title"
-                placeholder="Enter News Name here ..."
+                placeholder="Enter dress name here ..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
             <div className="mb-2">
               <label
-                htmlFor="content"
+                htmlFor="description"
                 className="block text-sm font-semibold text-gray-800"
               >
-                Content:
+                Description:
               </label>
               <textarea
                 type="text"
-                placeholder="Enter content here..."
+                placeholder="Enter description here..."
                 name="content"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -38,15 +38,15 @@ function AddProduct() {
             <div className="mb-2">
               <label
                 className="block text-sm font-semibold text-gray-800"
-                htmlFor="category"
-                id="category"
+                htmlFor="grade"
+                id="grade"
               >
-                Category:
+                Grade:
               </label>
               <select
                 type="text"
-                id="category"
-                name="categoryId"
+                id="grade"
+                name="grade"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >
                 {/* <option value={""}>Select Category</option>
@@ -60,26 +60,14 @@ function AddProduct() {
             <div className="mb-2">
               <label
                 className="block text-sm font-semibold text-gray-800"
-                htmlFor="category"
+                htmlFor="mainImage"
               >
-                Tags:
+                Image Url:
               </label>
 
               <input
                 type="text"
-                name="name"
-                placeholder="Enter tags here..."
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-              <input
-                type="text"
-                name="name1"
-                placeholder="Enter tags here..."
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-              <input
-                type="text"
-                name="name2"
+                name="imageUrl"
                 placeholder="Enter tags here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -87,13 +75,28 @@ function AddProduct() {
             <div className="mb-2">
               <label
                 className="block text-sm font-semibold text-gray-800"
-                htmlFor="imgUrl"
+                htmlFor="Price"
               >
-                Image URL:
+                Price:
               </label>
               <input
                 type="text"
-                name="imgUrl"
+                name="Price"
+                placeholder="Enter image URL here..."
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              />
+            </div>
+
+            <div className="mb-2">
+              <label
+                className="block text-sm font-semibold text-gray-800"
+                htmlFor="size"
+              >
+                Size:
+              </label>
+              <input
+                type="text"
+                name="size"
                 placeholder="Enter image URL here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
