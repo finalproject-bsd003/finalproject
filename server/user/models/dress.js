@@ -36,12 +36,78 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    grade: DataTypes.STRING,
-    price: DataTypes.INTEGER,
-    size: DataTypes.STRING,
-    mainImage: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Name cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Name cannot be empty'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Description cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Description cannot be empty'
+        }
+      }
+    },
+    grade: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Grade cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Grade cannot be empty'
+        }
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Price cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Price cannot be empty'
+        }
+      }
+    },
+    size: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Size cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Size cannot be empty'
+        }
+      }
+    },
+    mainImage: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Dress Main Image cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Dress Main Image cannot be empty'
+        }
+      }
+    },
     CategoryId: DataTypes.INTEGER
   }, {
     sequelize,

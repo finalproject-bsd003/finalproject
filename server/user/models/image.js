@@ -14,7 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Image.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: 'Additional image cannot be empty'
+        },
+        notEmpty: {
+          msg: 'Additional image cannot be empty'
+        }
+      }
+    },
     DressId: DataTypes.INTEGER
   }, {
     sequelize,
