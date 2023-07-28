@@ -1,8 +1,8 @@
-function ListProduct() {
+function ListStores() {
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-5">
-        <button className="btn mr-3">Add New Products</button>
+        <button className="btn mr-3">Add New Store</button>
         <h2
           style={{
             fontSize: "28px",
@@ -10,7 +10,7 @@ function ListProduct() {
             fontFamily: "serif",
           }}
         >
-          List Products
+          List Stores
         </h2>
         <div className=" w-[90vw] ">
           <div className="overflow-x-auto">
@@ -20,26 +20,24 @@ function ListProduct() {
                 <tr>
                   <th>No.</th>
                   <th>Name</th>
-                  <th>Description</th>
-                  <th>Grade</th>
-                  <th>Price</th>
-                  <th>Size</th>
+                  <th>Address</th>
+                  <th>Contact No.</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {/* {data.map((post, index) => {
-                  return (
-                    <TableData
-                      key={post.id}
-                      title={post.title}
-                      content={post.content}
-                      category={post.Category.name}
-                      author={post.User.username}
-                      id={post.id}
-                    />
-                  );
-                })} */}
+                    return (
+                      <TableData
+                        key={post.id}
+                        title={post.title}
+                        content={post.content}
+                        category={post.Category.name}
+                        author={post.User.username}
+                        id={post.id}
+                      />
+                    );
+                  })} */}
               </tbody>
             </table>
           </div>
@@ -49,4 +47,4 @@ function ListProduct() {
   );
 }
 
-export default ListProduct;
+export default ListStores;

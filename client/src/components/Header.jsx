@@ -15,7 +15,7 @@ function Header() {
               fontWeight: "normal",
             }}
           >
-            List Products
+            Products
           </button>
           <button
             className="btn btn-sm btn-ghost text-sm text-white"
@@ -26,7 +26,19 @@ function Header() {
               fontWeight: "normal",
             }}
           >
-            List Store
+            Stores
+          </button>
+
+          <button
+            className="btn btn-sm btn-ghost text-sm text-white"
+            style={{
+              fontFamily: "CustomFont",
+              fontSize: "16px",
+              color: "white",
+              fontWeight: "normal",
+            }}
+          >
+            Transactions
           </button>
         </div>
         <div>
