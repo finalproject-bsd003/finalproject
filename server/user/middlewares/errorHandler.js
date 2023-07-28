@@ -53,6 +53,14 @@ const errorHandler = async (err, request, response, next) => {
         response.status(401).json({
             message: 'Minimum/Maximum 3 additional images required'
         })
+    } else if (err.name === 'ErrorEdit') {
+        response.status(404).json({
+            message: 'Error not found'
+        })
+    } else if (err.name === 'Unauthorized') {
+        response.status(403).json({
+            message: 'Forbidden Error Authorization'
+        })
     } else {
         response.status(500).json({
             message: 'Internal Server Error'

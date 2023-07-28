@@ -32,6 +32,7 @@ const authentication = async (request, response, next) => {
             userId: payload.id,
             username: payload.username,
             email: payload.email,
+            role: payload.role
         }
         next()
     } catch (err) {

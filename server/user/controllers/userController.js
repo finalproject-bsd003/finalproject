@@ -5,13 +5,13 @@ const { User } = require('../models/index')
 class UserController {
     static async registerUser(request, response, next) {
         try {
-            const { username, email, password, phoneNumber, address } = request.body
+            const { username, email, password, role, phoneNumber, address } = request.body
 
             const created = await User.create({
                 username,
                 email,
                 password,
-                role: 'User',
+                role,
                 phoneNumber,
                 address
             })
@@ -51,12 +51,14 @@ class UserController {
             const token = createToken({
                 id: user.id,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                role: user.role
             })
 
             response.status(200).json({
                 access_token: token,
-                username: user.username
+                username: user.username,
+                role: user.role
             })
         } catch (err) {
             console.log(err)

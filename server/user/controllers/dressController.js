@@ -130,8 +130,48 @@ class DressController {
     static async updateDress(request, response, next) {
         const trx = await sequelize.transaction()
         try {
+            const { id } = request.params
+            const { name, description, grade, price, size, mainImage, CategoryId, imageUrl1, imageUrl2, imageUrl3 } = request.body
+
+            const result = await Dress.update({
+                name, description, grade, price, size, mainImage, CategoryId
+            }, {
+                where: {
+                    id
+                },
+                transaction: trx
+            })
+            if (!result[0]) {
+                throw { name: 'ErrorEdit' }
+            }
+
+            const destroy = await Image.destroy({
+                where: {
+                    DressId: id
+                },
+                transaction: trx
+            })
+
+            const updateImage = await Image.bulkCreate([
+                {
+                    name: imageUrl1,
+                    DressId: id
+                },
+                {
+                    name: imageUrl2,
+                    DressId: id
+                },
+                {
+                    name: imageUrl3,
+                    DressId: id
+                }
+            ], { transaction: trx })
+            await trx.commit()
+            response.status(201).json({
+                message: `Dress with ${id} has been successfully edited `
+            })
         } catch (err) {
-            await trx.rolllback()
+            await trx.rollback()
             console.log(err)
             next(err)
         }
@@ -140,6 +180,7 @@ class DressController {
     static async deleteDress(request, response, next) {
         const trx = await sequelize.transaction()
         try {
+            console.log('masuk delete ini')
             const { id } = request.params
             const result = await Dress.destroy({
                 where: {
