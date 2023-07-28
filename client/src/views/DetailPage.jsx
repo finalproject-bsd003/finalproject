@@ -1,5 +1,3 @@
-import Card from "../components/Card";
-import Sidebar from "../components/Sidebar";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/CarouselDetail";
 
@@ -8,7 +6,7 @@ function DetailPage() {
     const LoremIpsumFeatures = [
         {
             name: "Feature 1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in dui eu urna gravida tincidunt.",
+            description: "Lorem ipsum dolor sit zamet, consectetur adipiscing elit. Aenean in dui eu urna gravida tincidunt.",
         },
         {
             name: "Feature 2",
