@@ -1,21 +1,33 @@
-function Card() {
+function Card({ dress }) {
+
+  console.log(dress)
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR"
+    }).format(number);
+  }
+
   return (
+
     <>
       <div className="card w-72 bg-base-100 ">
-        <figure className="px-6 pt-6">
+        <figure className="px-6 pt-6 h-96 overflow-hidden">
           <img
-            src="https://www.thedressoutlet.com/cdn/shop/products/DD1263_NAVY_6.jpg?v=1690232796&width=720"
-            className="h-50"
+            src={dress.mainImage}
+            className="h-full w-full object-cover"
+            alt="Dress"
           />
         </figure>
         <div className="card-body items-start text-start">
           <h3 className="card-title text-sm" style={{ fontWeight: "bold" }}>
-            Dylan & David Draped Corset Cowl Long Prom Dress
+            {dress.name}
           </h3>
-          <h5 className="text-xs">Grade: S</h5>
+          <h5 className="text-xs">Grade: {dress.grade}</h5>
           <div className="flex justify-between space-x-20">
             <h4 className="text-m" style={{ fontWeight: "bold" }}>
-              Rp 5.000.000
+              {rupiah(dress.price)}
             </h4>
             <button
               className="mr-2"
@@ -54,135 +66,6 @@ function Card() {
               </svg>
             </button>
           </div>
-        </div>
-      </div>
-
-      {/* pic2 */}
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-cd7475-formal-long-sleeve-dress-evening-gown-1_500x.jpg?v=1689870627"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Formal Long Sleeve Dress Evening Gown
-          </h3>
-        </div>
-      </div>
-
-      {/* pic 3 */}
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      {/* pic4 */}
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
-        </div>
-      </div>
-
-      <div className="card w-72 bg-base-100">
-        <figure className="px-6 pt-6">
-          <img
-            src="https://cdn.shopify.com/s/files/1/1109/3312/files/cinderella-divine-kv1050-long-formal-evening-prom-dress-1_500x.jpg?v=1689850835"
-            className="h-50"
-          />
-        </figure>
-        <div className="card-body items-center text-center">
-          <h3 className="card-title text-sm">
-            Cinderella Divine Long Formal Evening Prom Dress
-          </h3>
         </div>
       </div>
     </>

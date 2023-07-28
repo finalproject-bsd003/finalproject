@@ -1,46 +1,146 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/CarouselDetail";
+import React, { useState } from "react";
 
 function DetailPage() {
-    const LoremIpsumFeatures = [
-        {
-            name: "Feature 1",
-            description:
-                "Lorem ipsum dolor sit zamet, consectetur adipiscing elit. Aenean in dui eu urna gravida tincidunt.",
-        },
-        {
-            name: "Feature 2",
-            description:
-                "Sed euismod, diam a luctus condimentum, enim turpis tincidunt nulla, at fermentum risus mauris eu justo.",
-        },
-        {
-            name: "Feature 3",
-            description:
-                "Ut vel tincidunt odio, nec iaculis neque. Pellentesque eget hendrerit lorem.",
-        },
-        {
-            name: "Feature 4",
-            description:
-                "Aliquam ut mauris sit amet eros gravida tincidunt. Nam at elementum velit.",
-        },
-    ];
+    const [selectedSize, setSelectedSize] = useState("XS");
+
+    const handleSizeChange = (size) => {
+        setSelectedSize(size);
+    };
 
     return (
         <>
-            <section className="flex flex-row mt-7  gap-5 mx-7">
-                <div className="w-7/12 ml-40 overflow-hidden">
+            <section className="flex flex-row my-20  gap-5 mx-10">
+                <div className="w-7/12 ml-10 overflow-hidden">
                     <Carousel />
                 </div>
                 <div className=" w-5/12">
-                    <div className="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-                        {LoremIpsumFeatures.map((feature, index) => (
-                            <div key={index} className="border-t border-gray-200 pt-4">
-                                <dt className="font-medium text-gray-900">{feature.name}</dt>
-                                <dd className="mt-2 text-sm text-gray-500">
-                                    {feature.description}
-                                </dd>
+                    <div className="mt-28">
+                        <div>
+                            <p style={{ fontWeight: "bold", fontSize: "22px" }}>
+                                Dylan & David Draped Corset Cowl Long Prom Dress
+                            </p>
+                        </div>
+                        {/* grade */}
+
+                        <div className="mt-10">
+                            <h4>Grade: S</h4>
+                        </div>
+
+                        {/* size */}
+                        <div className="mt-12">
+                            <h4 style={{ fontWeight: "inherit", fontSize: "18px" }}>
+                                Size : {selectedSize}
+                            </h4>
+                            <div className="mt-8 mx-5">
+                                <button
+                                    className={`btn bg-white ${selectedSize === "XS" ? "selected" : ""
+                                        }`}
+                                    onClick={() => handleSizeChange("XS")}
+                                    style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        width: "40px",
+                                        height: "40px",
+                                        padding: 0,
+                                        border: "1px solid black",
+                                        borderRadius: 0,
+                                    }}
+                                >
+                                    <span className="usf-label usf-btn">XS</span>
+                                </button>
+
+                                <button
+                                    className={`btn bg-white mx-3 ${selectedSize === "S" ? "selected" : ""
+                                        }`}
+                                    onClick={() => handleSizeChange("S")}
+                                    style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        width: "40px",
+                                        height: "40px",
+                                        padding: 0,
+                                        border: "1px solid black",
+                                        borderRadius: 0,
+                                    }}
+                                >
+                                    <span className="usf-label usf-btn">S</span>
+                                </button>
+
+                                <button
+                                    className={`btn bg-white ${selectedSize === "M" ? "selected" : ""
+                                        }`}
+                                    onClick={() => handleSizeChange("M")}
+                                    style={{
+                                        display: "inline-flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        width: "40px",
+                                        height: "40px",
+                                        padding: 0,
+                                        border: "1px solid black",
+                                        borderRadius: 0,
+                                    }}
+                                >
+                                    <span className="usf-label usf-btn">M</span>
+                                </button>
                             </div>
-                        ))}
+                        </div>
+                        {/* size */}
+
+                        {/* price */}
+                        <div className="mt-20">
+                            <h4
+                                className="text-m"
+                                style={{
+                                    fontWeight: "bold",
+                                    fontSize: "36px",
+                                    display: "flex",
+                                }}
+                            >
+                                Rp 5.000.000
+                            </h4>
+                        </div>
+
+                        {/* Add to cart button */}
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                marginTop: "36px",
+                            }}
+                        >
+                            <button
+                                className="btn bg-black text-white"
+                                style={{ width: "500px", borderRadius: "0" }}
+                            >
+                                Add to cart
+                            </button>
+                        </div>
+
+                        {/* description */}
+                        <div className="mt-20 border-b">
+                            <h4
+                                className="text-m mb-2"
+                                style={{ fontWeight: "normal", fontSize: "20px" }}
+                            >
+                                Description
+                            </h4>
+                            {/* inser here */}
+                        </div>
+                        <p className="mt-8">
+                            This Dylan & Davids prom dress is the perfect fit and style for
+                            your upcoming event. The Dress Outlet offers this dress in black
+                            and mauve, but more colors may come. No matter what your size, we
+                            have it available from 2 to 14. Features a spaghetti strap cowl
+                            neckline. Fitted wrap style with a side high slit. Standout from
+                            the crowd in a more unique style that you are sure to love. No
+                            matter if this is a wedding, dance, prom or more, you will look
+                            fabulous in this style.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -49,3 +149,4 @@ function DetailPage() {
 }
 
 export default DetailPage;
+

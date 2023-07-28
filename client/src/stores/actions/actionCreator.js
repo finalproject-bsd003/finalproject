@@ -22,7 +22,7 @@ export const dressesFetch = () => {
 
             dispatch(loading())
 
-            const response = await fetch(`${baseUrl}/dresses`)
+            const response = await fetch(`${baseUrl}/dress`)
             const responseJson = await response.json()
 
             console.log(responseJson, "ini response JSON");
@@ -42,13 +42,13 @@ export const dressDetailFetchSuccess = (dress) => (
     }
 )
 
-export const detaildressFetch = (id) => {
+export const detailDressFetch = (id) => {
     return async (dispatch) => {
         try {
 
             dispatch(loading())
 
-            const response = await fetch(`${baseUrl}/dresses/${id}`)
+            const response = await fetch(`${baseUrl}/dress/${id}`)
             const responseJson = await response.json()
 
             console.log(responseJson, "ini response JSON");

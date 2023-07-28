@@ -1,9 +1,10 @@
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS } from "../actions/actionType";
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING } from "../actions/actionType";
 
 const initialState = {
     dresses: [],
-    detaildress: [],
-    error: []
+    detailDress: [],
+    error: [],
+    isLoading: false
 }
 
 const dressReducer = (state = initialState, action) => {
@@ -11,13 +12,20 @@ const dressReducer = (state = initialState, action) => {
         return {
             ...state,
             dresses: action.payload,
-            error: []
+            error: [],
+            isLoading: false
         }
     } else if (action.type === DRESS_DETAIL_FETCH_SUCCESS) {
         return {
             ...state,
-            detaildress: action.payload,
-            error: []
+            detailDress: action.payload,
+            error: [],
+            isLoading: false
+        }
+    } else if (action.type === LOADING) {
+        return {
+            ...state,
+            isLoading: true
         }
     }
 
