@@ -1,6 +1,9 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/CarouselDetail";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { detailDressFetch } from "../stores/actions/actionCreator";
 
 function DetailPage() {
     const [selectedSize, setSelectedSize] = useState("XS");
@@ -8,6 +11,28 @@ function DetailPage() {
     const handleSizeChange = (size) => {
         setSelectedSize(size);
     };
+
+    const { id } = useParams()
+    console.log(id)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(detailDressFetch(id))
+    }, [])
+
+    const { detailDress } = useSelector((state) => state?.dress)
+
+    console.log(detailDress)
+    const { result } = detailDress
+    const { resultImages } = detailDress
+
+    const rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
 
     return (
         <>
@@ -19,13 +44,13 @@ function DetailPage() {
                     <div className="mt-28">
                         <div>
                             <p style={{ fontWeight: "bold", fontSize: "22px" }}>
-                                Dylan & David Draped Corset Cowl Long Prom Dress
+                                {result?.name}
                             </p>
                         </div>
                         {/* grade */}
 
                         <div className="mt-10">
-                            <h4>Grade: S</h4>
+                            <h4>Grade: {result?.grade}</h4>
                         </div>
 
                         {/* size */}
@@ -49,7 +74,7 @@ function DetailPage() {
                                         borderRadius: 0,
                                     }}
                                 >
-                                    <span className="usf-label usf-btn">XS</span>
+                                    <span className="usf-label usf-btn">{result?.size}</span>
                                 </button>
 
                                 <button
@@ -101,7 +126,7 @@ function DetailPage() {
                                     display: "flex",
                                 }}
                             >
-                                Rp 5.000.000
+                                {rupiah(result?.price)}
                             </h4>
                         </div>
 
@@ -132,14 +157,7 @@ function DetailPage() {
                             {/* inser here */}
                         </div>
                         <p className="mt-8">
-                            This Dylan & Davids prom dress is the perfect fit and style for
-                            your upcoming event. The Dress Outlet offers this dress in black
-                            and mauve, but more colors may come. No matter what your size, we
-                            have it available from 2 to 14. Features a spaghetti strap cowl
-                            neckline. Fitted wrap style with a side high slit. Standout from
-                            the crowd in a more unique style that you are sure to love. No
-                            matter if this is a wedding, dance, prom or more, you will look
-                            fabulous in this style.
+                            {result?.description}
                         </p>
                     </div>
                 </div>
