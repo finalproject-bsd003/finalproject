@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.png";
+import { NavLink } from "react-router-dom";
+
 function Navbar() {
   //untuk search bar
 
@@ -24,9 +26,11 @@ function Navbar() {
   return (
     <>
       <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-white p-1 border-b ">
-        <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
-          <img src={logo} />
-        </div>
+        <NavLink to={"/"}>
+          <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
+            <img src={logo} />
+          </div>
+        </NavLink>
 
         {/* search bar */}
         <div className="bg-white flex justify-end ">
@@ -131,6 +135,7 @@ function Navbar() {
               />
             </svg>
           </button>
+
           <button className="mr-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
