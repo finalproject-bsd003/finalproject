@@ -23,6 +23,17 @@ function Navbar() {
     // Optionally, you can toggleCollapse() here if you want to automatically collapse the search bar after search
   };
 
+  // dropdown profile
+  const [activeLabel, setActiveLabel] = useState(null);
+
+  const handleFocus = (label) => {
+    setActiveLabel(label);
+  };
+
+  const handleBlur = () => {
+    setActiveLabel(null);
+  };
+
   return (
     <>
       <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-white p-1 border-b ">
@@ -101,25 +112,8 @@ function Navbar() {
             </button>
           )}
 
-          {/* cart and favourite */}
-
+          {/*favourite */}
           <button className="mx-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-              />
-            </svg>
-          </button>
-          <button className="mr-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -135,29 +129,37 @@ function Navbar() {
               />
             </svg>
           </button>
-
-          <button className="mr-3">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="w-6 h-6"
+          {/* profile */}
+          <div className="flex dropdown">
+            <button className="mr-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+            </button>
+            <ul
+              tabIndex={0}
+              style={{ right: "10%", marginTop: "40px" }}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-              />
-            </svg>
-          </button>
-          {/* cart and favourite */}
+              <li>
+                <a>Item 1</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </>
