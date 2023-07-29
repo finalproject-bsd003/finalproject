@@ -11,6 +11,7 @@ import ListStores from "../views/ListStores";
 import ListTransactions from "../views/ListTransactions";
 import AddDressPage from "../views/AddDressPage";
 import EditDressPage from "../views/EditDressPage";
+import StoreDetail from "../views/StoreDetail";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/liststore",
         element: <ListStores />,
+      },
+      {
+        path: "/detail-store",
+        element: <StoreDetail />,
       },
       {
         path: "/listdress",
