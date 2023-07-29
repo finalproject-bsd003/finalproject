@@ -12,6 +12,7 @@ import ListTransactions from "../views/ListTransactions";
 import AddDressPage from "../views/AddDressPage";
 import EditDressPage from "../views/EditDressPage";
 import StoreDetail from "../views/StoreDetail";
+import PaymentPage from "../views/PaymentPage";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/edit-dress/:id",
         element: <EditDressPage />,
+      },
+      {
+        path: "/payment",
+        element: <PaymentPage />,
       },
     ],
   },
