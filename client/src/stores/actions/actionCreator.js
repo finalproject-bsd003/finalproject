@@ -372,14 +372,17 @@ export const createInvoiceFailure = (error) => ({
 });
 
 // Async Action Creator for creating invoice
-export const paymentQris = (data) => async (dispatch) => {
+export const paymentQris = (data) => async (dispatch, res) => {
     dispatch(createInvoiceRequest());
     try {
         console.log(data);
         const response = await axios.post(`${baseUrl}/dress/payment`, data);
-        console.log(response.data.Data, "ini action creator");
+        console.log(response, "dari action creator");
         const { Data } = response.data
-        dispatch(createInvoiceSuccess(Data.QrTemplate));
+        console.log(Data.Url, "ini action creator");
+        // // dispatch(createInvoiceSuccess(Data.Url));
+        return Data.Url
+
     } catch (error) {
         dispatch(createInvoiceFailure('Failed to create invoice'));
     }

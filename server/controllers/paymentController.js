@@ -9,23 +9,30 @@ class PaymentController {
             // adjust with your iPaymu api key & va 
             var apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
             var va = "0000002258387876";
-            var url = 'https://sandbox.ipaymu.com/api/v2/payment/direct'; // development mode
+            var url = 'https://sandbox.ipaymu.com/api/v2/payment'; // development mode
             // var url = 'https://my.ipaymu.com/api/v2/payment/direct'; // for production mode
 
-            console.log(req.body);
+
+            // console.log(req.body);
 
             const { name, phone, amount, email, comments } = req.body
 
             var body = {
-                name,
-                phone,
-                email,
-                amount,
-                comments,
-                "notifyUrl": "http://localhost:5173/callback-url", // your callback url
-                "referenceId": "1234", // your reference id or transaction id
+                buyerName: name,
+                buyerPhone: phone,
+                buyerEmail: email,
+                product: ["Dress"],
+                qty: ["1"],
+                price: ["5000"],
+                description: [comments],
+                returnUrl: "http://localhost:5173/thank-you-page",
+                notifyUrl: "https://webhook.site/703eb3d8-e974-45e0-b1c8-e2de6e6f2018", // your callback url
+                cancelUrl: "http://localhost:5173/failed-page",
+                "referenceId": "5678", // your reference id or transaction id
                 "paymentMethod": "qris",
                 "paymentChannel": "qris",
+                pickupArea: null,
+                pickupAddress: null
             };
 
             // Generate signature

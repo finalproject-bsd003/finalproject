@@ -37,14 +37,12 @@ function DetailPage() {
 
     // -------- payment ----------//
 
-    const { qrisImage } = useSelector((state) => state?.payment)
 
 
-    const handleCreateInvoice = (event) => {
-        event.preventDefault()
+    const handleCreateInvoice = async (event) => {
+        event.preventDefault();
         const { name } = result;
 
-        // // Prepare data for the invoice creation
         const data = {
             name: "mawar",
             phone: "08123456789",
@@ -53,22 +51,18 @@ function DetailPage() {
             comments: `${name} - ${selectedSize}`,
         };
 
-        dispatch(paymentQris(data)).then(() => {
-            if (qrisImage) {
-                // Redirect to the qrisImage URL
-                window.location.href = qrisImage;
-            } else {
-                // Handle the case when qrisImage is not available
-                console.log("QR Code image not available.");
-            }
+        try {
+            const response = await dispatch(paymentQris(data));
+            console.log(response, "<<<<<<<<<<<< detail page");
+            window.location.href = response
+            // If you want to redirect after getting the response, you can do it here:
+            // window.location.href = response; // Assuming the response is a URL
+        } catch (error) {
+            console.log(error);
+        }
 
-        }).catch((error) => {
-            console.log(error, "dariiii login");
-        });
 
     }
-
-
 
     return (
         <>
