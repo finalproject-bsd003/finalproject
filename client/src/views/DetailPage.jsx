@@ -1,7 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/CarouselDetail";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { detailDressFetch, paymentQris } from "../stores/actions/actionCreator";
 
@@ -15,6 +15,7 @@ function DetailPage() {
     const { id } = useParams()
     console.log(id)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(detailDressFetch(id))
@@ -36,8 +37,11 @@ function DetailPage() {
 
     // -------- payment ----------//
 
+    const { qrisImage } = useSelector((state) => state?.payment)
 
-    const handleCreateInvoice = async () => {
+
+    const handleCreateInvoice = (event) => {
+        event.preventDefault()
         const { name } = result;
 
         // // Prepare data for the invoice creation
@@ -49,13 +53,20 @@ function DetailPage() {
             comments: `${name} - ${selectedSize}`,
         };
 
-        try {
-            dispatch(paymentQris(data))
+        dispatch(paymentQris(data)).then(() => {
+            if (qrisImage) {
+                // Redirect to the qrisImage URL
+                window.location.href = qrisImage;
+            } else {
+                // Handle the case when qrisImage is not available
+                console.log("QR Code image not available.");
+            }
 
-        } catch (error) {
-            console.error('Failed to create invoice:', error);
-        }
-    };
+        }).catch((error) => {
+            console.log(error, "dariiii login");
+        });
+
+    }
 
 
 
