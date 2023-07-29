@@ -13,6 +13,8 @@ import AddDressPage from "../views/AddDressPage";
 import EditDressPage from "../views/EditDressPage";
 import StoreDetail from "../views/StoreDetail";
 import PaymentPage from "../views/PaymentPage";
+import PaymentSuccess from "../views/PaymentSuccessPage";
+import PaymentCancelPending from "../views/PaymentCancelPending";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <PaymentPage />,
+      },
+      {
+        path: "/thank-you-page",
+        element: <PaymentSuccess />,
+      },
+      {
+        path: "/failed-page",
+        element: <PaymentCancelPending />,
       },
     ],
   },
