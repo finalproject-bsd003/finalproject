@@ -1,7 +1,8 @@
 const baseUrl = "http://localhost:3000"
 
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR } from "./actionType"
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE } from "./actionType"
 
+import axios from 'axios';
 
 // LOGIN --- REGISTER --- LOGOUT --- //
 
@@ -356,3 +357,30 @@ export const deleteStore = (id) => {
     }
 }
 
+export const createInvoiceRequest = () => ({
+    type: CREATE_INVOICE_REQUEST
+});
+
+export const createInvoiceSuccess = (data) => ({
+    type: CREATE_INVOICE_SUCCESS,
+    payload: data
+});
+
+export const createInvoiceFailure = (error) => ({
+    type: CREATE_INVOICE_FAILURE,
+    payload: error
+});
+
+// Async Action Creator for creating invoice
+export const paymentQris = (data) => async (dispatch) => {
+    dispatch(createInvoiceRequest());
+    try {
+        console.log(data);
+        const response = await axios.post(`${baseUrl}/dress/payment`, data);
+        console.log(response.data.Data, "ini action creator");
+        const { Data } = response.data
+        dispatch(createInvoiceSuccess(Data.QrTemplate));
+    } catch (error) {
+        dispatch(createInvoiceFailure('Failed to create invoice'));
+    }
+};
