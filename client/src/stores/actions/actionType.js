@@ -14,3 +14,7 @@ export const LOADING = "dresses/loading"
 export const STORE_FETCH_SUCCESS = "stores/fetchSuccess"
 export const STORE_DETAIL_FETCH_SUCCESS = "stores/detailFetchSuccess"
 export const LOADING_STORE = "stores/loading"
+
+export const CREATE_INVOICE_REQUEST = 'CREATE_INVOICE_REQUEST';
+export const CREATE_INVOICE_SUCCESS = 'CREATE_INVOICE_SUCCESS';
+export const CREATE_INVOICE_FAILURE = 'CREATE_INVOICE_FAILURE';

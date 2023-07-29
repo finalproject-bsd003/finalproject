@@ -3,7 +3,7 @@ import Carousel from "../components/CarouselDetail";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { detailDressFetch } from "../stores/actions/actionCreator";
+import { detailDressFetch, paymentQris } from "../stores/actions/actionCreator";
 
 function DetailPage() {
     const [selectedSize, setSelectedSize] = useState("XS");
@@ -32,6 +32,31 @@ function DetailPage() {
             currency: "IDR"
         }).format(number);
     }
+
+
+    // -------- payment ----------//
+
+
+    const handleCreateInvoice = async () => {
+        const { name } = result;
+
+        // // Prepare data for the invoice creation
+        const data = {
+            name: "mawar",
+            phone: "08123456789",
+            amount: 1000,
+            email: "sharonrose9926@gmail.com",
+            comments: `${name} - ${selectedSize}`,
+        };
+
+        try {
+            dispatch(paymentQris(data))
+
+        } catch (error) {
+            console.error('Failed to create invoice:', error);
+        }
+    };
+
 
 
     return (
@@ -141,8 +166,9 @@ function DetailPage() {
                             <button
                                 className="btn bg-black text-white"
                                 style={{ width: "500px", borderRadius: "0" }}
+                                onClick={handleCreateInvoice}
                             >
-                                Add to cart
+                                Payment
                             </button>
                         </div>
 
