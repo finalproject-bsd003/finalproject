@@ -1,4 +1,28 @@
-function AddProduct() {
+import { useRef } from "react";
+
+function AddEditDressForm({ detailtDress }) {
+
+  // const [formAddEditDress, setformAddEditDress] = useState(detailtDress ? { detailtDress } : [{
+  //   name: name ? name : "",
+  //   description: description ?? "",
+  //   price: price ?? "",
+  //   mainImg: mainImg ?? "",
+  //   categoryId: categoryId ?? 1,
+  //   imgUrl1: "",
+  //   imgUrl2: "",
+  //   imgUrl3: "",
+  // }])
+
+  const { error } = useSelector((state) => state?.dress);
+
+  const input = {
+    name: useRef(),
+    description: useRef(),
+    grade: useRef(),
+    mainImg: useRef(),
+    categoryId: useRef()
+  }
+
   return (
     <>
       <div className=" flex flex-col justify-center min-h-screen overflow-hidden ">
@@ -6,6 +30,8 @@ function AddProduct() {
           <h1 className="text-3xl font-semibold text-center text-black ">
             Add New Dress
           </h1>
+          {error && <div className="text-red-500">{error}</div>}
+
           <form className="mt-6">
             <div className="mb-2">
               <label
@@ -113,4 +139,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddEditDressForm;

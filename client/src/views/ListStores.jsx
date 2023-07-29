@@ -1,8 +1,26 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
 import Layout from "../components/Layout";
 import Navbar from "../components/Navbar";
+import { storesFetch } from "../stores/actions/actionCreator";
 
 function ListStores() {
+
+  const dispatch = useDispatch();
+
+  const { stores } = useSelector((state) => state?.store);
+  const { isLoading } = useSelector((state) => state?.store);
+
+  useEffect(() => {
+    dispatch(storesFetch());
+  }, []);
+
+  // const { data } = dresses
+  console.log(stores)
+
+
   return (
     <>
       <div className="flex justify-end mt-5">
@@ -32,10 +50,14 @@ function ListStores() {
                 </tr>
               </thead>
               <tbody style={{ borderCollapse: "collapse" }}>
-                <tr style={{ padding: "20px" }}>
-                  <td>a</td>
-                  <td>b</td>
-                </tr>
+                {stores?.map((store, index) =>
+                  <tr key={store?.id}>
+                    <td>{index + 1}</td>
+                    <td>{store.name} </td>
+                    <td>{store.address} </td>
+                    <td>{store.phoneNumber} </td>
+                    <td><NavLink to={`/detail-store/${store.id}`}>See Detail </NavLink></td>
+                  </tr>)}
               </tbody>
             </table>
           </div>

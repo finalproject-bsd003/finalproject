@@ -1,4 +1,4 @@
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING } from "../actions/actionType";
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, ADD_DRESS_ERROR } from "../actions/actionType";
 
 const initialState = {
     dresses: [],
@@ -26,6 +26,11 @@ const dressReducer = (state = initialState, action) => {
         return {
             ...state,
             isLoading: true
+        }
+    } else if (action.type === ADD_DRESS_ERROR) {
+        return {
+            ...state,
+            error: action.error
         }
     }
 

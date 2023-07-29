@@ -9,6 +9,8 @@ import RegisterPage from "../views/RegisterPage";
 import ListProduct from "../views/ListProduct";
 import ListStores from "../views/ListStores";
 import ListTransactions from "../views/ListTransactions";
+import AddDressPage from "../views/AddDressPage";
+import EditDressPage from "../views/EditDressPage";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +33,17 @@ const router = createBrowserRouter([
         path: "/listdress",
         element: <ListProduct />,
       },
-
       {
         path: "/transaction",
         element: <ListTransactions />,
+      },
+      {
+        path: "/add-dress",
+        element: <AddDressPage />,
+      },
+      {
+        path: "/edit-dress/:id",
+        element: <EditDressPage />,
       },
     ],
   },

@@ -7,12 +7,19 @@ import { useEffect } from "react";
 import Loading from "../components/Loading";
 import { dressesFetch } from "../stores/actions/actionCreator";
 import TalkButton from "../components/Talk";
+import { useLocation } from 'react-router-dom';
+
 
 function HomePage() {
   const dispatch = useDispatch();
 
   const { dresses } = useSelector((state) => state?.dress);
+  const { role } = useSelector((state) => state?.user);
   const { isLoading } = useSelector((state) => state?.dress);
+  console.log(role, "<<<<<<<<<<<<<<<")
+
+  const location = useLocation();
+  console.log(location)
 
   useEffect(() => {
     dispatch(dressesFetch());

@@ -1,12 +1,30 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
+import { dressesFetch } from "../stores/actions/actionCreator";
 
 function ListProduct() {
+
+  const dispatch = useDispatch();
+
+  const { dresses } = useSelector((state) => state?.dress);
+  const { isLoading } = useSelector((state) => state?.dress);
+
+  useEffect(() => {
+    dispatch(dressesFetch());
+  }, []);
+
+  const { data } = dresses
+  console.log(data)
+
   return (
     <>
       <div className="flex justify-end mt-5">
-        <button className="btn mr-3">Add New Products</button>
       </div>
+      {isLoading && <Loading />}
       <div className="flex flex-col justify-center items-center mt-5">
         <h2
           style={{
@@ -25,26 +43,30 @@ function ListProduct() {
                 <tr>
                   <th>No.</th>
                   <th>Name</th>
+                  <th>Image</th>
                   <th>Description</th>
-                  <th>Grade</th>
-                  <th>Price</th>
+                  <th>Store</th>
                   <th>Size</th>
-                  <th>Action</th>
+                  <th>Grade</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                  <th>&nbsp;</th>
                 </tr>
               </thead>
               <tbody>
-                {/* {data.map((post, index) => {
-                  return (
-                    <TableData
-                      key={post.id}
-                      title={post.title}
-                      content={post.content}
-                      category={post.Category.name}
-                      author={post.User.username}
-                      id={post.id}
-                    />
-                  );
-                })} */}
+                {data?.map((dress, index) =>
+                  <tr key={dress?.id}>
+                    <td>{index + 1}</td>
+                    <td>{dress.name} </td>
+                    <td className="w-32 p-4">  <img src={dress.mainImage} /></td>
+                    <td>{dress.description} </td>
+                    <td>{dress.Store.name} </td>
+                    <td>{dress.size} </td>
+                    <td>{dress.grade} </td>
+                    <td>CATEGORY </td>
+                    <td>{dress.price} </td>
+                    <td><NavLink to={`/detail/${dress.id}`}>See Detail </NavLink></td>
+                  </tr>)}
               </tbody>
             </table>
           </div>
