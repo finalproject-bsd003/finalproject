@@ -1,16 +1,14 @@
 function Card({ dress }) {
-
-  console.log(dress)
+  console.log(dress);
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
-      currency: "IDR"
+      currency: "IDR",
     }).format(number);
-  }
+  };
 
   return (
-
     <>
       <div className="card w-72 bg-base-100 ">
         <figure className="px-6 pt-6 h-96 overflow-hidden">
@@ -65,6 +63,10 @@ function Card({ dress }) {
                 />
               </svg>
             </button>
+          </div>
+          <div className="flex justify-center mt-3">
+            <button className="btn mr-2 flex-grow">Edit</button>
+            <button className="btn flex-grow">Delete</button>
           </div>
         </div>
       </div>
