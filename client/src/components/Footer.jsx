@@ -194,6 +194,18 @@ function Footer() {
                   ></path>
                 </svg>
               </li>
+              <li>
+                <img
+                  style={{
+                    background: "white",
+                    width: "36px",
+                    height: "22px",
+                    marginLeft: "1px",
+                  }}
+                  src="https://seeklogo.com/images/Q/quick-response-code-indonesia-standard-qris-logo-F300D5EB32-seeklogo.com.png"
+                  alt="QRIS Logo"
+                />
+              </li>
             </ul>
           </div>
         </footer>
