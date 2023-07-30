@@ -1,3 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { deleteDress, detailDressFetch } from "../stores/actions/actionCreator";
+
 function Card({ dress }) {
   console.log(dress.Store);
 
@@ -7,6 +11,23 @@ function Card({ dress }) {
       currency: "IDR",
     }).format(number);
   };
+
+  const { role } = useSelector((state) => state?.user);
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const deleteHandler = (e, id) => {
+    e.preventDefault()
+    // console.log(id)
+    dispatch(deleteDress(id))
+  }
+
+  const editHandler = (e, id) => {
+    e.preventDefault()
+    dispatch(detailDressFetch(id))
+    navigate(`/edit-dress/${id}`);
+  }
 
   return (
     <>
@@ -81,14 +102,16 @@ function Card({ dress }) {
               </svg>
             </button>
           </div>
-          <div className="flex justify-center mt-3">
-            <button className="btn mr-2 flex-grow bg-blue-400 hover:bg-blue-300 w-28">
-              Edit
-            </button>
-            <button className="btn flex-grow bg-red-400 hover:bg-red-300 w-28">
-              Delete
-            </button>
-          </div>
+          {role !== "Admin" &&
+            <div className="flex justify-center mt-3">
+              <button onClick={(e) => editHandler(e, dress?.id)} className="btn mr-2 flex-grow bg-blue-400 hover:bg-blue-300 w-28">
+                Edit
+              </button>
+              <button onClick={(e) => deleteHandler(e, dress?.id)} className="btn flex-grow bg-red-400 hover:bg-red-300 w-28">
+                Delete
+              </button>
+            </div>
+          }
         </div>
       </div>
     </>

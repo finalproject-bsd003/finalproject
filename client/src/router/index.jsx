@@ -30,31 +30,31 @@ const router = createBrowserRouter([
         element: <DetailPage />,
       },
       {
-        path: "/liststore",
+        path: "liststore",
         element: <ListStores />,
       },
       {
-        path: "/detail-store",
+        path: "detail-store/:id",
         element: <StoreDetail />,
       },
       {
-        path: "/listdress",
+        path: "listdress",
         element: <ListProduct />,
       },
       {
-        path: "/transaction",
+        path: "transaction",
         element: <ListTransactions />,
       },
       {
-        path: "/add-dress",
+        path: "add-dress",
         element: <AddDressPage />,
       },
       {
-        path: "/edit-dress/:id",
+        path: "edit-dress/:id",
         element: <EditDressPage />,
       },
       {
-        path: "/payment",
+        path: "payment",
         element: <PaymentPage />,
       },
       {

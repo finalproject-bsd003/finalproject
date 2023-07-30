@@ -4,21 +4,26 @@ const initialState = {
     role: [],
     errorLogin: [],
     errorRegister: [],
+    isLogin: false,
+    username: []
 }
 
 const userReducer = (state = initialState, action) => {
     if (action.type === LOGIN_SUCCESS) {
         return {
             ...state,
-            role: action.payload,
+            role: action.payload.role,
             errorLogin: [],
-            errorRegister: []
+            errorRegister: [],
+            isLogin: true,
+            username: action.payload.username
         }
     } else if (action.type === LOGIN_ERROR) {
         return {
             ...state,
             errorLogin: action.error,
             errorRegister: [],
+            isLogin: false
         }
     } else if (action.type === REGISTER_SUCCESS) {
         return {
@@ -35,7 +40,8 @@ const userReducer = (state = initialState, action) => {
     } else if (action.type === LOGOUT_SUCCESS) {
         return {
             ...state,
-            role: []
+            role: [],
+            isLogin: false
         }
     }
 

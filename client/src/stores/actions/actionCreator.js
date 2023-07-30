@@ -6,10 +6,10 @@ import axios from 'axios';
 
 // LOGIN --- REGISTER --- LOGOUT --- //
 
-export const loginSuccess = (role) => (
+export const loginSuccess = ({ role, username }) => (
     {
         type: LOGIN_SUCCESS,
-        payload: role
+        payload: { role, username }
     }
 )
 
@@ -37,15 +37,15 @@ export const login = (data) => {
             console.log(responseJson, "ini dari backend");
 
             const { access_token } = responseJson
-            const { role } = responseJson
+            const { role, username } = responseJson
 
-            console.log(access_token, role);
+            console.log(access_token, role, username);
 
             if (!response.ok) {
                 throw new Error(responseJson.message)
             }
 
-            dispatch(loginSuccess(role))
+            dispatch(loginSuccess({ role, username }))
             localStorage.setItem("access_token", access_token)
             return Promise.resolve();
 
@@ -107,7 +107,7 @@ export const logoutSuccess = () => (
 )
 
 export const logout = () => {
-    return async () => {
+    return async (dispatch) => {
         try {
 
             localStorage.clear()

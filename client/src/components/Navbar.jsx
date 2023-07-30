@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.png";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar() {
   //untuk search bar
@@ -33,6 +34,7 @@ function Navbar() {
   const handleBlur = () => {
     setActiveLabel(null);
   };
+
 
   return (
     <>
