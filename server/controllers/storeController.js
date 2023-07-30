@@ -12,6 +12,25 @@ class StoreController {
         }
     }
 
+    static async readStoreDetail(request, response, next) {
+        try {
+            const { id } = request.params
+            const result = await Store.findOne({
+                where: {
+                    id
+                }
+            })
+            if (!result) {
+                throw { name: 'ErrorData' }
+            }
+
+            response.status(200).json(result)
+        } catch (err) {
+            console.log(err)
+            next(err)
+        }
+    }
+
     static async createStore(request, response, next) {
         try {
             const { name, address, phoneNumber } = request.body

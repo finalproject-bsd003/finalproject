@@ -8,10 +8,22 @@ class DressController {
         const trx = await sequelize.transaction()
         try {
             const where = {}
-            const { name } = request.query
+            const { name, CategoryId, grade, size } = request.query
 
             if (name) {
                 where.name = { [Op.iLike]: `%${name}%` }
+            }
+
+            if (CategoryId) {
+                where.CategoryId = CategoryId
+            }
+
+            if (grade) {
+                where.grade = grade
+            }
+
+            if (size) {
+                where.size = size
             }
 
             const page = request.query.page ? parseInt(request.query.page) : 1
