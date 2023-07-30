@@ -14,9 +14,8 @@ function HomePage() {
   const dispatch = useDispatch();
 
   const { dresses } = useSelector((state) => state?.dress);
-  const { role } = useSelector((state) => state?.user);
   const { isLoading } = useSelector((state) => state?.dress);
-  console.log(role, "<<<<<<<<<<<<<<<")
+  // console.log(role, username, "<<<<<<<<<<<<<<<")
 
   const location = useLocation();
   console.log(location)
