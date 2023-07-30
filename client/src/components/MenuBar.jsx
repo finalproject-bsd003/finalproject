@@ -97,9 +97,34 @@ function MenuBar() {
             </li>
           </ul>
         </div>
-      </div>
 
-      {/* button */}
+        {/* STORE */}
+        <div className="dropdown mx-8 z-10">
+          <label
+            tabIndex={0}
+            className="m-1 bg-white"
+            style={{
+              textDecoration: activeLabel === "store" ? "underline" : "none",
+              outline: "none",
+            }}
+            onFocus={() => handleFocus("store")}
+            onBlur={handleBlur}
+          >
+            STORE
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a>Item 1</a>
+            </li>
+            <li>
+              <a>Item 2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </>
   );
 }
