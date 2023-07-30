@@ -24,7 +24,7 @@ class DressController {
             const { count, rows } = await Dress.findAndCountAll(
                 {
                     where,
-                    include: Store,
+                    include: [Store, Category],
                     offset: (page - 1) * perPage,
                     limit: perPage,
                     distinct: true,

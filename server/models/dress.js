@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Dress.hasMany(models.Favorite, { foreignKey: 'DressId' })
-      Dress.hasMany(models.Cart, { foreignKey: 'DressId' })
-
-      Dress.belongsToMany(models.User, {
-        through: models.Cart,
-        foreignKey: 'DressId',
-        otherKey: 'UserId'
-      })
       Dress.belongsToMany(models.User, {
         through: models.Favorite,
         foreignKey: 'DressId',

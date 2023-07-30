@@ -1,7 +1,7 @@
 'use strict';
 
-const cart = require('../sampleData/cart.json')
-cart.forEach((el) => {
+const image = require('../sampleData/image.json')
+image.forEach((el) => {
   el.createdAt = new Date()
   el.updatedAt = new Date()
 })
@@ -17,7 +17,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Carts', cart, {})
+    await queryInterface.bulkInsert('Images', image, {})
   },
 
   async down(queryInterface, Sequelize) {
@@ -27,6 +27,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Carts', null, {})
+    await queryInterface.bulkDelete('Images', null, {})
   }
 };
