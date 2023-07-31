@@ -42,7 +42,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border border-[#050505] ">
+      <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border-b border-[#050505] ">
         <NavLink to={"/"}>
           <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
             <img src={logo} />
@@ -57,7 +57,7 @@ function Navbar() {
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="border border-gray-400 w-full py-2 pl-4 pr-12 text-[#050505] placeholder-gray-500 focus:outline-none focus:ring-1"
+                className="border border-[#050505]  w-full py-2 pl-4 pr-12 text-[#050505] placeholder-[#DDD9CE]-50 focus:outline-none focus:ring-1"
                 placeholder="Search"
                 style={{ background: "#EFECE9" }}
               />
