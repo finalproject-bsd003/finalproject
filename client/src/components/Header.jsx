@@ -29,7 +29,7 @@ function Header() {
         className="bg-black"
       // style={{ display: "flex", justifyContent: "space-between" }}
       >
-        {role === "Admin" && (
+        {role !== "Admin" && (
           <div className="flex justify-start">
             <NavLink to={"/listdress"}>
               <button

@@ -376,7 +376,7 @@ export const paymentQris = (data) => async (dispatch, res) => {
     dispatch(createInvoiceRequest());
     try {
         console.log(data);
-        const response = await axios.post(`${baseUrl}/dress/payment`, data);
+        const response = await axios.post(`${baseUrl}/payment`, data);
         console.log(response, "dari action creator");
         const { Data } = response.data
         console.log(Data.Url, "ini action creator");

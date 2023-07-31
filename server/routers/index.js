@@ -7,6 +7,7 @@ const cartRouter = require('./cart')
 const favoriteRouter = require('./favorite')
 const storeRouter = require('./store')
 const { authentication } = require('../middlewares/authentication')
+const paymentRouter = require('./payment')
 
 router.use(userRouter)
 router.use(categoryRouter)
@@ -15,5 +16,5 @@ router.use(dressRouter)
 router.use(authentication)
 router.use(cartRouter)
 router.use(favoriteRouter)
-
+router.use(paymentRouter)
 module.exports = router
