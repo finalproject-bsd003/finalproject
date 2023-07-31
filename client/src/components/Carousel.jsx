@@ -17,7 +17,7 @@ export default () => (
         <img
           alt=""
           className="object-cover h-30 w-full"
-          style={{ height: "600px", width: "full" }}
+          style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
           src={pic}
         />
       </div>
@@ -25,7 +25,7 @@ export default () => (
         <img
           className="object-cover h-30 w-full"
           alt=""
-          style={{ height: "600px", width: "full" }}
+          style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
           src="https://www.estylecdn.com/manufcols/pronovias/current/zoom/ILONA_B.jpg"
         />
       </div>
@@ -33,7 +33,7 @@ export default () => (
         <img
           alt=""
           className="object-cover h-30 w-full"
-          style={{ height: "600px", width: "full" }}
+          style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
           src="https://i.etsystatic.com/18694010/r/il/990a6a/4830752631/il_fullxfull.4830752631_7ks0.jpg"
         />
       </div>

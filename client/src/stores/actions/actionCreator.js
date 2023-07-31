@@ -1,8 +1,10 @@
 const baseUrl = "http://localhost:3000"
 
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE } from "./actionType"
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR } from "./actionType"
 
 import axios from 'axios';
+import Swal from "sweetalert2";
+
 
 // LOGIN --- REGISTER --- LOGOUT --- //
 
@@ -42,10 +44,28 @@ export const login = (data) => {
             console.log(access_token, role, username);
 
             if (!response.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: `${responseJson.message}!`,
+                });
                 throw new Error(responseJson.message)
             }
 
+            if (role === "Admin") {
+
+                Swal.fire({
+                    icon: "success",
+                    title: `Welcome Back Admin!`,
+                });
+            } else {
+                Swal.fire({
+                    icon: "success",
+                    title: `Login success!`,
+                });
+            }
             dispatch(loginSuccess({ role, username }))
+
+
             localStorage.setItem("access_token", access_token)
             return Promise.resolve();
 
@@ -81,13 +101,19 @@ export const register = (data) => {
             })
 
             const responseJson = await response.json()
-            console.log(responseJson, "ini dari backend");
-
 
             if (!response.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: `${responseJson}!`,
+                });
                 throw new Error(responseJson)
             }
 
+            Swal.fire({
+                icon: "success",
+                title: `Register successfully!`,
+            });
             dispatch(registerSuccess())
 
             return Promise.resolve();
@@ -112,9 +138,17 @@ export const logout = () => {
 
             localStorage.clear()
             dispatch(logoutSuccess())
+            Swal.fire({
+                icon: "success",
+                title: `Logout success!`,
+            });
 
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: `Logout failed!`,
+            });
         }
     }
 }
@@ -197,11 +231,19 @@ export const deleteDress = (id) => {
             })
 
             console.log("berhasil delete");
-
             dispatch(dressesFetch())
+            Swal.fire({
+                icon: "success",
+                title: `Dress with ID ${id} deleted successfully`,
+            });
+            console.log(response, "ini res");
 
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: `Dress with ID ${id} cannot be deleted`,
+            });
         }
     }
 }
@@ -226,12 +268,22 @@ export const addDress = (dress) => {
             })
 
             const responseJson = await response.json()
+            console.log(responseJson, "dari action 273");
 
             if (!response.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: `${responseJson.message}`,
+                });
                 throw new Error(responseJson.message)
             }
 
+
             dispatch(dressesFetch())
+            Swal.fire({
+                icon: "success",
+                title: `ga tau res jsonnya appa 286line`,
+            });
             return Promise.resolve();
 
         } catch (error) {
@@ -262,10 +314,19 @@ export const editDress = (dress, id) => {
             console.log(responseJson, "ini response");
 
             if (!response.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: `${responseJson.message}`,
+                });
                 throw new Error(responseJson.message)
             }
 
             dispatch(dressesFetch())
+            Swal.fire({
+                icon: "success",
+                title: `res ny apa 328line`,
+            });
+
             return Promise.resolve();
 
         } catch (error) {
@@ -348,11 +409,18 @@ export const deleteStore = (id) => {
             })
 
             console.log("berhasil delete");
-
             dispatch(storesFetch())
+            Swal.fire({
+                icon: "success",
+                title: `Store with ID ${id} deleted successfully`,
+            });
 
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: "error",
+                title: `${error}`,
+            });
         }
     }
 }
@@ -387,3 +455,98 @@ export const paymentQris = (data) => async (dispatch, res) => {
         dispatch(createInvoiceFailure('Failed to create invoice'));
     }
 };
+
+// ---- CATEGORY CRUD ----- //
+export const categoryFetchSuccess = (category) => ({
+    type: CATEGORY_FETCH_SUCCESS,
+    payload: category
+});
+
+export const loadingCategory = () => (
+    {
+        type: CATS_LOADING,
+    }
+)
+
+export const addCategoryError = (error) => ({
+    type: ADD_CATS_ERROR,
+    error: error,
+});
+
+
+export const categoryFetch = () => {
+    return async (dispatch) => {
+        try {
+            dispatch(loadingCategory())
+
+            const response = await fetch(`${baseUrl}/categories`)
+            const responseJson = await response.json()
+
+            dispatch(categoryFetchSuccess(responseJson))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const addCategorySuccess = (category) => {
+    return async (dispatch) => {
+        try {
+            console.log(category, "dari action creator");
+
+            const response = await fetch(`${baseUrl}/categories`, {
+                method: "POST",
+                headers: {
+                    access_token: localStorage.getItem('access_token'),
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(category)
+            })
+
+            const responseJson = await response.json()
+
+            if (!response.ok) {
+                Swal.fire({
+                    icon: "error",
+                    title: `${responseJson}`,
+                });
+                throw new Error(responseJson)
+            }
+
+            dispatch(categoryFetchSuccess())
+            Swal.fire({
+                icon: "success",
+                title: `Category name ${responseJson.name} added successfully`,
+            });
+            return Promise.resolve();
+        } catch (error) {
+            console.log(error, "from action creator");
+            dispatch(addCategoryError(error.message))
+            return Promise.reject(error);
+        }
+    }
+}
+
+export const deleteCategory = (id) => {
+    return async (dispatch) => {
+        try {
+            await fetch(`${baseUrl}/categories/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "access_token": localStorage.getItem("access_token")
+                }
+            })
+            dispatch(categoryFetch())
+            Swal.fire({
+                icon: "success",
+                title: `Category with ID ${id} deleted!`,
+            });
+        } catch (err) {
+            console.log(err);
+            Swal.fire({
+                icon: "error",
+                title: `${err}`,
+            });
+        }
+    }
+}

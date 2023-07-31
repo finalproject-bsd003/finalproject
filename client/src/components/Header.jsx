@@ -4,30 +4,29 @@ import { logout } from "../stores/actions/actionCreator";
 import Navbar from "./Navbar";
 
 function Header() {
-
   let { isLogin, username } = useSelector((state) => state?.user);
-  const access_token = localStorage.getItem("access_token")
+  const access_token = localStorage.getItem("access_token");
   if (access_token && access_token !== "undefined") {
-    isLogin = true
+    isLogin = true;
   }
-  console.log(access_token)
-  console.log(isLogin)
-  console.log(username)
+  console.log(access_token);
+  console.log(isLogin);
+  console.log(username);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const logoutHandler = (event) => {
-    event.preventDefault()
-    dispatch(logout())
-  }
+    event.preventDefault();
+    dispatch(logout());
+  };
 
   const { role } = useSelector((state) => state?.user);
 
   return (
     <>
       <div
-        className="bg-black"
-      // style={{ display: "flex", justifyContent: "space-between" }}
+        className="bg-[#050505]"
+        // style={{ display: "flex", justifyContent: "space-between" }}
       >
         {role !== "Admin" && (
           <div className="flex justify-start">

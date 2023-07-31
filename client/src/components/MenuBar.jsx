@@ -14,11 +14,11 @@ function MenuBar() {
   return (
     <>
       {/* Grade button */}
-      <div className="flex justify-center border p-3 my-3">
+      <div className="flex justify-center border p-4 my-5 border-[#050505]">
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-white"
+            className="m-1 bg-[#EFECE9]"
             style={{
               textDecoration: activeLabel === "grade" ? "underline" : "none",
               outline: "none",
@@ -45,7 +45,7 @@ function MenuBar() {
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-white"
+            className="m-1 bg-[#EFECE9]"
             style={{
               textDecoration: activeLabel === "category" ? "underline" : "none",
               outline: "none",
@@ -75,7 +75,7 @@ function MenuBar() {
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-white"
+            className="m-1 bg-[#EFECE9]"
             style={{
               textDecoration: activeLabel === "price" ? "underline" : "none",
               outline: "none",
@@ -102,7 +102,7 @@ function MenuBar() {
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-white"
+            className="m-1 bg-[#EFECE9]"
             style={{
               textDecoration: activeLabel === "store" ? "underline" : "none",
               outline: "none",

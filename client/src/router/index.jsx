@@ -15,6 +15,8 @@ import StoreDetail from "../views/StoreDetail";
 import PaymentPage from "../views/PaymentPage";
 import PaymentSuccess from "../views/PaymentSuccessPage";
 import PaymentCancelPending from "../views/PaymentCancelPending";
+import ListCategory from "../views/ListCategories";
+import AddCategory from "../views/AddCategoryPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,18 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <PaymentPage />,
+      },
+      {
+        path: "categories",
+        element: <ListCategory />,
+      },
+      {
+        path: "categories/:id",
+        element: <ListCategory />,
+      },
+      {
+        path: "add-categories",
+        element: <AddCategory />,
       },
     ],
   },
