@@ -36,7 +36,7 @@ const authentication = async (request, response, next) => {
         }
         next()
     } catch (err) {
-        console.log(err);
+        console.log(err.name);
         next(err)
     }
 }

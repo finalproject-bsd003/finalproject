@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for server/lib/createStore.js</title>
+    <title>Code coverage report for server/lib/createFavorite.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">server/lib</a> createStore.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">server/lib</a> createFavorite.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -78,8 +78,9 @@
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -89,26 +90,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">const { Store } = require('../models/index.js')
-const dataStore = require('../sampleData/store.json')
+<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const { Favorite } = require('../models/index.js')
+const dataFavorite = require('../sampleData/favorite.json')
 &nbsp;
-async function CreateStore() {
+async function CreateFavorite() {
     // try {
-    //     await Store.bulkCreate(dataStore)
-    //     // console.log(result)
+    //     // console.log(dataDress)
+    //     const result = await Dress.bulkCreate(dataDress)
+    //     // console.log(result, '&lt;&lt; ini result')
     // } catch (err) {
     //     console.log(err)
     // }
 &nbsp;
-    return Store.bulkCreate(dataStore);
+    return Favorite.bulkCreate(dataFavorite);
 &nbsp;
 }
 &nbsp;
-module.exports = { CreateStore }</pre></td></tr></table></pre>
+module.exports = { CreateFavorite }</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
