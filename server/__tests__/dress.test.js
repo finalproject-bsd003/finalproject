@@ -46,7 +46,12 @@ describe("testDress", () => {
     //     const response = await request(app)
     //         .get("/dress?name=a")
     //         .expect(200)
-    //     expect(response.body.data).toHaveProperty(`name`, expect.any(String))
+    //     expect(response.body.data[0]).toHaveProperty(`name`, expect.any(String))
+    // })
+    // it("list dress query category id", async () => {
+    //     const response = await request(app)
+    //         .get("/dress?CategoryId=1")
+    //         .expect(200)
     // })
     // it("delete category", async () => {
     //     const id = 4
