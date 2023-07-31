@@ -35,6 +35,9 @@ class StoreController {
         try {
             const { name, address, phoneNumber } = request.body
 
+            if (!name || !address || !phoneNumber) {
+                throw { name: 'Valid input required' }
+            }
             const result = await Store.create({
                 name,
                 address,
@@ -51,11 +54,14 @@ class StoreController {
     static async deleteStore(request, response, next) {
         try {
             const { id } = request.params
-            await Store.destroy({
+            const result = await Store.destroy({
                 where: {
                     id
                 }
             })
+            if (!result) {
+                throw { name: 'ErrorDelete' }
+            }
             response.status(200).json({
                 msg: `Store with id ${id} is successfully deleted`
             })

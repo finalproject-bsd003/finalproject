@@ -78,18 +78,6 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    size: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Dress Size cannot be empty'
-        },
-        notEmpty: {
-          msg: 'Dress Size cannot be empty'
-        }
-      }
-    },
     mainImage: {
       type: DataTypes.STRING,
       allowNull: false,

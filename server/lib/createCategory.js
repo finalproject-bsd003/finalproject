@@ -1,5 +1,5 @@
 const { Category } = require('../models/index.js')
-const dataCategory = require('../sampleData/user.json')
+const dataCategory = require('../sampleData/category.json')
 
 async function CreateCategory() {
     try {

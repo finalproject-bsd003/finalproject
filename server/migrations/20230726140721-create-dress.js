@@ -25,10 +25,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      size: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       mainImage: {
         type: Sequelize.STRING,
         allowNull: false

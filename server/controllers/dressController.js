@@ -5,10 +5,9 @@ const { sequelize } = require('../models')
 
 class DressController {
     static async readDress(request, response, next) {
-        const trx = await sequelize.transaction()
         try {
             const where = {}
-            const { name, CategoryId, grade, size } = request.query
+            const { name, CategoryId, grade } = request.query
 
             if (name) {
                 where.name = { [Op.iLike]: `%${name}%` }
@@ -22,10 +21,6 @@ class DressController {
                 where.grade = grade
             }
 
-            if (size) {
-                where.size = size
-            }
-
             const page = request.query.page ? parseInt(request.query.page) : 1
             const perPage = request.query.perPage ? parseInt(request.query.perPage) : 9
 
@@ -36,12 +31,11 @@ class DressController {
             const { count, rows } = await Dress.findAndCountAll(
                 {
                     where,
-                    include: [Store, Category],
+                    include: [Store, Category, Image],
                     offset: (page - 1) * perPage,
                     limit: perPage,
                     distinct: true,
-                    order: [["id", "ASC"]],
-                    transaction: trx
+                    order: [["id", "ASC"]]
                 }
             )
 
@@ -57,41 +51,28 @@ class DressController {
             }
 
             response.status(200).json(result)
-            await trx.commit()
         } catch (err) {
-            await trx.rollback()
             console.log(err)
             next(err)
         }
     }
 
     static async readDressDetail(request, response, next) {
-        const trx = await sequelize.transaction()
         try {
             const { id } = request.params
             const result = await Dress.findOne({
                 where: {
                     id
                 },
-                include: [Store, Category],
-                transaction: trx
+                include: [Store, Category, Image]
             })
 
             if (!result) {
                 throw { name: 'ErrorData' }
             }
 
-            const resultImage = await Image.findAll({
-                where: {
-                    DressId: id
-                },
-                transaction: trx
-            })
-
-            await trx.commit()
-            response.status(200).json({ result, resultImage })
+            response.status(200).json(result)
         } catch (err) {
-            await trx.rollback()
             console.log(err)
             next(err)
         }
@@ -100,7 +81,7 @@ class DressController {
     static async createDress(request, response, next) {
         const trx = await sequelize.transaction()
         try {
-            const { name, description, grade, price, size, mainImage, CategoryId, StoreId, imageUrl1, imageUrl2, imageUrl3 } = request.body
+            const { name, description, grade, price, mainImage, CategoryId, StoreId, imageUrl1, imageUrl2, imageUrl3 } = request.body
             if (!imageUrl1 || !imageUrl2 || !imageUrl3) {
                 throw { name: 'Minimum add 3 images' }
             }
@@ -110,7 +91,6 @@ class DressController {
                 description,
                 grade,
                 price,
-                size,
                 mainImage,
                 CategoryId,
                 StoreId
@@ -146,14 +126,13 @@ class DressController {
         const trx = await sequelize.transaction()
         try {
             const { id } = request.params
-            const { name, description, grade, price, size, mainImage, CategoryId, imageUrl1, imageUrl2, imageUrl3 } = request.body
+            const { name, description, grade, price, mainImage, CategoryId, imageUrl1, imageUrl2, imageUrl3 } = request.body
 
             const result = await Dress.update({
                 name,
                 description,
                 grade,
                 price,
-                size,
                 mainImage,
                 CategoryId
             }, {
