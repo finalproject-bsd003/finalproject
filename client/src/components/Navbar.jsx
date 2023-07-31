@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.png";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { dressesFetch } from "../stores/actions/actionCreator";
 
 function Navbar() {
   //untuk search bar
@@ -17,10 +18,14 @@ function Navbar() {
     setSearchQuery(event.target.value);
   };
 
+  const dispatch = useDispatch()
+
   const handleSearchSubmit = () => {
     // Implement your search logic here, e.g., perform an API call to fetch search results
     console.log("Searching for:", searchQuery);
+    dispatch(dressesFetch({ name: searchQuery }))
     setSearchQuery("");
+
     // Optionally, you can toggleCollapse() here if you want to automatically collapse the search bar after search
   };
 

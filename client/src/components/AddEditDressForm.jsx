@@ -22,6 +22,9 @@ function AddEditDressForm({ detailDressFromPage }) {
     // dispatch(detailDressFetch(id))
   }, [detailDress])
 
+
+
+
   // useEffect(() => {
   //   dispatch(categoryFetch())
   //   dispatch(dressesFetch())
@@ -48,7 +51,7 @@ function AddEditDressForm({ detailDressFromPage }) {
     grade: "",
     size: "",
     mainImage: "",
-    categoryId: 1,
+    categoryId: "",
     imgUrl1: "",
     imgUrl2: "",
     imgUrl3: "",
@@ -83,7 +86,7 @@ function AddEditDressForm({ detailDressFromPage }) {
       imgUrl3: input.imgUrl3.current.value,
     };
 
-    console.log(dressInput.name)
+    console.log(dressInput.grade)
 
     if (id) {
       dispatch(editDress(dressInput, id))
@@ -152,22 +155,24 @@ function AddEditDressForm({ detailDressFromPage }) {
             <div className="mb-2">
               <label
                 className="block text-sm font-semibold text-gray-800"
-                htmlFor="grade"
-                id="grade"
+                htmlFor="categoryId"
+                id="categoryId"
               >
                 Category:
               </label>
               <select
-                defaultValue={formValue.grade}
-                ref={input.grade}
+                defaultValue={formValue.categoryId}
+                ref={input.categoryId}
                 type="text"
-                id="grade"
-                name="grade"
+                id="categoryId"
+                name="categoryId"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >
-                <option value={""}>Select Category</option>
+                <option selected disabled value={""}>Select Category</option>
                 {categories?.map((category) => (
-                  <option ref={input.categoryId} defaultValue={category.id} key={category.id}>
+                  <option key={category.id} value={category.id}
+                    selected={formValue.categoryId === category.id ? true : false}
+                  >
                     {category.name}
                   </option>
                 ))}
@@ -187,7 +192,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 name="grade"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >
-                <option value={""}>Select Category</option>
+                <option disabled selected value={""}>Select Grade</option>
                 <option value="S">S</option>
                 <option value="A">A</option>
                 <option value="B">B</option>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../stores";
-import { categoryFetch, storesFetch } from "../stores/actions/actionCreator";
+import { categoryFetch, dressesFetch, storesFetch } from "../stores/actions/actionCreator";
 
 function MenuBar() {
   const [activeLabel, setActiveLabel] = useState(null);
@@ -26,6 +26,12 @@ function MenuBar() {
   const { categories } = useSelector((state) => state?.category)
   const { stores } = useSelector((state) => state?.store)
   // console.log(categories, stores)
+
+  const handleCategoryClick = (e, CategoryId) => {
+    console.log(CategoryId)
+    e.preventDefault()
+    dispatch(dressesFetch({ CategoryId }))
+  }
 
   return (
     <>
@@ -82,7 +88,7 @@ function MenuBar() {
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             {categories.map((el) => <li key={el.id}>
-              <a>{el.name}</a>
+              <a onClick={(e) => handleCategoryClick(e, el.id)}>{el.name}</a>
             </li>)}
           </ul>
         </div>

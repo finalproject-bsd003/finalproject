@@ -8,12 +8,12 @@ class DressController {
         try {
             const where = {}
             const { name, CategoryId, grade } = request.query
-
+            console.log(request.query);
             if (name) {
                 where.name = { [Op.iLike]: `%${name}%` }
             }
 
-            if (CategoryId) {
+            if (+CategoryId) {
                 where.CategoryId = CategoryId
             }
 

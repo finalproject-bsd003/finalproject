@@ -173,13 +173,15 @@ export const dressesFetchSuccess = (dresses) => (
     }
 )
 
-export const dressesFetch = () => {
+export const dressesFetch = (filter) => {
+    // {categoryId: 1}
+    console.log(filter);
     return async (dispatch) => {
         try {
 
             dispatch(loading())
 
-            const response = await fetch(`${baseUrl}/dress`)
+            const response = await fetch(`${baseUrl}/dress?CategoryId=${filter?.CategoryId}&name=${filter?.name}`)
             const responseJson = await response.json()
 
             console.log(responseJson, "ini response JSON");
