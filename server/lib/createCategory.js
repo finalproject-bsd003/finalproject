@@ -1,7 +1,7 @@
 const { Category } = require('../models/index.js')
 const dataCategory = require('../sampleData/category.json')
 
-async function CreateCategory() {
+function CreateCategory() {
     // try {
     //     // console.log(dataCategory)
     //     await Category.bulkCreate(dataCategory)

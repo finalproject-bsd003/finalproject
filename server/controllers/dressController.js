@@ -52,7 +52,6 @@ class DressController {
 
             response.status(200).json(result)
         } catch (err) {
-            console.log("Error nih", err)
             next(err)
         }
     }

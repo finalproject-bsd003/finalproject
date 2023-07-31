@@ -47,6 +47,9 @@ class FavoriteController {
 
     static async deleteFavorite(request, response, next) {
         try {
+            const { id } = request.params
+            // console.log(id, 'ini id dress')
+            // console.log(request.additionalData.userId, 'ini aaa')
             const result = await Favorite.destroy({
                 where: {
                     DressId: id,
