@@ -7,8 +7,7 @@ import { useEffect } from "react";
 import Loading from "../components/Loading";
 import { dressesFetch } from "../stores/actions/actionCreator";
 import TalkButton from "../components/Talk";
-import { useLocation } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -18,7 +17,7 @@ function HomePage() {
   // console.log(role, username, "<<<<<<<<<<<<<<<")
 
   const location = useLocation();
-  console.log(location)
+  console.log(location);
 
   useEffect(() => {
     dispatch(dressesFetch());
@@ -41,12 +40,25 @@ function HomePage() {
       </div>
       <div className="pagination-container">
         <div className="flex items-center justify-center">
-          <div className="join">
-            <button className="join-item btn btn-xs">&laquo;</button>
-            <button className="join-item btn btn-xs">
+          <div className="join" style={{ background: "#EFECE9" }}>
+            <button
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
+              &laquo;
+            </button>
+            <button
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
               {pagination?.currentPage}
             </button>
-            <button className="join-item btn btn-xs">&raquo;</button>
+            <button
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
+              &raquo;
+            </button>
           </div>
         </div>
       </div>

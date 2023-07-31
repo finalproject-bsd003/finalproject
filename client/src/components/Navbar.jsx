@@ -35,10 +35,9 @@ function Navbar() {
     setActiveLabel(null);
   };
 
-
   return (
     <>
-      <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-white p-1 border-b ">
+      <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border border-[#050505] ">
         <NavLink to={"/"}>
           <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
             <img src={logo} />
@@ -46,19 +45,20 @@ function Navbar() {
         </NavLink>
 
         {/* search bar */}
-        <div className="bg-white flex justify-end ">
+        <div className="bg-[#EFECE9] flex justify-end ">
           {isCollapsed ? (
-            <div className="relative mx-auto w-96 ">
+            <div className="relative mx-auto w-96">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="border border-gray-400 w-full py-2 pl-4 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-1"
+                className="border border-gray-400 w-full py-2 pl-4 pr-12 text-[#050505] placeholder-gray-500 focus:outline-none focus:ring-1"
                 placeholder="Search"
+                style={{ background: "#EFECE9" }}
               />
               <button
                 onClick={handleSearchSubmit}
-                className="absolute right-0 top-0 mt-2 mr-2 focus:outline-none"
+                className="absolute right-0 top-0 mt-2 mr-2 focus:outline-none bg-[#EFECE9]"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

@@ -18,3 +18,9 @@ export const LOADING_STORE = "stores/loading"
 export const CREATE_INVOICE_REQUEST = 'CREATE_INVOICE_REQUEST';
 export const CREATE_INVOICE_SUCCESS = 'CREATE_INVOICE_SUCCESS';
 export const CREATE_INVOICE_FAILURE = 'CREATE_INVOICE_FAILURE';
+
+export const CATEGORY_FETCH_SUCCESS = "categories/fetchSuccess"
+export const ADD_CATEGORY_SUCCESS = "categories/addCategorySuccess"
+export const DELETE_CATEGORY_SUCCESS = "categories/deleteCategorySuccess"
+export const ADD_CATS_ERROR = "categories/addCategoryError"
+export const CATS_LOADING = "categories/loading"

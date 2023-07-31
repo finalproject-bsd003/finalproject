@@ -3,8 +3,8 @@ function Footer() {
     <>
       <main className="flex-grow pt-12 ">
         {/* Your main content goes here */}
-        <footer className="footer footer-center p-28 bg-black text-base-content">
-          <div className="flex flex-col flex-grow text-white">
+        <footer className="footer footer-center p-28 bg-[#050505] text-base-content">
+          <div className="flex flex-col flex-grow" style={{ color: "#EFECE9" }}>
             <h3 className="mb-4">
               GOWNY is here to help you find the perfect dress for those joyous
               and memorable wedding occasions.Let's make sure you look stunning
@@ -15,7 +15,7 @@ function Footer() {
               <a className="link link-hover">Contact us</a>
             </div>
           </div>
-          <div className="mt-auto text-white">
+          <div className="mt-auto" style={{ color: "#EFECE9" }}>
             <p className="text-center">© 2023 - GOWNY</p>
           </div>
           <div>
