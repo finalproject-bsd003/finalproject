@@ -6,6 +6,7 @@ class UserController {
     static async registerUser(request, response, next) {
         try {
             const { username, email, password, phoneNumber, address } = request.body
+            console.log("RegisterUserBody:", request.body)
 
             const created = await User.create({
                 username,
@@ -20,7 +21,7 @@ class UserController {
             )
 
         } catch (err) {
-            console.log(err)
+            console.log("ErrorRegister:", err)
             next(err)
         }
     }

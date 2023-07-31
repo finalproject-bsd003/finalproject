@@ -5,15 +5,22 @@ const DeleteUser = require('../lib/deleteUser')
 const { CreateUser } = require('../lib/createUser')
 const DeleteStore = require('../lib/deleteStore')
 
-beforeAll(() => {
-    CreateUser()
-    CreateStore()
+beforeAll(async () => {
+    await Promise.allSettled(
+        [
+            CreateUser(),
+            CreateStore()
+        ]
+    )
 })
 
-afterAll(() => {
-    DeleteUser()
-    DeleteStore()
-
+afterAll(async () => {
+    await Promise.allSettled(
+        [
+            DeleteUser(),
+            DeleteStore()
+        ]
+    )
 });
 
 describe("testStore", () => {
@@ -29,11 +36,12 @@ describe("testStore", () => {
             .expect(200)
     })
 
-    // it("failed list store by id", async () => {
-    //     const response = await request(app)
-    //         .get("store/10")
-    //         .expect(404)
-    // })
+    it("failed list store by id", async () => {
+        const id = 10
+        const response = await request(app)
+            .get(`/store/${id}`)
+            .expect(404)
+    })
 
     it("delete store", async () => {
         const id = 4
@@ -66,9 +74,9 @@ describe("testStore", () => {
         expect(response.body).toHaveProperty('address', expect.any(String))
         expect(response.body).toHaveProperty('phoneNumber', expect.any(String))
     })
-    it("add failed category", async () => {
+    it("add failed store", async () => {
         const response = await request(app)
-            .post(`/categories`)
+            .post(`/store`)
             .send({
                 name: "",
                 address: "",

@@ -6,13 +6,16 @@ dataUser.forEach((el) => {
 })
 
 async function CreateUser() {
-    try {
-        // console.log(dataUser)
-        const result = await User.bulkCreate(dataUser)
-        // console.log(result)
-    } catch (err) {
-        console.log(err)
-    }
+    // try {
+    //     // console.log(dataUser)
+    //     const result = await User.bulkCreate(dataUser)
+    //     // console.log(result)
+    //     return result
+    // } catch (err) {
+    //     console.log(err)
+    // }
+
+    return User.bulkCreate(dataUser);
 
 }
 

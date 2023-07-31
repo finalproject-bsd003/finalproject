@@ -3,12 +3,20 @@ const request = require('supertest')
 const DeleteUser = require('../lib/deleteUser')
 const { CreateUser } = require('../lib/createUser')
 
-beforeAll(() => {
-    CreateUser()
+beforeAll(async () => {
+    await Promise.allSettled(
+        [
+            CreateUser()
+        ]
+    )
 })
 
-afterAll(() => {
-    DeleteUser()
+afterAll(async () => {
+    await Promise.allSettled(
+        [
+            DeleteUser()
+        ]
+    )
 });
 
 

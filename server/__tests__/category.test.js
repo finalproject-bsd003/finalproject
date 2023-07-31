@@ -5,14 +5,20 @@ const DeleteUser = require('../lib/deleteUser')
 const { CreateUser } = require('../lib/createUser')
 const DeleteCategory = require('../lib/deleteCategory')
 
-beforeAll(() => {
-    CreateUser()
-    CreateCategory()
+beforeAll(async () => {
+    await Promise.allSettled(
+        [
+            CreateUser(),
+            CreateCategory()
+        ]
+    )
 })
 
-afterAll(() => {
-    DeleteUser()
-    DeleteCategory()
+afterAll(async () => {
+    await Promise.allSettled([
+        DeleteUser(),
+        DeleteCategory()
+    ])
 
 });
 

@@ -36,13 +36,15 @@ class StoreController {
             const { name, address, phoneNumber } = request.body
 
             if (!name || !address || !phoneNumber) {
-                throw { name: 'Valid input required' }
+                throw { name: 'ErrorInput' }
             }
+
             const result = await Store.create({
                 name,
                 address,
                 phoneNumber
             })
+
 
             response.status(201).json(result)
         } catch (err) {
