@@ -44,7 +44,7 @@ function Card({ dress }) {
         <div className="card-body items-start text-start">
           <NavLink to={`detail/${dress.id}`}>
             <h3
-              className="card-title text-m"
+              className="container card-title text-m"
               style={{ fontWeight: "bold", color: "#050505" }}
             >
               {dress.name}
