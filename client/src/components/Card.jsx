@@ -42,14 +42,13 @@ function Card({ dress }) {
           </figure>
         </NavLink>
         <div className="card-body items-start text-start">
-          <NavLink to={`detail/${dress.id}`}>
-            <h3
-              className="container card-title text-m"
-              style={{ fontWeight: "bold", color: "#050505" }}
-            >
-              {dress.name}
-            </h3>
-          </NavLink>
+          <div cclassName="container dress-name-container ">
+            <NavLink to={`detail/${dress.id}`}>
+              <h3 className="container card-title text-m font-bold text-#050505 overflow-hidden flex-shrink-0 leading-tight max-h-7 line-clamp-2">
+                {dress.name}
+              </h3>
+            </NavLink>
+          </div>
           <button className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
