@@ -57,14 +57,6 @@ const router = createBrowserRouter([
         path: "payment",
         element: <PaymentPage />,
       },
-      {
-        path: "/thank-you-page",
-        element: <PaymentSuccess />,
-      },
-      {
-        path: "/failed-page",
-        element: <PaymentCancelPending />,
-      },
     ],
   },
   {
@@ -74,6 +66,14 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/thank-you-page",
+    element: <PaymentSuccess />,
+  },
+  {
+    path: "/failed-page",
+    element: <PaymentCancelPending />,
   },
 ]);
 

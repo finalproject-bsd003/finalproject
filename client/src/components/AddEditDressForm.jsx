@@ -125,7 +125,7 @@ function AddEditDressForm({ detailDressFromPage }) {
 
   return (
     <>
-      <div className=" flex flex-col justify-center min-h-screen overflow-hidden ">
+      {/* <div className=" flex flex-col justify-center min-h-screen overflow-hidden ">
         <div className="w-[50vw] p-6 m-auto bg-base-100 rounded-md shadow-md lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-black ">
             {id ? "Edit Detail Dress" : "Add New Dress"}
@@ -140,6 +140,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 Name:
               </label>
               <input
+                defaultValue={name}
                 type="text"
                 name="name"
                 defaultValue={formValue.name}
@@ -155,6 +156,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 Description:
               </label>
               <textarea
+                defaultValue={description}
                 type="text"
                 placeholder="Enter description here..."
                 name="description"
@@ -177,12 +179,12 @@ function AddEditDressForm({ detailDressFromPage }) {
                 name="grade"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >
-                {/* <option value={""}>Select Category</option>
+                <option value={""}>Select Category</option>
                 {category.map((category) => (
                   <option value={category.id} key={category.id}>
                     {category.name}
                   </option>
-                ))} */}
+                ))}
               </select>
             </div>
             <div className="mb-2">
@@ -283,7 +285,7 @@ function AddEditDressForm({ detailDressFromPage }) {
             </div>
           </form>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -2,52 +2,58 @@ import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { register } from "../stores/actions/actionCreator";
+import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.png";
 
 const RegisterPage = () => {
-
   const input = {
     username: useRef(),
     email: useRef(),
     password: useRef(),
     phoneNumber: useRef(),
     address: useRef(),
-  }
+  };
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { errorRegister } = useSelector((state) => state?.user);
-  console.log(errorRegister)
+  console.log(errorRegister);
 
   const registerSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const inputRegister = {
       username: input.username.current.value,
       email: input.email.current.value,
       password: input.password.current.value,
       phoneNumber: input.phoneNumber.current.value,
       address: input.address.current.value,
-      role: "User"
-    }
-    dispatch(register(inputRegister)).then(() => {
-      navigate("/login")
-    }).catch((error) => {
-      console.log(error, "dariiii login");
-    });
-
-  }
-
-
-
+      role: "User",
+    };
+    dispatch(register(inputRegister))
+      .then(() => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error, "dariiii login");
+      });
+  };
 
   return (
     <>
       <div className=" flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-[30vw] p-6 m-auto bg-base-100 rounded-md shadow-md lg:max-w-xl">
-          <h1 className="text-3xl font-semibold text-center text-black ">
+          <div className="flex justify-center">
+            <img
+              src={logo}
+              style={{ alignItems: "center", width: "90px", height: "70px" }}
+            />
+          </div>
+          <h1 className="text-3xl font-semibold text-center text-black mt-5">
             Register
           </h1>
-          {errorRegister && <div className="text-red-500 mt-2">{errorRegister}</div>}
+          {errorRegister && (
+            <div className="text-red-500 mt-2">{errorRegister}</div>
+          )}
           <form onSubmit={registerSubmit} className="mt-6">
             <div className="mb-2">
               <label
@@ -115,9 +121,12 @@ const RegisterPage = () => {
             </div>
             <p className="text-sm text-center font-light text-gray-500 dark:text-gray-400">
               Already have an account?
-              <NavLink to="/login"
-                className="font-medium text-blue-700 ml-2 hover:underline dark:text-primary-500">
-                Sign In </NavLink>
+              <NavLink
+                to="/login"
+                className="font-medium text-blue-700 ml-2 hover:underline dark:text-primary-500"
+              >
+                Sign In{" "}
+              </NavLink>
             </p>
             <div className="mt-6">
               <button
@@ -126,6 +135,11 @@ const RegisterPage = () => {
               >
                 Sign up
               </button>
+              <NavLink to={"/"}>
+                <p className="flex justify-center font-medium text-blue-500 ml-2 hover:underline dark:text-primary-500 mt-2">
+                  Back to HomePage
+                </p>
+              </NavLink>
             </div>
           </form>
         </div>

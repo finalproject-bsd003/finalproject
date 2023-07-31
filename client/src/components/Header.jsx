@@ -27,15 +27,14 @@ function Header() {
     <>
       <div
         className="bg-black"
-        style={{ display: "flex", justifyContent: "space-between" }}
+      // style={{ display: "flex", justifyContent: "space-between" }}
       >
-        {role === "Admin" &&
-          < div >
+        {role === "Admin" && (
+          <div className="flex justify-start">
             <NavLink to={"/listdress"}>
               <button
                 className="btn btn-sm btn-ghost text-sm text-white"
                 style={{
-                  fontFamily: "CustomFont",
                   fontSize: "16px",
                   color: "white",
                   fontWeight: "normal",
@@ -48,7 +47,6 @@ function Header() {
               <button
                 className="btn btn-sm btn-ghost text-sm text-white"
                 style={{
-                  fontFamily: "CustomFont",
                   fontSize: "16px",
                   color: "white",
                   fontWeight: "normal",
@@ -61,7 +59,6 @@ function Header() {
               <button
                 className="btn btn-sm btn-ghost text-sm text-white"
                 style={{
-                  fontFamily: "CustomFont",
                   fontSize: "16px",
                   color: "white",
                   fontWeight: "normal",
@@ -71,19 +68,43 @@ function Header() {
               </button>
             </NavLink>
           </div>
-        }
-        {isLogin &&
-          <div>
-            <h1 className=" text-white ">{username}</h1>
-            <h1 onClick={logoutHandler} className=" text-white ">logout</h1>
-          </div>}
-        {!isLogin &&
-          <div>
+        )}
+        {isLogin && (
+          <div className="flex justify-end">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="white"
+              className="w-6 h-6 mx-1 my-1"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+              />
+            </svg>
+            <h1 className="flex text-white mt-1">{username}</h1>
+            <button
+              onClick={logoutHandler}
+              className="btn btn-sm btn-ghost text-sm text-white"
+              style={{
+                fontSize: "16px",
+                color: "white",
+                fontWeight: "normal",
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        )}
+        {!isLogin && (
+          <div className="flex justify-end">
             <NavLink to={"/login"}>
               <button
                 className="btn btn-sm btn-ghost mr-2 text-sm text-white"
                 style={{
-                  fontFamily: "CustomFont",
                   fontSize: "16px",
                   color: "white",
                   fontWeight: "normal",
@@ -96,7 +117,6 @@ function Header() {
               <button
                 className="btn btn-sm btn-ghost text-sm text-white"
                 style={{
-                  fontFamily: "CustomFont",
                   fontSize: "16px",
                   color: "white",
                   fontWeight: "normal",
@@ -106,7 +126,7 @@ function Header() {
               </button>
             </NavLink>
           </div>
-        }
+        )}
       </div>
     </>
   );

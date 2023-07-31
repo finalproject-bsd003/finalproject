@@ -15,26 +15,26 @@ export default () => (
     >
       <div>
         <img
-          className="object-cover h-30 w-full"
-          alt=""
-          style={{ height: "600px", width: "full" }}
-          src="https://static.thehoneycombers.com/wp-content/uploads/sites/2/2022/08/wedding-gowns-singapore-the-proposal.jpg"
-        />
-      </div>
-      <div>
-        <img
-          alt=""
-          className="object-cover h-30 w-full"
-          style={{ height: "600px", width: "full" }}
-          src="https://images.unsplash.com/photo-1580385181229-be7e4a9f775a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
-        />
-      </div>
-      <div>
-        <img
           alt=""
           className="object-cover h-30 w-full"
           style={{ height: "600px", width: "full" }}
           src={pic}
+        />
+      </div>
+      <div>
+        <img
+          className="object-cover h-30 w-full"
+          alt=""
+          style={{ height: "600px", width: "full" }}
+          src="https://www.estylecdn.com/manufcols/pronovias/current/zoom/ILONA_B.jpg"
+        />
+      </div>
+      <div>
+        <img
+          alt=""
+          className="object-cover h-30 w-full"
+          style={{ height: "600px", width: "full" }}
+          src="https://i.etsystatic.com/18694010/r/il/990a6a/4830752631/il_fullxfull.4830752631_7ks0.jpg"
         />
       </div>
     </Carousel>
