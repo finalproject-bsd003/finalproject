@@ -18,10 +18,10 @@ const EditDressPage = () => {
 
     console.log(detailDress)
     const { result } = detailDress
-    const { resultImages } = detailDress
+    const { resultImage } = detailDress
 
     return (
-        <AddEditDressForm detailDress={{ result, resultImages }} />
+        <AddEditDressForm detailDressFromPage={{ result, resultImage }} />
     )
 }
 
