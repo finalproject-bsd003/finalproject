@@ -19,13 +19,13 @@ function DetailPage() {
 
     useEffect(() => {
         dispatch(detailDressFetch(id))
-    }, [])
+    }, [id])
 
-    const { detailDress } = useSelector((state) => state?.dress)
+    const { detailDress: result } = useSelector((state) => state?.dress)
 
-    console.log(detailDress)
-    const { result } = detailDress
-    const { resultImages } = detailDress
+    console.log(result)
+    // const { result } = detailDress
+    // const { resultImages } = detailDress
 
     const rupiah = (number) => {
         return new Intl.NumberFormat("id-ID", {
@@ -64,11 +64,13 @@ function DetailPage() {
 
     }
 
+    // console.log(result?.Images)
+
     return (
         <>
             <section className="flex flex-row my-20  gap-5 mx-10">
                 <div className="w-7/12 ml-10 overflow-hidden">
-                    <Carousel />
+                    <Carousel images={{ arrResult: result.Images, mainImage: result.mainImage }} />
                 </div>
                 <div className=" w-5/12">
                     <div className="mt-28">
@@ -82,69 +84,6 @@ function DetailPage() {
                         <div className="mt-10">
                             <h4>Grade: {result?.grade}</h4>
                         </div>
-
-                        {/* size */}
-                        <div className="mt-12">
-                            <h4 style={{ fontWeight: "inherit", fontSize: "18px" }}>
-                                Size : {selectedSize}
-                            </h4>
-                            <div className="mt-8 mx-5">
-                                <button
-                                    className={`btn bg-white ${selectedSize === "XS" ? "selected" : ""
-                                        }`}
-                                    onClick={() => handleSizeChange("XS")}
-                                    style={{
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        width: "40px",
-                                        height: "40px",
-                                        padding: 0,
-                                        border: "1px solid black",
-                                        borderRadius: 0,
-                                    }}
-                                >
-                                    <span className="usf-label usf-btn">{result?.size}</span>
-                                </button>
-
-                                <button
-                                    className={`btn bg-white mx-3 ${selectedSize === "S" ? "selected" : ""
-                                        }`}
-                                    onClick={() => handleSizeChange("S")}
-                                    style={{
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        width: "40px",
-                                        height: "40px",
-                                        padding: 0,
-                                        border: "1px solid black",
-                                        borderRadius: 0,
-                                    }}
-                                >
-                                    <span className="usf-label usf-btn">S</span>
-                                </button>
-
-                                <button
-                                    className={`btn bg-white ${selectedSize === "M" ? "selected" : ""
-                                        }`}
-                                    onClick={() => handleSizeChange("M")}
-                                    style={{
-                                        display: "inline-flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        width: "40px",
-                                        height: "40px",
-                                        padding: 0,
-                                        border: "1px solid black",
-                                        borderRadius: 0,
-                                    }}
-                                >
-                                    <span className="usf-label usf-btn">M</span>
-                                </button>
-                            </div>
-                        </div>
-                        {/* size */}
 
                         {/* price */}
                         <div className="mt-20">

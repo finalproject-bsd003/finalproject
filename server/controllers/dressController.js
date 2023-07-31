@@ -22,7 +22,7 @@ class DressController {
             }
 
             const page = request.query.page ? parseInt(request.query.page) : 1
-            const perPage = request.query.perPage ? parseInt(request.query.perPage) : 9
+            const perPage = request.query.perPage ? parseInt(request.query.perPage) : 12
 
             if (page <= 0 || perPage <= 0) {
                 throw { name: 'Minimum page is 1' }

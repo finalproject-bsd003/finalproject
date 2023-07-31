@@ -14,7 +14,7 @@ function HomePage() {
 
   const { dresses } = useSelector((state) => state?.dress);
   const { isLoading } = useSelector((state) => state?.dress);
-  // console.log(role, username, "<<<<<<<<<<<<<<<")
+  console.log(isLoading, "<<<<<<<<<<<<<<<")
 
   const location = useLocation();
   console.log(location);
@@ -23,8 +23,9 @@ function HomePage() {
     dispatch(dressesFetch());
   }, []);
 
+
   const { data } = dresses;
-  console.log(dresses);
+  console.log(dresses, "<<<<<<<<");
   const { pagination } = dresses;
 
   return (

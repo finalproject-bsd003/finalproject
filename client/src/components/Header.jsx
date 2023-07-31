@@ -4,14 +4,13 @@ import { logout } from "../stores/actions/actionCreator";
 import Navbar from "./Navbar";
 
 function Header() {
-  let { isLogin, username } = useSelector((state) => state?.user);
+  let { isLogin } = useSelector((state) => state?.user);
   const access_token = localStorage.getItem("access_token");
   if (access_token && access_token !== "undefined") {
     isLogin = true;
   }
-  console.log(access_token);
-  console.log(isLogin);
-  console.log(username);
+  // console.log(access_token);
+  // console.log(isLogin);
 
   const dispatch = useDispatch();
 
@@ -20,15 +19,17 @@ function Header() {
     dispatch(logout());
   };
 
-  const { role } = useSelector((state) => state?.user);
+  const role = localStorage.getItem("role")
+  const username = localStorage.getItem("username")
+
 
   return (
     <>
       <div
         className="bg-[#050505]"
-        // style={{ display: "flex", justifyContent: "space-between" }}
+      // style={{ display: "flex", justifyContent: "space-between" }}
       >
-        {role !== "Admin" && (
+        {role === "Admin" && (
           <div className="flex justify-start">
             <NavLink to={"/listdress"}>
               <button

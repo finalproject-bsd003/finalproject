@@ -2,18 +2,15 @@ import React from 'react';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 
-const MyImageGallery = () => {
-    const images = [
-        {
-            original: 'https://www.thedressoutlet.com/cdn/shop/products/cd0186w__1.jpg?v=1689798218&width=2500',
-            thumbnail: 'https://www.thedressoutlet.com/cdn/shop/products/cd0186w__1.jpg?v=1689798218&width=2500',
-        },
-        {
-            original: "https://www.thedressoutlet.com/cdn/shop/products/long-formal-strapless-wedding-dress-the-dress-outlet-1.jpg?v=1689779113&width=1646",
-            thumbnail: "https://www.thedressoutlet.com/cdn/shop/products/long-formal-strapless-wedding-dress-the-dress-outlet-1.jpg?v=1689779113&width=1646",
-        },
-        // Add more images as needed
-    ];
+const MyImageGallery = ({ images }) => {
+
+    // console.log(images, "imagess")
+
+    const arrImages = [{ original: images?.mainImage, thumbnail: images?.mainImage }]
+
+    const arrAdditionalImages = images?.arrResult?.map((el) => (arrImages.push({ original: el.name, thumbnail: el.name })))
+
+    console.log(arrImages)
 
     const galleryStyles = {
         width: '100%', // Adjust the width to fit your layout
@@ -23,12 +20,15 @@ const MyImageGallery = () => {
     };
 
     return (
+        // <></>
         <div>
             <ImageGallery
-                items={images}
+                items={arrImages}
                 showThumbnails={true}
+                infinite={true}
                 showFullscreenButton={false}
                 showPlayButton={false}
+                disableThumbnailScroll={true}
                 autoPlay={true}
                 slideInterval={5000}
                 thumbnailPosition='left'

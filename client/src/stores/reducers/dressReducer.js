@@ -30,7 +30,8 @@ const dressReducer = (state = initialState, action) => {
     } else if (action.type === ADD_DRESS_ERROR) {
         return {
             ...state,
-            error: action.error
+            error: action.error,
+            isLoading: false
         }
     }
 

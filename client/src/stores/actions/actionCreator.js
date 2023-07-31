@@ -67,6 +67,8 @@ export const login = (data) => {
 
 
             localStorage.setItem("access_token", access_token)
+            localStorage.setItem("role", role)
+            localStorage.setItem("username", username)
             return Promise.resolve();
 
         } catch (error) {

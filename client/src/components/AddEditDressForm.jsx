@@ -1,34 +1,46 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { detailDressFetch } from "../stores/actions/actionCreator";
+import { addDress, categoryFetch, detailDressFetch, dressesFetch, editDress } from "../stores/actions/actionCreator";
 
 function AddEditDressForm({ detailDressFromPage }) {
 
-  // console.log(detailDressFromPage, "<<<<<<<<<<<<,")
+  console.log(detailDressFromPage, "dari form")
 
   const dispatch = useDispatch()
-
   const { id } = useParams()
   console.log(id, "dari addedit form")
 
   useEffect(() => {
     dispatch(detailDressFetch(id))
-  }, [id])
-
+    dispatch(categoryFetch())
+  }, [])
   const { detailDress } = useSelector((state) => state?.dress)
 
-  const [formValue, setFormValue] = useState(detailDressFromPage ? {
-    name: detailDress ? detailDress?.result?.name : detailDressFromPage?.result?.name,
-    description: detailDress ? detailDress?.result?.description : detailDressFromPage?.result?.description,
-    price: detailDress ? detailDress?.result?.price : detailDressFromPage?.result?.price,
-    grade: detailDress ? detailDress?.result?.grade : detailDressFromPage?.result?.grade,
-    size: detailDress ? detailDress?.result?.size : detailDressFromPage?.result?.size,
-    mainImage: detailDress ? detailDress?.result?.mainImage : detailDressFromPage?.result?.mainImage,
-    categoryId: detailDress ? detailDress?.result?.categoryId : detailDressFromPage?.result?.categoryId,
-    imgUrl1: detailDress ? detailDress?.resultImage[0]?.name : detailDressFromPage?.resultImage[0]?.name,
-    imgUrl2: detailDress ? detailDress?.resultImage[1]?.name : detailDressFromPage?.resultImage[1]?.name,
-    imgUrl3: detailDress ? detailDress?.resultImage[2]?.name : detailDressFromPage?.resultImage[2]?.name,
+  useEffect(() => {
+    setFormValue(detailDress)
+    // dispatch(detailDressFetch(id))
+  }, [detailDress])
+
+  // useEffect(() => {
+  //   dispatch(categoryFetch())
+  //   dispatch(dressesFetch())
+  // }, [])
+
+  const { categories } = useSelector((state) => state?.category)
+  console.log(detailDress.Images, "<<<<<<,")
+
+  const [formValue, setFormValue] = useState(id ? {
+    name: detailDress ? detailDress?.name : detailDressFromPage?.name,
+    description: detailDress ? detailDress?.description : detailDressFromPage?.description,
+    price: detailDress ? detailDress?.price : detailDressFromPage?.price,
+    grade: detailDress ? detailDress?.grade : detailDressFromPage?.grade,
+    size: detailDress ? detailDress?.size : detailDressFromPage?.size,
+    mainImage: detailDress ? detailDress?.mainImage : detailDressFromPage?.mainImage,
+    categoryId: detailDress ? detailDress?.categoryId : detailDressFromPage?.categoryId,
+    // imgUrl1: detailDress ? detailDress?.Images[0]?.name : detailDressFromPage?.Images[0]?.name,
+    // imgUrl2: detailDress ? detailDress?.Images[1]?.name : detailDressFromPage?.Images[1]?.name,
+    // imgUrl3: detailDress ? detailDress?.Images[2]?.name : detailDressFromPage?.Images[2]?.name,
   } : {
     name: "",
     description: "",
@@ -42,96 +54,68 @@ function AddEditDressForm({ detailDressFromPage }) {
     imgUrl3: "",
   });
 
-
-  // const { result } = detailDressFromPage
-  // const { resultImage } = detailDressFromPage
-  // console.log(result, resultImage)
-
-  // const [editFormValue, setEditFormValue] = useState({
-  //   name: "",
-  //   description: "",
-  //   price: "",
-  //   grade: "",
-  //   size: "",
-  //   mainImage: "",
-  //   categoryId: 1,
-  //   imgUrl1: "",
-  //   imgUrl2: "",
-  //   imgUrl3: "",
-  // });
-
-  // const dispatch = useDispatch()
-
-  // const { id } = useParams()
-  // console.log(id, "dari addedit form")
-
-  // useEffect(() => {
-  //   dispatch(detailDressFetch(id))
-  // }, [id])
-
-  // const { detailDress } = useSelector((state) => state?.dress)
-  // console.log(detailDress)
-
-  // const {
-  //   name,
-  //   description,
-  //   price,
-  //   grade,
-  //   size,
-  //   mainImage,
-  //   categoryId,
-  // } = detailDressFromPage?.result || detailDress?.result || {};
-
-  // console.log(detailDressFromPage, "dari parameter")
-  // console.log(detailDress, "dari state dress")
-  // const detailData = detailDressFromPage ?? detailDress; // Choose either detailDressFromPage or detailDress
-  // console.log(detailData, "ni detail data")
-  // console.log(detailData.resultImage[0].name, "ni detail data")
-
-
-
-  // const imgUrl1 = detailData?.resultImage[0].name
-  // const imgUrl2 = detailData?.resultImage[1].name
-  // const imgUrl3 = detailData?.resultImage[2].name
-
-  // console.log(imgUrl1, imgUrl2, imgUrl3);
-
-
-  // const [formAddProduct, setformAddProduct] = useState({
-  //   name: name ?? "",
-  //   description: description ?? "",
-  //   price: price ?? "",
-  //   grade: grade ?? "",
-  //   size: size ?? "",
-  //   mainImage: mainImage ?? "",
-  //   categoryId: categoryId ?? 1,
-  //   imgUrl1: imgUrl1 ?? "",
-  //   imgUrl2: imgUrl2 ?? "",
-  //   imgUrl3: imgUrl3 ?? "",
-  // })
-
-  // console.log(formAddProduct, "<<<<<<<<<<<")
-
-
   const { error } = useSelector((state) => state?.dress);
 
   const input = {
     name: useRef(),
     description: useRef(),
+    categoryId: useRef(),
     grade: useRef(),
-    mainImg: useRef(),
-    categoryId: useRef()
+    mainImage: useRef(),
+    price: useRef(),
+    imgUrl1: useRef(),
+    imgUrl2: useRef(),
+    imgUrl3: useRef(),
   }
+
+
+  const addDressSubmit = (event, id) => {
+    event.preventDefault();
+    const dressInput = {
+      name: input.name.current.value,
+      description: input.description.current.value,
+      categoryId: input.current.value,
+      grade: input.grade.current.value,
+      mainImage: input.mainImage.current.value,
+      price: input.price.current.value,
+      imgUrl1: input.imgUrl1.current.value,
+      imgUrl2: input.imgUrl2.current.value,
+      imgUrl3: input.imgUrl3.current.value,
+    };
+
+    console.log(dressInput.name)
+
+    if (id) {
+      dispatch(editDress(dressInput, id))
+        .then(() => {
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error, "dariiii edit dress");
+        });
+    } else {
+      dispatch(addDress(dressInput))
+        .then(() => {
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error, "dariiii add dress");
+        });
+    }
+
+
+  };
+
 
   return (
     <>
-      {/* <div className=" flex flex-col justify-center min-h-screen overflow-hidden ">
+      <div className=" flex flex-col justify-center min-h-screen overflow-hidden ">
         <div className="w-[50vw] p-6 m-auto bg-base-100 rounded-md shadow-md lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-black ">
             {id ? "Edit Detail Dress" : "Add New Dress"}
           </h1>
           {error && <div className="text-red-500">{error}</div>}
-          <form className="mt-6">
+          <form onSubmit={(e) => id ? addDressSubmit(e, id) : addDressSubmit(e)} className="mt-6">
             <div className="mb-2">
               <label
                 htmlFor="name"
@@ -140,10 +124,10 @@ function AddEditDressForm({ detailDressFromPage }) {
                 Name:
               </label>
               <input
-                defaultValue={name}
                 type="text"
                 name="name"
                 defaultValue={formValue.name}
+                ref={input.name}
                 placeholder="Enter dress name here ..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -156,13 +140,38 @@ function AddEditDressForm({ detailDressFromPage }) {
                 Description:
               </label>
               <textarea
-                defaultValue={description}
                 type="text"
                 placeholder="Enter description here..."
                 name="description"
                 defaultValue={formValue.description}
+                ref={input.description}
+                style={{ height: "150px" }}
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
+            </div>
+            <div className="mb-2">
+              <label
+                className="block text-sm font-semibold text-gray-800"
+                htmlFor="grade"
+                id="grade"
+              >
+                Category:
+              </label>
+              <select
+                defaultValue={formValue.grade}
+                ref={input.grade}
+                type="text"
+                id="grade"
+                name="grade"
+                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              >
+                <option value={""}>Select Category</option>
+                {categories?.map((category) => (
+                  <option ref={input.categoryId} defaultValue={category.id} key={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="mb-2">
               <label
@@ -174,17 +183,15 @@ function AddEditDressForm({ detailDressFromPage }) {
               </label>
               <select
                 defaultValue={formValue.grade}
-                type="text"
-                id="grade"
+                ref={input.grade}
                 name="grade"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               >
                 <option value={""}>Select Category</option>
-                {category.map((category) => (
-                  <option value={category.id} key={category.id}>
-                    {category.name}
-                  </option>
-                ))}
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
               </select>
             </div>
             <div className="mb-2">
@@ -196,6 +203,7 @@ function AddEditDressForm({ detailDressFromPage }) {
               </label>
               <input
                 defaultValue={formValue.mainImage}
+                ref={input.mainImage}
                 type="text"
                 name="mainImage"
                 placeholder="Enter tags here..."
@@ -213,22 +221,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 defaultValue={formValue.price}
                 type="text"
                 name="Price"
-                placeholder="Enter image URL here..."
-                className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              />
-            </div>
-
-            <div className="mb-2">
-              <label
-                className="block text-sm font-semibold text-gray-800"
-                htmlFor="size"
-              >
-                Size:
-              </label>
-              <input
-                type="text"
-                name="size"
-                defaultValue={formValue.size}
+                ref={input.price}
                 placeholder="Enter image URL here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -244,6 +237,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 type="text"
                 name="imgUrl1"
                 defaultValue={formValue.imgUrl1}
+                ref={input.imgUrl1}
                 placeholder="Enter image URL here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -256,9 +250,10 @@ function AddEditDressForm({ detailDressFromPage }) {
                 Image Url 2:
               </label>
               <input
-                defaultValue={formValue.imgUrl2}
                 type="text"
                 name="imgUrl2"
+                defaultValue={formValue.imgUrl2}
+                ref={input.imgUrl2}
                 placeholder="Enter image URL here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -274,6 +269,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                 type="text"
                 name="imgUrl3"
                 defaultValue={formValue.imgUrl3}
+                ref={input.imgUrl3}
                 placeholder="Enter image URL here..."
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-indigo-500 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -285,7 +281,7 @@ function AddEditDressForm({ detailDressFromPage }) {
             </div>
           </form>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }

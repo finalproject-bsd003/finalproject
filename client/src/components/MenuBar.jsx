@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../stores";
+import { categoryFetch, storesFetch } from "../stores/actions/actionCreator";
 
 function MenuBar() {
   const [activeLabel, setActiveLabel] = useState(null);
@@ -10,6 +14,18 @@ function MenuBar() {
   const handleBlur = () => {
     setActiveLabel(null);
   };
+
+  // GRADE, CATEGORY, NAMA STORE
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(categoryFetch())
+    dispatch(storesFetch())
+  }, [])
+
+  const { categories } = useSelector((state) => state?.category)
+  const { stores } = useSelector((state) => state?.store)
+  // console.log(categories, stores)
 
   return (
     <>
@@ -33,10 +49,16 @@ function MenuBar() {
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <a>S</a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a>A</a>
+            </li>
+            <li>
+              <a>B</a>
+            </li>
+            <li>
+              <a>C</a>
             </li>
           </ul>
         </div>
@@ -59,42 +81,9 @@ function MenuBar() {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-          </ul>
-        </div>
-
-        {/* PRICE */}
-        <div className="dropdown mx-8 z-10">
-          <label
-            tabIndex={0}
-            className="m-1 bg-[#EFECE9]"
-            style={{
-              textDecoration: activeLabel === "price" ? "underline" : "none",
-              outline: "none",
-            }}
-            onFocus={() => handleFocus("price")}
-            onBlur={handleBlur}
-          >
-            PRICE
-          </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
+            {categories.map((el) => <li key={el.id}>
+              <a>{el.name}</a>
+            </li>)}
           </ul>
         </div>
 
@@ -116,12 +105,9 @@ function MenuBar() {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
+            {stores.map((el) => <li key={el.id}>
+              <a>{el.name}</a>
+            </li>)}
           </ul>
         </div>
       </div>

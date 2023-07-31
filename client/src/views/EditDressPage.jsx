@@ -16,12 +16,10 @@ const EditDressPage = () => {
 
     const { detailDress } = useSelector((state) => state?.dress)
 
-    console.log(detailDress)
-    const { result } = detailDress
-    const { resultImage } = detailDress
+    console.log(detailDress, "<<< dari edit page")
 
     return (
-        <AddEditDressForm detailDressFromPage={{ result, resultImage }} />
+        <AddEditDressForm detailDressFromPage={detailDress} />
     )
 }
 
