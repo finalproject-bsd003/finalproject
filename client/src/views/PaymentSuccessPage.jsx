@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const PaymentSuccess = () => {
-    return (
-        <h1>PERMBAYARAN BERHASIL</h1>
-    )
-}
-
-export default PaymentSuccess
-=======
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -44,4 +35,3 @@ const PaymentSuccess = () => {
 };
 
 export default PaymentSuccess;
->>>>>>> b2940cc8765a4185797da89878cb9e69a99d80f3

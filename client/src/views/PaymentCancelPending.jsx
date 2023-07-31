@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const PaymentCancelPending = () => {
-    return (
-        <h1>PERMBAYARAN GAGAL</h1>
-    )
-}
-
-export default PaymentCancelPending
-=======
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -44,4 +35,3 @@ const PaymentCancelPending = () => {
 };
 
 export default PaymentCancelPending;
->>>>>>> b2940cc8765a4185797da89878cb9e69a99d80f3
