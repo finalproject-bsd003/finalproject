@@ -5,13 +5,14 @@ const { User } = require('../models/index')
 class UserController {
     static async registerUser(request, response, next) {
         try {
-            const { username, email, password, role, phoneNumber, address } = request.body
+            const { username, email, password, phoneNumber, address } = request.body
+            console.log("RegisterUserBody:", request.body)
 
             const created = await User.create({
                 username,
                 email,
                 password,
-                role,
+                role: 'User',
                 phoneNumber,
                 address
             })
@@ -20,7 +21,7 @@ class UserController {
             )
 
         } catch (err) {
-            console.log(err)
+            console.log("ErrorRegister:", err)
             next(err)
         }
     }
@@ -58,6 +59,7 @@ class UserController {
             response.status(200).json({
                 access_token: token,
                 username: user.username,
+                email: user.email,
                 role: user.role
             })
         } catch (err) {

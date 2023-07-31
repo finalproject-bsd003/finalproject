@@ -49,10 +49,16 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Store Phone Number cannot be empty'
         }
       }
+    },
+    status: {
+      type: DataTypes.STRING
     }
   }, {
     sequelize,
     modelName: 'Store',
   });
+  Store.beforeCreate((stores) => {
+    stores.status = 'Active'
+  })
   return Store;
 };

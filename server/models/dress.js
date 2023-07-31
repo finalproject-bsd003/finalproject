@@ -11,13 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Dress.hasMany(models.Favorite, { foreignKey: 'DressId' })
-      Dress.hasMany(models.Cart, { foreignKey: 'DressId' })
-
-      Dress.belongsToMany(models.User, {
-        through: models.Cart,
-        foreignKey: 'DressId',
-        otherKey: 'UserId'
-      })
       Dress.belongsToMany(models.User, {
         through: models.Favorite,
         foreignKey: 'DressId',
@@ -50,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notNull: {
@@ -82,18 +75,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty: {
           msg: 'Dress Price cannot be empty'
-        }
-      }
-    },
-    size: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Dress Size cannot be empty'
-        },
-        notEmpty: {
-          msg: 'Dress Size cannot be empty'
         }
       }
     },

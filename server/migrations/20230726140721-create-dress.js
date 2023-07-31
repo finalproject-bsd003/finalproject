@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       grade: {
@@ -23,10 +23,6 @@ module.exports = {
       },
       price: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      size: {
-        type: Sequelize.STRING,
         allowNull: false
       },
       mainImage: {

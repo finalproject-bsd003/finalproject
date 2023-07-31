@@ -18,6 +18,10 @@ class CategoryController {
         try {
             const { name } = request.body
 
+            if (!name) {
+                throw { name: 'ErrorInput' }
+            }
+
             const result = await Category.create({
                 name
             })
@@ -32,11 +36,16 @@ class CategoryController {
     static async deleteCategories(request, response, next) {
         try {
             const { id } = request.params
-            await Category.destroy({
+
+            const result = await Category.destroy({
                 where: {
                     id
                 }
             })
+
+            if (!result) {
+                throw { name: 'ErrorDelete' }
+            }
             response.status(200).json({
                 msg: `Category with id ${id} is successfully deleted`
             })

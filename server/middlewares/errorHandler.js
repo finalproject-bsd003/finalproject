@@ -45,6 +45,10 @@ const errorHandler = async (err, request, response, next) => {
         response.status(404).json({
             message: 'Error not found'
         })
+    } else if (err.name === 'ErrorInput') {
+        response.status(400).json({
+            message: 'All input column is required'
+        })
     } else if (err.name === 'ErrorDelete') {
         response.status(404).json({
             message: 'Error not found'
