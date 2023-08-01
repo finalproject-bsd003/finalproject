@@ -6,7 +6,7 @@ const PaymentSuccess = () => {
     <>
       <Navbar />
       <div className="flex items-center justify-center h-screen">
-        <div className="flex justify-center card w-[40vw] h-[80vh] bg-base-100 border border-black ">
+        <div className="flex justify-center card w-[40vw] h-[80vh] bg-base-100 border border-black">
           <figure className="px-10 pt-2">
             <img
               src="https://cdn.dribbble.com/users/147386/screenshots/5315437/success-tick-dribbble.gif"
@@ -24,7 +24,9 @@ const PaymentSuccess = () => {
             </h2>
 
             <div className="card-actions mt-12">
-              <button className="btn ">Back To HomePage</button>
+              <button className=" btn w-full px-4 py-2 tracking-wide text-[#efece9] transition-colors duration-200 transform bg-[#610C27] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#E3C1B4] ">
+                Back To HomePage
+              </button>
             </div>
           </div>
         </div>

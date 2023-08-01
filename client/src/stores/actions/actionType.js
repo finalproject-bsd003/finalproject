@@ -24,3 +24,4 @@ export const ADD_CATEGORY_SUCCESS = "categories/addCategorySuccess"
 export const DELETE_CATEGORY_SUCCESS = "categories/deleteCategorySuccess"
 export const ADD_CATS_ERROR = "categories/addCategoryError"
 export const CATS_LOADING = "categories/loading"
+

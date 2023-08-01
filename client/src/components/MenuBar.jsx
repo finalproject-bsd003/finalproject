@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../stores";
-import { categoryFetch, dressesFetch, storesFetch } from "../stores/actions/actionCreator";
+import {
+  categoryFetch,
+  dressesFetch,
+  storesFetch,
+} from "../stores/actions/actionCreator";
 
 function MenuBar() {
   const [activeLabel, setActiveLabel] = useState(null);
@@ -17,21 +21,21 @@ function MenuBar() {
 
   // GRADE, CATEGORY, NAMA STORE
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(categoryFetch())
-    dispatch(storesFetch())
-  }, [])
+    dispatch(categoryFetch());
+    dispatch(storesFetch());
+  }, []);
 
-  const { categories } = useSelector((state) => state?.category)
-  const { stores } = useSelector((state) => state?.store)
+  const { categories } = useSelector((state) => state?.category);
+  const { stores } = useSelector((state) => state?.store);
   // console.log(categories, stores)
 
   const handleCategoryClick = (e, CategoryId) => {
-    console.log(CategoryId)
-    e.preventDefault()
-    dispatch(dressesFetch({ CategoryId }))
-  }
+    console.log(CategoryId);
+    e.preventDefault();
+    dispatch(dressesFetch({ CategoryId }));
+  };
 
   const handleGradeClick = (e, grade) => {
     console.log(grade)
@@ -93,9 +97,11 @@ function MenuBar() {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {categories.map((el) => <li key={el.id}>
-              <a onClick={(e) => handleCategoryClick(e, el.id)}>{el.name}</a>
-            </li>)}
+            {categories.map((el) => (
+              <li key={el.id}>
+                <a onClick={(e) => handleCategoryClick(e, el.id)}>{el.name}</a>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -117,9 +123,11 @@ function MenuBar() {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {stores.map((el) => <li key={el.id}>
-              <a>{el.name}</a>
-            </li>)}
+            {stores?.map((el) => (
+              <li key={el.id}>
+                <a>{el.name}</a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

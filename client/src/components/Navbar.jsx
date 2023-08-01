@@ -65,7 +65,7 @@ function Navbar() {
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="border border-gray-400 w-full py-2 pl-4 pr-12 text-[#050505] placeholder-gray-500 focus:outline-none focus:ring-1"
+                className="border border-[#050505]  w-full py-2 pl-4 pr-12 text-[#050505] placeholder-[#DDD9CE]-50 focus:outline-none focus:ring-1"
                 placeholder="Search"
                 style={{ background: "#EFECE9" }}
               />
