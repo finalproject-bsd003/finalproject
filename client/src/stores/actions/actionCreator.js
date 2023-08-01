@@ -181,7 +181,28 @@ export const dressesFetch = (filter) => {
 
             dispatch(loading())
 
-            const response = await fetch(`${baseUrl}/dress?CategoryId=${filter?.CategoryId}&name=${filter?.name}`)
+            let query = ""
+            if (filter) {
+                const { CategoryId, name, grade } = filter
+                if (CategoryId) {
+                    query = `CategoryId=${CategoryId}`
+                }
+
+                if (name) {
+                    query = `name=${name}`
+                }
+
+                if (grade) {
+                    query = `grade=${grade}`
+                }
+                console.log(query, "ini <<<<<<<<<");
+
+            }
+            // if (!filter) {
+            //     query = "dress"
+            // }
+
+            const response = await fetch(`${baseUrl}/dress?${query}`)
             const responseJson = await response.json()
 
             console.log(responseJson, "ini response JSON");

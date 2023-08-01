@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { dressesFetch } from "../stores/actions/actionCreator";
 
@@ -40,14 +40,22 @@ function Navbar() {
     setActiveLabel(null);
   };
 
+  const navigate = useNavigate()
+
+  const logoClick = () => {
+    // e.preventDefault()
+    dispatch(dressesFetch())
+    navigate("/")
+  }
+
   return (
     <>
       <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border border-[#050505] ">
-        <NavLink to={"/"}>
-          <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
-            <img src={logo} />
-          </div>
-        </NavLink>
+        {/* <NavLink to={"/"}> */}
+        <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
+          <img onClick={logoClick} src={logo} />
+        </div>
+        {/* </NavLink> */}
 
         {/* search bar */}
         <div className="bg-[#EFECE9] flex justify-end ">

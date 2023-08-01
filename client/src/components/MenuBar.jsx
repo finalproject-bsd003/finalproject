@@ -33,6 +33,12 @@ function MenuBar() {
     dispatch(dressesFetch({ CategoryId }))
   }
 
+  const handleGradeClick = (e, grade) => {
+    console.log(grade)
+    e.preventDefault()
+    dispatch(dressesFetch({ grade }))
+  }
+
   return (
     <>
       {/* Grade button */}
@@ -55,16 +61,16 @@ function MenuBar() {
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>S</a>
+              <a onClick={(e) => handleGradeClick(e, "S")}>S</a>
             </li>
             <li>
-              <a>A</a>
+              <a onClick={(e) => handleGradeClick(e, "A")}>A</a>
             </li>
             <li>
-              <a>B</a>
+              <a onClick={(e) => handleGradeClick(e, "B")}>B</a>
             </li>
             <li>
-              <a>C</a>
+              <a onClick={(e) => handleGradeClick(e, "C")}>C</a>
             </li>
           </ul>
         </div>
