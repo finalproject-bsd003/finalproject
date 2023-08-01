@@ -28,6 +28,16 @@ function HomePage() {
   console.log(dresses, "<<<<<<<<");
   const { pagination } = dresses;
 
+  const nextPageHandler = (event, page) => {
+    event.preventDefault()
+    dispatch(dressesFetch({ page }))
+  }
+
+  const backPageHandler = (event, page) => {
+    event.preventDefault()
+    dispatch(dressesFetch({ page }))
+  }
+
   return (
     <>
       <TalkButton />
@@ -42,7 +52,9 @@ function HomePage() {
       <div className="pagination-container">
         <div className="flex items-center justify-center">
           <div className="join" style={{ background: "#EFECE9" }}>
-            <button
+            <button onClick={(e) => backPageHandler(e, pagination?.currentPage !== 1
+              ? pagination.currentPage - 1
+              : pagination?.currentPage)}
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >
@@ -55,6 +67,9 @@ function HomePage() {
               {pagination?.currentPage}
             </button>
             <button
+              onClick={(e) => nextPageHandler(e, pagination?.nextPage !== null
+                ? pagination.currentPage + 1
+                : pagination?.currentPage)}
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >

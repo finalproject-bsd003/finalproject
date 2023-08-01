@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { addFavoriteSuccess, deleteDress, detailDressFetch } from "../stores/actions/actionCreator";
 
 function Card({ dress }) {
-  console.log(dress.Store);
+  // console.log(dress.Store);
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -40,7 +40,7 @@ function Card({ dress }) {
         <NavLink to={`detail/${dress.id}`}>
           <figure className="px-5 pt-6 h-96 overflow-hidden">
             <img
-              src={dress.mainImage}
+              src={dress?.mainImage}
               className="h-full w-full object-cover"
               alt="Dress"
             />
@@ -50,7 +50,7 @@ function Card({ dress }) {
           <div className="container dress-name-container ">
             <NavLink to={`detail/${dress.id}`}>
               <h3 className="container card-title text-m font-bold text-#050505 overflow-hidden flex-shrink-0 leading-tight max-h-7 line-clamp-2">
-                {dress.name}
+                {dress?.name}
               </h3>
             </NavLink>
           </div>
@@ -71,7 +71,7 @@ function Card({ dress }) {
             </svg>
             <NavLink to={`detail-store/${dress.id}`}>
               <p className="text-sm underline" style={{ color: "#050505" }}>
-                {dress.Store.name}
+                {dress?.Store?.name}
               </p>
             </NavLink>
           </button>
@@ -83,7 +83,7 @@ function Card({ dress }) {
               className="text-m"
               style={{ fontWeight: "bold", color: "#050505" }}
             >
-              {rupiah(dress.price)}
+              {rupiah(dress?.price)}
             </h4>
             <button
               className="mr-2"

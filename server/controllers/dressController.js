@@ -85,7 +85,7 @@ class DressController {
             if (!imageUrl1 || !imageUrl2 || !imageUrl3) {
                 throw { name: 'Minimum add 3 images' }
             }
-            console.log(name, description, grade, price, mainImage, CategoryId, StoreId, imageUrl1, imageUrl2, imageUrl3);
+
             const result = await Dress.create({
                 name,
                 description,
