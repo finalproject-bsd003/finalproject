@@ -51,10 +51,9 @@ function DetailPage() {
         try {
             console.log("masuk function payment")
             const response = await dispatch(paymentQris(data));
-            //   console.log(response, "<<<<<<<<<<<< detail page");
+            console.log(response, "<<<<<<<<<<<< detail page");
             window.location.href = response;
-            // If you want to redirect after getting the response, you can do it here:
-            // window.location.href = response; // Assuming the response is a URL
+
         } catch (error) {
             console.log(error);
         }
