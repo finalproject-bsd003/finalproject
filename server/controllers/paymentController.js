@@ -7,9 +7,9 @@ class PaymentController {
         try {
             console.log("masuk payment");
             // adjust with your iPaymu api key & va 
-            var apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
-            var va = "0000002258387876";
-            var url = 'https://sandbox.ipaymu.com/api/v2/payment'; // development mode
+            const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
+            const va = "0000002258387876";
+            const url = 'https://sandbox.ipaymu.com/api/v2/payment'; // development mode
             // var url = 'https://my.ipaymu.com/api/v2/payment/direct'; // for production mode
 
 
@@ -18,9 +18,9 @@ class PaymentController {
             const { name, phone, amount, email, comments } = req.body
 
             var body = {
-                buyerName: name,
+                buyerName: req.additionalData.username,
                 buyerPhone: phone,
-                buyerEmail: email,
+                buyerEmail: req.additionalData.email,
                 product: ["Dress"],
                 qty: ["1"],
                 price: ["5000"],

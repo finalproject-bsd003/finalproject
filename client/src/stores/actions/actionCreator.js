@@ -307,7 +307,7 @@ export const addDress = (dress) => {
             dispatch(dressesFetch())
             Swal.fire({
                 icon: "success",
-                title: `ga tau res jsonnya appa 286line`,
+                title: `Dress ${responseJson.result.name} added successfully  `,
             });
             return Promise.resolve();
 
@@ -323,6 +323,13 @@ export const editDress = (dress, id) => {
     return async (dispatch) => {
         try {
             console.log(dress, "dari action creator");
+            const { name,
+                description,
+                grade,
+                price,
+                mainImage,
+                CategoryId,
+                StoreId } = dress
 
             const response = await fetch(`${baseUrl}/dress/${id}`, {
                 method: "PUT",
@@ -330,33 +337,48 @@ export const editDress = (dress, id) => {
                     access_token: localStorage.getItem('access_token'),
                     "content-type": "application/json"
                 },
-                body: JSON.stringify(dress)
+                body: JSON.stringify({
+                    name,
+                    description,
+                    grade,
+                    price,
+                    mainImage,
+                    CategoryId,
+                    StoreId,
+                    imageUrl1,
+                    imageUrl2,
+                    imageUrl3
+                })
             })
 
             const responseJson = await response.json()
 
             console.log("kelar edit")
-            console.log(responseJson, "ini response");
+            console.log(responseJson, "<<<<<<<<<<<<<ini response>>>>>>>>>>>>>");
 
             if (!response.ok) {
                 Swal.fire({
                     icon: "error",
-                    title: `${responseJson.message}`,
+                    title: `${responseJson}`,
                 });
-                throw new Error(responseJson.message)
+                throw new Error(responseJson)
             }
 
             dispatch(dressesFetch())
             Swal.fire({
                 icon: "success",
-                title: `res ny apa 328line`,
+                title: `${responseJson.message}`,
             });
 
             return Promise.resolve();
 
         } catch (error) {
-            console.log(error, "dari action creator");
-            dispatch(addDressError(error.message))
+            console.log(error.message, "dari action creator");
+            Swal.fire({
+                icon: "error",
+                title: `${error.message}`,
+            });
+            // dispatch(addDressError(error.message))
             return Promise.reject(error);
         }
     }

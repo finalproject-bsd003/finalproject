@@ -17,7 +17,7 @@ function HomePage() {
   console.log(isLoading, "<<<<<<<<<<<<<<<")
 
   const location = useLocation();
-  console.log(location);
+  console.log(location, "<<<<<<<<<<");
 
   useEffect(() => {
     dispatch(dressesFetch());
