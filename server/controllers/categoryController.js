@@ -9,7 +9,7 @@ class CategoryController {
                 result
             )
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -28,7 +28,7 @@ class CategoryController {
 
             response.status(201).json(result)
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -50,7 +50,7 @@ class CategoryController {
                 msg: `Category with id ${id} is successfully deleted`
             })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }

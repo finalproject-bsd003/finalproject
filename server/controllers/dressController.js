@@ -3,11 +3,22 @@ const { getPagination } = require('../helpers/pagination')
 const { Op } = require('sequelize')
 const { sequelize } = require('../models')
 
+const Redis = require('ioredis')
+
+const redis = new Redis(13795, process.env.REDIS)
+
 class DressController {
     static async readDress(request, response, next) {
         try {
+            let dressCache = await redis.get("dressCache");
+
+            if (dressCache) {
+                let dressResult = JSON.parse(dressCache);
+                return response.status(200).json(dressResult)
+            }
+
             const where = {}
-            const { name, CategoryId, grade } = request.query
+            const { name, CategoryId, grade, StoreId } = request.query
 
             if (name) {
                 where.name = { [Op.iLike]: `%${name}%` }
@@ -21,8 +32,12 @@ class DressController {
                 where.grade = grade
             }
 
+            if (StoreId) {
+                where.StoreId = StoreId
+            }
+
             const page = request.query.page ? parseInt(request.query.page) : 1
-            const perPage = request.query.perPage ? parseInt(request.query.perPage) : 9
+            const perPage = request.query.perPage ? parseInt(request.query.perPage) : 12
 
             if (page <= 0 || perPage <= 0) {
                 throw { name: 'Minimum page is 1' }
@@ -50,6 +65,8 @@ class DressController {
                 throw { name: 'Dress Not found' }
             }
 
+            redis.set("dressCache", JSON.stringify(result));
+
             response.status(200).json(result)
         } catch (err) {
             next(err)
@@ -72,7 +89,7 @@ class DressController {
 
             response.status(200).json(result)
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -95,7 +112,7 @@ class DressController {
                 StoreId
             }, { transaction: trx })
 
-            console.log(result)
+            // console.log(result)
 
             const addImageResult = await Image.bulkCreate([
                 {
@@ -113,10 +130,11 @@ class DressController {
             ], { transaction: trx })
 
             await trx.commit()
+            redis.del("dressCache")
             response.status(201).json({ result, addImageResult })
         } catch (err) {
             await trx.rollback()
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -166,12 +184,13 @@ class DressController {
                 }
             ], { transaction: trx })
             await trx.commit()
+            redis.del("dressCache")
             response.status(201).json({
                 message: `Dress with ${id} has been successfully edited `
             })
         } catch (err) {
             await trx.rollback()
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -179,7 +198,7 @@ class DressController {
     static async deleteDress(request, response, next) {
         const trx = await sequelize.transaction()
         try {
-            console.log('masuk delete ini')
+            // console.log('masuk delete ini')
             const { id } = request.params
             const result = await Dress.destroy({
                 where: {
@@ -193,13 +212,14 @@ class DressController {
             }
 
             await trx.commit()
+            redis.del("dressCache")
             response.status(200).json({
                 message: `Data with id ${id} has been successfully deleted`
             })
 
         } catch (err) {
             await trx.rollback()
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }

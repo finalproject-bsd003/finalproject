@@ -13,7 +13,7 @@ class FavoriteController {
                 result
             )
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -28,8 +28,8 @@ class FavoriteController {
                     UserId: request.additionalData.userId,
                 },
                 defaults: {
-                    DressId: request.additionalData.userId,
                     DressId: id,
+                    UserId: request.additionalData.userId,
                     // totalPerson: 1
                     // Nanti buat booking
                 }
@@ -38,10 +38,10 @@ class FavoriteController {
             if (!result) {
                 throw { name: 'Favorite Not Found' }
             }
-            console.log(result)
+            // console.log(result)
             response.status(200).json(result)
         } catch (err) {
-
+            next(err)
         }
     }
 
@@ -64,7 +64,7 @@ class FavoriteController {
                 message: `Success to delete`
             })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }

@@ -39,16 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     phoneNumber: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: 'Store Phone Number cannot be empty'
-        },
-        notEmpty: {
-          msg: 'Store Phone Number cannot be empty'
-        }
-      }
+      type: DataTypes.STRING
     },
     status: {
       type: DataTypes.STRING
