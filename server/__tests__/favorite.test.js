@@ -56,7 +56,11 @@ describe("testFavorite", () => {
     })
 
     it("add favorite", async () => {
+<<<<<<< HEAD
         const id = 3
+=======
+        const id = 1
+>>>>>>> ab84637fa2a207d2c3b815a452b91d2947a5dff2
         const response = await request(app)
             .post(`/favorite/${id}`)
             .send({
@@ -66,6 +70,7 @@ describe("testFavorite", () => {
         expect(response.status).toBe(200);
     })
 
+<<<<<<< HEAD
     // it("add favorite", async () => {
     //     const id = 999
     //     const response = await request(app)
@@ -89,4 +94,22 @@ describe("testFavorite", () => {
     //     expect(response.body.msg).toBe(`Success to delete`)
     // })
 
+=======
+    it("delete favorite by id", async () => {
+        const id = 1
+        const response = await request(app)
+            .delete(`/favorite/${id}`)
+            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmc")
+            .expect(200)
+        expect(response.body.message).toBe(`Success to delete`)
+    })
+
+    it("failed delete favorite by id", async () => {
+        const id = 999
+        const response = await request(app)
+            .delete(`/favorite/${id}`)
+            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmc")
+            .expect(404)
+    })
+>>>>>>> ab84637fa2a207d2c3b815a452b91d2947a5dff2
 })

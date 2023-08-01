@@ -1,7 +1,7 @@
 const { Favorite } = require('../models/index.js')
 const dataFavorite = require('../sampleData/favorite.json')
 
-async function CreateFavorite() {
+function CreateFavorite() {
     // try {
     //     // console.log(dataDress)
     //     const result = await Dress.bulkCreate(dataDress)
