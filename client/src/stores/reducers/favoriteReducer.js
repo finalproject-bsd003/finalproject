@@ -4,7 +4,7 @@ const initialState = {
     favorite: []
 }
 
-const userReducer = (state = initialState, action) => {
+const favoriteReducer = (state = initialState, action) => {
     if (action.type === FAVORITE_FETCH_SUCCESS) {
         return {
             ...state,
@@ -15,4 +15,4 @@ const userReducer = (state = initialState, action) => {
     return state
 }
 
-export default userReducer
+export default favoriteReducer

@@ -629,6 +629,13 @@ export const favoriteFetch = () => {
                 }
             })
             const responseJson = await response.json()
+            console.log(responseJson, "<<");
+            if (!responseJson.length) {
+                Swal.fire({
+                    icon: "error",
+                    title: `Favorite page empty,Add your most beloved dress and let it shine like a star in your collection.!`,
+                });
+            }
 
             dispatch(favortieFecthSuccess(responseJson))
 
@@ -656,7 +663,7 @@ export const addFavoriteSuccess = (id) => {
             dispatch(favoriteFetch())
             Swal.fire({
                 icon: "success",
-                title: `Added dress to favorite successfully`,
+                title: `Dress added to favorites successfully.`,
             });
             return Promise.resolve();
         } catch (error) {

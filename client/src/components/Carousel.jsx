@@ -12,6 +12,7 @@ export default () => (
       showStatus={false}
       transitionTime={10}
       style={{ height: "600px" }}
+      backgroundPosition="center"
     >
       <div>
         <img
@@ -26,7 +27,7 @@ export default () => (
           className="object-cover h-30 w-full"
           alt=""
           style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
-          src="https://www.estylecdn.com/manufcols/pronovias/current/zoom/ILONA_B.jpg"
+          src="https://images.unsplash.com/photo-1519379169146-d4b170447caa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
         />
       </div>
       <div>
@@ -34,7 +35,7 @@ export default () => (
           alt=""
           className="object-cover h-30 w-full"
           style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
-          src="https://i.etsystatic.com/18694010/r/il/990a6a/4830752631/il_fullxfull.4830752631_7ks0.jpg"
+          src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
         />
       </div>
     </Carousel>
