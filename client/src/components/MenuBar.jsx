@@ -38,19 +38,19 @@ function MenuBar() {
   };
 
   const handleGradeClick = (e, grade) => {
-    console.log(grade)
-    e.preventDefault()
-    dispatch(dressesFetch({ grade }))
-  }
+    console.log(grade);
+    e.preventDefault();
+    dispatch(dressesFetch({ grade }));
+  };
 
   return (
     <>
       {/* Grade button */}
-      <div className="flex justify-center border p-4 my-5 border-[#050505]">
+      <div className="flex justify-center border-b p-4 bg-[#DDD9CE]">
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-[#EFECE9]"
+            className="m-1 bg-[#DDD9CE]"
             style={{
               textDecoration: activeLabel === "grade" ? "underline" : "none",
               outline: "none",
@@ -83,7 +83,7 @@ function MenuBar() {
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-[#EFECE9]"
+            className="m-1 bg-[#DDD9CE]"
             style={{
               textDecoration: activeLabel === "category" ? "underline" : "none",
               outline: "none",
@@ -95,7 +95,7 @@ function MenuBar() {
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content z-[1] menu p-2 shadow bg-[#EFECE9] rounded-box w-52"
           >
             {categories.map((el) => (
               <li key={el.id}>
@@ -109,7 +109,7 @@ function MenuBar() {
         <div className="dropdown mx-8 z-10">
           <label
             tabIndex={0}
-            className="m-1 bg-[#EFECE9]"
+            className="m-1 bg-[#DDD9CE]"
             style={{
               textDecoration: activeLabel === "store" ? "underline" : "none",
               outline: "none",
