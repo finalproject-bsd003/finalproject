@@ -25,3 +25,6 @@ export const DELETE_CATEGORY_SUCCESS = "categories/deleteCategorySuccess"
 export const ADD_CATS_ERROR = "categories/addCategoryError"
 export const CATS_LOADING = "categories/loading"
 
+export const FAVORITE_FETCH_SUCCESS = "favorite/fetchSuccess"
+export const ADD_FAVORITE_SUCCESS = "favorite/addFavoriteSuccess"
+export const DELETE_FAVORITE_SUCCESS = "favorite/deleteFavoriteSuccess"

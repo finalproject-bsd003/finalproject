@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { deleteDress, detailDressFetch } from "../stores/actions/actionCreator";
+import { addFavoriteSuccess, deleteDress, detailDressFetch } from "../stores/actions/actionCreator";
 
 function Card({ dress }) {
   console.log(dress.Store);
@@ -29,6 +29,11 @@ function Card({ dress }) {
     navigate(`/edit-dress/${id}`);
   };
 
+  const favoriteHandler = (e, id) => {
+    e.preventDefault();
+    dispatch(addFavoriteSuccess(id));
+  };
+
   return (
     <>
       <div className="card w-72 bg-[#EFECE9] ">
@@ -42,7 +47,7 @@ function Card({ dress }) {
           </figure>
         </NavLink>
         <div className="card-body items-start text-start">
-          <div cclassName="container dress-name-container ">
+          <div className="container dress-name-container ">
             <NavLink to={`detail/${dress.id}`}>
               <h3 className="container card-title text-m font-bold text-#050505 overflow-hidden flex-shrink-0 leading-tight max-h-7 line-clamp-2">
                 {dress.name}
@@ -92,6 +97,7 @@ function Card({ dress }) {
                 e.target.style.fill = "none";
               }}
               onClick={(e) => {
+                favoriteHandler(e, dress?.id)
                 e.target.style.stroke = "red";
                 e.target.style.fill = "red";
                 setTimeout(() => {

@@ -5,7 +5,8 @@ const initialState = {
     errorLogin: [],
     errorRegister: [],
     isLogin: false,
-    username: []
+    username: [],
+    favorite: []
 }
 
 const userReducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ const userReducer = (state = initialState, action) => {
             errorLogin: [],
             errorRegister: [],
             isLogin: true,
-            username: action.payload.username
+            username: action.payload.username,
+            favorite: action.payload.favorite
         }
     } else if (action.type === LOGIN_ERROR) {
         return {
@@ -41,7 +43,8 @@ const userReducer = (state = initialState, action) => {
         return {
             ...state,
             role: [],
-            isLogin: false
+            isLogin: false,
+            favorite: []
         }
     }
 

@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3000"
 
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR } from "./actionType"
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR, FAVORITE_FETCH_SUCCESS } from "./actionType"
 
 import axios from 'axios';
 import Swal from "sweetalert2";
@@ -575,3 +575,82 @@ export const deleteCategory = (id) => {
         }
     }
 }
+
+// ----- FAVOURITE CRD ------ //
+
+export const favortieFecthSuccess = (favorite) => (
+    {
+        type: FAVORITE_FETCH_SUCCESS,
+        payload: favorite
+    }
+)
+
+
+export const favoriteFetch = () => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`${baseUrl}/favorite`, {
+                method: "GET",
+                headers: {
+                    access_token: localStorage.getItem('access_token'),
+                    "content-type": "application/json"
+                }
+            })
+            const responseJson = await response.json()
+
+            dispatch(favortieFecthSuccess(responseJson))
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+export const addFavoriteSuccess = (id) => {
+    return async (dispatch) => {
+        try {
+            console.log(id);
+            const response = await fetch(`${baseUrl}/favorite/${id}`, {
+                method: "POST",
+                headers: {
+                    access_token: localStorage.getItem('access_token'),
+                    "content-type": "application/json"
+                }
+            })
+
+            const responseJson = await response.json()
+
+
+            dispatch(favoriteFetch())
+            Swal.fire({
+                icon: "success",
+                title: `Added dress to favorite successfully`,
+            });
+            return Promise.resolve();
+        } catch (error) {
+            console.log(error, "from action creator");
+        }
+    }
+}
+
+export const deleteFavorite = (id) => {
+    return async (dispatch) => {
+        try {
+            await fetch(`${baseUrl}/favorite/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    "access_token": localStorage.getItem("access_token")
+                }
+            })
+            dispatch(favoriteFetch())
+
+        } catch (err) {
+            console.log(err);
+            // Swal.fire({
+            //     icon: "error",
+            //     title: `${err}`,
+            // });
+        }
+    }
+}
+
