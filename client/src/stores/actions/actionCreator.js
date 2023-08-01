@@ -468,8 +468,15 @@ export const createInvoiceFailure = (error) => ({
 export const paymentQris = (data) => async (dispatch, res) => {
     dispatch(createInvoiceRequest());
     try {
+        console.log("masukkk payment");
         console.log(data);
-        const response = await axios.post(`${baseUrl}/payment`, data);
+        const response = await axios.post(`${baseUrl}/payment`, data, {
+            headers: {
+                access_token: localStorage.getItem('access_token'),
+                "content-type": "application/json"
+            }
+        });
+
         console.log(response, "dari action creator");
         const { Data } = response.data
         console.log(Data.Url, "ini action creator");
