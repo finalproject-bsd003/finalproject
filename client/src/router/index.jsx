@@ -17,6 +17,7 @@ import PaymentSuccess from "../views/PaymentSuccessPage";
 import PaymentCancelPending from "../views/PaymentCancelPending";
 import ListCategory from "../views/ListCategories";
 import AddCategory from "../views/AddCategoryPage";
+import FavoritePage from "../views/FavoritePage";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "add-categories",
         element: <AddCategory />,
+      },
+      {
+        path: "favorite",
+        element: <FavoritePage />,
       },
     ],
   },
