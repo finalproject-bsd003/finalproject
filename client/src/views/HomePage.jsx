@@ -57,6 +57,15 @@ function HomePage() {
     dispatch(dressesFetch({ name: searchQuery }));
     setSearchQuery("");
   };
+  const nextPageHandler = (event, page) => {
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
+
+  const backPageHandler = (event, page) => {
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
 
   return (
     <>

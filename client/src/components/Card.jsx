@@ -7,9 +7,7 @@ import {
 } from "../stores/actions/actionCreator";
 
 function Card({ dress }) {
-  const { pathname } = useLocation();
-  console.log(pathname, "<<<");
-  console.log(dress, "<<<<<<<");
+  console.log(dress.Store);
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -46,8 +44,8 @@ function Card({ dress }) {
         <NavLink to={`detail/${dress.id}`}>
           <figure className="px-3 pt-4 h-300 overflow-hidden">
             <img
-              src={dress?.mainImage}
-              className="h-200 w-full object-contain rounded-sm"
+              src={dress.mainImage}
+              className="h-full w-full object-cover"
               alt="Dress"
               style={{ backgroundPosition: "center" }}
             />
@@ -56,7 +54,9 @@ function Card({ dress }) {
         <div className="card-body items-start text-start">
           <div className="container dress-name-container font-bold text-#050505 overflow-hidden flex-shrink-0 leading-tight max-h-7 line-clamp-10 ">
             <NavLink to={`detail/${dress.id}`}>
-              <h3 className="container card-title text-m">{dress?.name}</h3>
+              <h3 className="container card-title text-m font-bold text-#050505 overflow-hidden flex-shrink-0 leading-tight max-h-7 line-clamp-2">
+                {dress.name}
+              </h3>
             </NavLink>
           </div>
           <button className="flex items-center">
