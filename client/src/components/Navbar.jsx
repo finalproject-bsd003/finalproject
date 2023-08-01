@@ -50,7 +50,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="sticky w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border border-[#050505] ">
+      <div className=" w-full top-0 z-30 flex items-center justify-between bg-[#EFECE9] p-1 border border-[#050505] ">
         {/* <NavLink to={"/"}> */}
         <div style={{ width: "60px", height: "50px", marginBottom: "10px" }}>
           <img onClick={logoClick} src={logo} />
