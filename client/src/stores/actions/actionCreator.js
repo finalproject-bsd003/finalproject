@@ -183,7 +183,7 @@ export const dressesFetch = (filter) => {
 
             let query = ""
             if (filter) {
-                const { CategoryId, name, grade } = filter
+                const { CategoryId, name, grade, page } = filter
                 if (CategoryId) {
                     query = `CategoryId=${CategoryId}`
                 }
@@ -194,6 +194,9 @@ export const dressesFetch = (filter) => {
 
                 if (grade) {
                     query = `grade=${grade}`
+                }
+                if (page) {
+                    query = `page=${page}`
                 }
                 console.log(query, "ini <<<<<<<<<");
 
