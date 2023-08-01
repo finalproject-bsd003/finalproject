@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../components/Card";
+import Loading from "../components/Loading";
 import { favoriteFetch } from "../stores/actions/actionCreator";
 
 const FavoritePage = () => {
@@ -14,6 +15,7 @@ const FavoritePage = () => {
     <div></div>;
   }
 
+  console.log(favorite, "<<<<<<");
   return (
     <>
       <h2
