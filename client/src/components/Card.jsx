@@ -7,6 +7,7 @@ import {
 } from "../stores/actions/actionCreator";
 
 function Card({ dress }) {
+  const { pathname } = useLocation();
   console.log(dress.Store);
 
   const rupiah = (number) => {
