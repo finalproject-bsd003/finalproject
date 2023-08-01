@@ -18,12 +18,12 @@ function Navbar() {
     setSearchQuery(event.target.value);
   };
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSearchSubmit = () => {
     // Implement your search logic here, e.g., perform an API call to fetch search results
     console.log("Searching for:", searchQuery);
-    dispatch(dressesFetch({ name: searchQuery }))
+    dispatch(dressesFetch({ name: searchQuery }));
     setSearchQuery("");
 
     // Optionally, you can toggleCollapse() here if you want to automatically collapse the search bar after search
@@ -40,13 +40,13 @@ function Navbar() {
     setActiveLabel(null);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const logoClick = () => {
     // e.preventDefault()
-    dispatch(dressesFetch())
-    navigate("/")
-  }
+    dispatch(dressesFetch());
+    navigate("/");
+  };
 
   return (
     <>
