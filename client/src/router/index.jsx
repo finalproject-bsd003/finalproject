@@ -2,7 +2,7 @@ import HomePage from "../views/HomePage";
 // import DetailPage from "../views/DetailPage";
 import Layout from "../components/Layout";
 
-import { createBrowserRouter, redirect } from "react-router-dom";
+import { createBrowserRouter, redirect, useLocation } from "react-router-dom";
 import DetailPage from "../views/DetailPage";
 import LoginForm from "../views/LoginPage";
 import RegisterPage from "../views/RegisterPage";
@@ -18,6 +18,7 @@ import PaymentCancelPending from "../views/PaymentCancelPending";
 import ListCategory from "../views/ListCategories";
 import AddCategory from "../views/AddCategoryPage";
 import FavoritePage from "../views/FavoritePage";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {

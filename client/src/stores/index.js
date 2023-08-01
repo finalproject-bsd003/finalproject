@@ -6,6 +6,7 @@ import userReducer from './reducers/userReducer';
 import storeReducer from './reducers/storeReducer';
 import paymentReducer from './reducers/paymentReducer';
 import categoryReducer from './reducers/categoryReducer';
+import favoriteReducer from './reducers/favoriteReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     store: storeReducer,
     category: categoryReducer,
+    favorite: favoriteReducer,
     payment: paymentReducer
 })
 
