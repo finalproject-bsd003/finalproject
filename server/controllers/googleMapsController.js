@@ -15,28 +15,28 @@ image.forEach((el) => {
     el.updatedAt = new Date()
 })
 
-const Redis = require('ioredis')
+// const Redis = require('ioredis')
 
-const redis = new Redis(13795, process.env.REDIS)
+// const redis = new Redis(13795, process.env.REDIS)
 
 class GoogleMapsController {
 
     static async readShop(req, res, next) {
         const placesPromise = util.promisify(googleMapsClient.places).bind(googleMapsClient);
         try {
-            let mapCache = await redis.get("mapCache");
-
-            if (mapCache) {
-                let mapResult = JSON.parse(mapCache);
-                return res.status(200).json(mapResult)
-            }
+            // let mapCache = await redis.get("mapCache");
+            console.log("masuk read shop");
+            // if (mapCache) {
+            //     let mapResult = JSON.parse(mapCache);
+            //     return res.status(200).json(mapResult)
+            // }
             const response = await placesPromise({
                 query: 'wedding dress rental',
                 location: [-6.301455519188383, 106.65049435312483],
                 radius: 5000
             });
 
-            // console.log(response.json.results)
+            console.log(response.json)
 
             response.json.results.forEach(async (el) => {
                 // console.log(el)
@@ -55,12 +55,12 @@ class GoogleMapsController {
             await Dress.bulkCreate(dress)
             await Image.bulkCreate(image)
 
-
+            console.log(response.json.results)
             // const inputStore = await Store.findOrCreate()
-            redis.set("mapCache", JSON.stringify(response.json.results));
+            // redis.set("mapCache", JSON.stringify(response.json.results));
             res.status(200).json(response.json.results);
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }

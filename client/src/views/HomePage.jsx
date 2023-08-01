@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Loading from "../components/Loading";
-import { dressesFetch } from "../stores/actions/actionCreator";
+import { dressesFetch, storesFetch } from "../stores/actions/actionCreator";
 import TalkButton from "../components/Talk";
 import { useLocation } from "react-router-dom";
 
@@ -21,6 +21,7 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(dressesFetch());
+    dispatch(storesFetch())
   }, []);
 
 
