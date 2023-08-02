@@ -48,10 +48,16 @@ describe("testFavorite", () => {
         expect(response.status).toBe(200);
     })
 
+    it("list favorite no access_token", async () => {
+        const response = await request(app)
+            .get('/favorite')
+        expect(response.status).toBe(401);
+    })
+
     it("list favorite invalid access token", async () => {
         const response = await request(app)
             .get('/favorite')
-            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBm")
+            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmA")
         expect(response.status).toBe(401);
     })
 

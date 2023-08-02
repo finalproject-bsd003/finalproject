@@ -98,9 +98,6 @@ class DressController {
         const trx = await sequelize.transaction()
         try {
             const { name, description, grade, price, mainImage, CategoryId, StoreId, imageUrl1, imageUrl2, imageUrl3 } = request.body
-            if (!imageUrl1 || !imageUrl2 || !imageUrl3) {
-                throw { name: 'Minimum add 3 images' }
-            }
 
             const result = await Dress.create({
                 name,
@@ -112,6 +109,9 @@ class DressController {
                 StoreId
             }, { transaction: trx })
 
+            if (!imageUrl1 || !imageUrl2 || !imageUrl3) {
+                throw { name: 'Minimum add 3 images' }
+            }
             // console.log(result)
 
             const addImageResult = await Image.bulkCreate([
@@ -134,7 +134,7 @@ class DressController {
             response.status(201).json({ result, addImageResult })
         } catch (err) {
             await trx.rollback()
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }

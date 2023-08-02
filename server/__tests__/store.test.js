@@ -37,7 +37,7 @@ describe("testStore", () => {
     })
 
     it("failed list store by id", async () => {
-        const id = 10
+        const id = 999
         const response = await request(app)
             .get(`/store/${id}`)
             .expect(404)

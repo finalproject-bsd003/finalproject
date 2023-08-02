@@ -40,7 +40,7 @@ class GoogleMapsController {
 
             response.json.results.forEach(async (el) => {
                 // console.log(el)
-                return await Store.findOrCreate({
+                const result = await Store.findOrCreate({
                     where: {
                         name: el.name,
                         address: el.formatted_address,
@@ -50,7 +50,11 @@ class GoogleMapsController {
                         address: el.formatted_address
                     }
                 })
+                // console.log(result[1])
+                return result
             })
+
+
 
             await Dress.bulkCreate(dress)
             await Image.bulkCreate(image)
