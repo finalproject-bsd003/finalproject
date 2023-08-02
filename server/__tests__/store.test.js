@@ -37,7 +37,7 @@ describe("testStore", () => {
     })
 
     it("failed list store by id", async () => {
-        const id = 10
+        const id = 999
         const response = await request(app)
             .get(`/store/${id}`)
             .expect(404)
@@ -66,7 +66,9 @@ describe("testStore", () => {
             .send({
                 name: "Store Testing",
                 address: "Jalan Hang Tuah 123",
-                phoneNumber: "+82743987932"
+                phoneNumber: "+82743987932",
+                lat: -6.2729738,
+                long: 106.6330755
             })
             .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmc")
         expect(response.status).toBe(201)

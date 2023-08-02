@@ -48,19 +48,29 @@ describe("testFavorite", () => {
         expect(response.status).toBe(200);
     })
 
+    it("list favorite no access_token", async () => {
+        const response = await request(app)
+            .get('/favorite')
+        expect(response.status).toBe(401);
+    })
+
     it("list favorite invalid access token", async () => {
         const response = await request(app)
             .get('/favorite')
-            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBm")
+            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmA")
         expect(response.status).toBe(401);
     })
 
     it("add favorite", async () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
         const id = 3
 =======
         const id = 1
 >>>>>>> ab84637fa2a207d2c3b815a452b91d2947a5dff2
+=======
+        const id = 1
+>>>>>>> origin
         const response = await request(app)
             .post(`/favorite/${id}`)
             .send({
@@ -70,6 +80,7 @@ describe("testFavorite", () => {
         expect(response.status).toBe(200);
     })
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     // it("add favorite", async () => {
     //     const id = 999
@@ -95,6 +106,8 @@ describe("testFavorite", () => {
     // })
 
 =======
+=======
+>>>>>>> origin
     it("delete favorite by id", async () => {
         const id = 1
         const response = await request(app)
@@ -111,5 +124,8 @@ describe("testFavorite", () => {
             .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhIiwiZW1haWwiOiJhQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTY5MDcyNjEwOH0.ehQlp3TM5zJRokeHaW2VNREkznT989cjhUPCfY3LBmc")
             .expect(404)
     })
+<<<<<<< HEAD
 >>>>>>> ab84637fa2a207d2c3b815a452b91d2947a5dff2
+=======
+>>>>>>> origin
 })

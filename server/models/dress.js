@@ -75,6 +75,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         notEmpty: {
           msg: 'Dress Price cannot be empty'
+        },
+        isInt: {
+          msg: 'Price input must be integer'
         }
       }
     },

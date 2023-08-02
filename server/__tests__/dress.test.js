@@ -112,6 +112,28 @@ describe("testDress", () => {
         expect(response.body.result).toHaveProperty('description', expect.any(String))
     })
 
+<<<<<<< HEAD
+=======
+    it("add dress invalid because user", async () => {
+        const response = await request(app)
+            .post(`/dress`)
+            .send({
+                name: 'Dress Testing',
+                description: "Ini description untuk dress testing",
+                grade: "S",
+                price: 10000000,
+                mainImage: 'http://fotodummy.com',
+                CategoryId: 1,
+                StoreId: 1,
+                imageUrl1: 'http;//fotodummyimgurl1.com',
+                imageUrl2: 'http;//fotodummyimgurl2.com',
+                imageUrl3: 'http;//fotodummyimgurl3.com'
+            })
+            .set("access_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJkIiwiZW1haWwiOiJkQGdtYWlsLmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNjkwOTQ3NTU5fQ.b1n076HheCtfAB88Km2tObbbEew7850dIAm944esdl0")
+        expect(response.status).toBe(403)
+    })
+
+>>>>>>> origin
     it("add dress no valid token", async () => {
         const response = await request(app)
             .post(`/dress`)

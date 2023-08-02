@@ -69,8 +69,7 @@ const router = createBrowserRouter([
         path: "edit-dress/:id",
         element: <EditDressPage />,
         loader: () => {
-          if (localStorage.getItem("role") !==
-            "Admin") {
+          if (localStorage.getItem("role") !== "Admin") {
             throw redirect("/");
           }
           return null;
@@ -113,7 +112,7 @@ const router = createBrowserRouter([
         path: "favorite",
         element: <FavoritePage />,
         loader: () => {
-          if (localStorage.getItem("access_token")) {
+          if (!localStorage.getItem("access_token")) {
             throw redirect("/");
           }
           return null;

@@ -13,7 +13,7 @@ function App() {
     if (talkLoaded) {
       const currentUser = new Talk.User({
         id: "1",
-        name: "Martini",
+        name: "Admin",
         email: "martinishu93@gmail.com",
         welcomeMessage: "Hello!",
         role: "Admin",
@@ -21,14 +21,14 @@ function App() {
 
       const otherUser = new Talk.User({
         id: "2",
-        name: "mawar",
+        name: "User",
         email: "sharonrose9926@gmail.com",
         welcomeMessage: "Hello!",
         role: "Buyer",
       });
 
       const session = new Talk.Session({
-        appId: "tH5AeRM2",
+        appId: "tQicN0o1",
         me: currentUser,
       });
 
