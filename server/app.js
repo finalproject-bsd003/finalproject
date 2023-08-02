@@ -15,8 +15,8 @@ app.use(express.urlencoded({ extended: false }))
 app.use(router)
 app.use(errorHandler)
 
-// app.listen(PORT, () => {
-//     console.log(`Example app listening on port ${PORT}`)
-// })
+app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}`)
+})
 
 module.exports = app
