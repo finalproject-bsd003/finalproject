@@ -38,14 +38,14 @@ function DetailPage() {
 
     const handleCreateInvoice = async (event) => {
         event.preventDefault();
-        const { name } = result;
+        const { name, price } = result;
 
         const data = {
-            name: "mawar",
-            phone: "08123456789",
-            amount: 1000,
+            name: localStorage.getItem("username"),
+            phone: null,
+            amount: price,
             email: "sharonrose9926@gmail.com",
-            comments: `${name} - ${selectedSize}`,
+            comments: `${name}`,
         };
 
         try {

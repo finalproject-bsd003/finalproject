@@ -19,9 +19,9 @@ class PaymentController {
                 buyerName: name,
                 buyerPhone: phone,
                 buyerEmail: email,
-                product: ["Dress"],
+                product: [comments],
                 qty: ["1"],
-                price: ["5000"],
+                price: [amount],
                 description: [comments],
                 returnUrl: "http://localhost:5173/thank-you-page",
                 notifyUrl: "https://webhook.site/703eb3d8-e974-45e0-b1c8-e2de6e6f2018", // your callback url
@@ -55,7 +55,7 @@ class PaymentController {
                 })
                     .then((response) => response.json())
                     .then((responseJson) => {
-                        // console.log(responseJson, "<<<<<<<<<<<<");
+                        console.log(responseJson, "<<<<<<<<<<<<");
                         // res.json(responseJson);
                         res.status(200).json(responseJson)
                     })
