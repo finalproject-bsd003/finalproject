@@ -409,12 +409,13 @@ export const storesFetch = () => {
 
             dispatch(loading())
             console.log("masuk stores");
-            const response = await fetch(`${baseUrl}/nearestShop`, { method: "POST" })
+            const responseShop = await fetch(`${baseUrl}/nearestShop`, { method: "POST" })
+            const response = await fetch(`${baseUrl}/store`)
             const responseJson = await response.json()
 
             console.log(responseJson, "ini response JSON");
 
-            // dispatch(storesFetchSuccess(responseJson))
+            dispatch(storesFetchSuccess(responseJson))
 
         } catch (error) {
             console.log(error);

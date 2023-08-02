@@ -1,7 +1,26 @@
 import Card from "../components/Card";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/Carousel";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { detailStoreFetch } from "../stores/actions/actionCreator";
+import { useEffect } from "react";
 function StoreDetail() {
+
+  const { id } = useParams();
+  console.log(id);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(detailStoreFetch(id));
+  }, [id]);
+
+  const { detailStore } = useSelector((state) => state?.store);
+
+  console.log(detailStore?.Dresses);
+
+
   return (
     <>
       <Carousel />
@@ -28,7 +47,9 @@ function StoreDetail() {
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mx-20 py-10">
-        <h1>data card nya</h1>
+        {detailStore?.Dresses?.map((dress) => (
+          <Card dress={dress} key={dress?.id} />
+        ))}
       </div>
     </>
   );

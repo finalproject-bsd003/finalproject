@@ -20,8 +20,13 @@ function HomePage() {
   console.log(location, "<<<<<<<<<<");
 
   useEffect(() => {
-    dispatch(dressesFetch());
     dispatch(storesFetch())
+      .then(() => {
+        dispatch(dressesFetch());
+      })
+      .catch((error) => {
+        console.error("Error fetching stores or dresses:", error);
+      });
   }, []);
 
 

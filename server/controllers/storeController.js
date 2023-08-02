@@ -1,4 +1,4 @@
-const { Store } = require('../models/index')
+const { Store, Dress } = require('../models/index')
 class StoreController {
     static async readStore(request, response, next) {
         try {
@@ -16,6 +16,7 @@ class StoreController {
         try {
             const { id } = request.params
             const result = await Store.findOne({
+                include: [Dress],
                 where: {
                     id
                 }
@@ -26,7 +27,7 @@ class StoreController {
 
             response.status(200).json(result)
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }
