@@ -76,7 +76,7 @@ const LoginForm = () => {
                 type="password"
                 ref={inputLogin.password}
                 name="password"
-                className="block w-full px-4 py-2 mt-2 text-[#050505] bg-[#efece9] border border-[#050505] rounded-md focus:border-[#050505] focus:ring-[#050505] focus:outline-none focus:ring-opacity-10"
+                className="block w-full px-4 py-2 mt-2 text-[#050505] bg-[#EFECE9] border border-[#050505] rounded-md focus:border-[#050505] focus:ring-[#050505] focus:outline-none focus:ring-opacity-10"
               />
             </div>
 
