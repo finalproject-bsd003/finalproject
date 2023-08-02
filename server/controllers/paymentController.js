@@ -11,7 +11,7 @@ class PaymentController {
             // const url = 'https://my.ipaymu.com/api/v2/payment/direct'; // for production mode
 
 
-            // console.log(req.body);
+            console.log(req.body);
 
             const { name, phone, amount, email, comments } = req.body
 
@@ -64,8 +64,10 @@ class PaymentController {
                         res.status(500).json({ error: 'An error occurred while making the payment' });
                     });
             });
-        } catch (err) {
-            next(err)
+        } catch (error) {
+            console.log(error);
+            console.error('Error making payment:', error);
+            res.status(500).json({ error: 'An error occurred while making the payment' });
         }
     }
 }
