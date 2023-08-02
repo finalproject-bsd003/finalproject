@@ -3,6 +3,7 @@ const CryptoJS = require('crypto-js');
 class PaymentController {
     static async makePayment(req, res, next) {
         try {
+            // console.log("masuk payment");
             // adjust with your iPaymu api key & va 
             const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
             const va = "0000002258387876";
@@ -10,7 +11,7 @@ class PaymentController {
             // const url = 'https://my.ipaymu.com/api/v2/payment/direct'; // for production mode
 
 
-            // console.log(req.body);
+            console.log(req.body);
 
             const { name, phone, amount, email, comments } = req.body
 
@@ -18,9 +19,9 @@ class PaymentController {
                 buyerName: name,
                 buyerPhone: phone,
                 buyerEmail: email,
-                product: ["Dress"],
+                product: [comments],
                 qty: ["1"],
-                price: ["5000"],
+                price: [amount],
                 description: [comments],
                 returnUrl: "http://localhost:5173/thank-you-page",
                 notifyUrl: "https://webhook.site/703eb3d8-e974-45e0-b1c8-e2de6e6f2018", // your callback url
@@ -54,7 +55,7 @@ class PaymentController {
                 })
                     .then((response) => response.json())
                     .then((responseJson) => {
-                        // console.log(responseJson, "<<<<<<<<<<<<");
+                        console.log(responseJson, "<<<<<<<<<<<<");
                         // res.json(responseJson);
                         res.status(200).json(responseJson)
                     })
@@ -63,19 +64,10 @@ class PaymentController {
                         res.status(500).json({ error: 'An error occurred while making the payment' });
                     });
             });
-        } catch (err) {
-            // console.log(err)
-            next(err)
-        }
-    }
-
-    static async historyPayment(req, res, next) {
-        try {
-            const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
-            const va = "0000002258387876";
-            const url = 'https://sandbox.ipaymu.com/api/v2/payment';
-        } catch (err) {
-            next(err)
+        } catch (error) {
+            console.log(error);
+            console.error('Error making payment:', error);
+            res.status(500).json({ error: 'An error occurred while making the payment' });
         }
     }
 }
