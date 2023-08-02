@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3005"
+const baseUrl = "http://localhost:4001"
 
 import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR, FAVORITE_FETCH_SUCCESS, FETCH_HISTORY_SUCCESS, FETCH_HISTORY_FAILURE, FETCH_HISTORY_REQUEST } from "./actionType"
 
@@ -706,21 +706,29 @@ export const fetchHistory = () => {
     return (dispatch) => {
         dispatch(fetchHistoryRequest());
 
-        const FormData = require('form-data');
-        const data = new FormData();
+        const data = {
+            orderBy: 'id',
+            order: 'DESC',
+            limit: '20',
+        };
+        // data.append('orderBy', 'id');
+        // data.append('order', 'DESC');
+        // data.append('limit', '20');
         const va = "0000002258387876"
         const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6"
+        const bodyEncrypt = CryptoJS.SHA256(JSON.stringify(data));
+        const stringtosign = "POST:" + va + ":" + bodyEncrypt + ":" + apikey;
 
         const config = {
             method: 'post',
             maxBodyLength: Infinity,
             url: 'https://sandbox.ipaymu.com/api/v2/history',
             headers: {
+                "access_token": localStorage.getItem('access_token'),
                 'Content-Type': 'application/json',
                 'signature': CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA256(stringtosign, apikey)),
                 'va': va,
-                'timestamp': '20150201121045',
-                ...data.getHeaders()
+                'timestamp': '20150201121045'
             },
             data: data,
         };
