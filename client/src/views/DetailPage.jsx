@@ -43,7 +43,7 @@ function DetailPage() {
         const data = {
             name: "mawar",
             phone: "08123456789",
-            amount: 1000,
+            amount: 10000,
             email: "sharonrose9926@gmail.com",
             comments: `${name} - ${selectedSize}`,
         };

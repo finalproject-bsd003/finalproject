@@ -25,12 +25,9 @@ function Header() {
 
   return (
     <>
-      <div
-        className="bg-[#050505]"
-      // style={{ display: "flex", justifyContent: "space-between" }}
-      >
+      <div className="flex justify-between bg-[#050505]">
         {role === "Admin" && (
-          <div className="flex justify-start">
+          <div style={{ display: "flex", justifyContent: "start" }}>
             <NavLink to={"/listdress"}>
               <button
                 className="btn btn-sm btn-ghost text-sm text-white"

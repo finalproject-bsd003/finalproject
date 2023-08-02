@@ -12,6 +12,7 @@ export default () => (
       showStatus={false}
       transitionTime={10}
       style={{ height: "600px" }}
+      backgroundPosition="center"
     >
       <div>
         <img
@@ -34,7 +35,7 @@ export default () => (
           alt=""
           className="object-cover h-30 w-full"
           style={{ height: "650px", width: "full", filter: "brightness(90%)" }}
-          src="https://i.etsystatic.com/18694010/r/il/990a6a/4830752631/il_fullxfull.4830752631_7ks0.jpg"
+          src="https://media.discordapp.net/attachments/1095178474823626883/1136238120149458976/Your_paragraph_text_2.jpg?width=1820&height=1138"
         />
       </div>
     </Carousel>

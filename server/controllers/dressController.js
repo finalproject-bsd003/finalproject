@@ -3,23 +3,14 @@ const { getPagination } = require('../helpers/pagination')
 const { Op } = require('sequelize')
 const { sequelize } = require('../models')
 
-const Redis = require('ioredis')
-
-const redis = new Redis(13795, process.env.REDIS)
 
 class DressController {
     static async readDress(request, response, next) {
         try {
-            let dressCache = await redis.get("dressCache");
-
-            if (dressCache) {
-                let dressResult = JSON.parse(dressCache);
-                return response.status(200).json(dressResult)
-            }
 
             const where = {}
             const { name, CategoryId, grade, StoreId } = request.query
-
+            console.log(request.query);
             if (name) {
                 where.name = { [Op.iLike]: `%${name}%` }
             }
@@ -64,8 +55,6 @@ class DressController {
             if (count <= 0) {
                 throw { name: 'Dress Not found' }
             }
-
-            redis.set("dressCache", JSON.stringify(result));
 
             response.status(200).json(result)
         } catch (err) {
@@ -130,7 +119,6 @@ class DressController {
             ], { transaction: trx })
 
             await trx.commit()
-            redis.del("dressCache")
             response.status(201).json({ result, addImageResult })
         } catch (err) {
             await trx.rollback()
@@ -184,7 +172,6 @@ class DressController {
                 }
             ], { transaction: trx })
             await trx.commit()
-            redis.del("dressCache")
             response.status(201).json({
                 message: `Dress with ${id} has been successfully edited `
             })
@@ -212,7 +199,6 @@ class DressController {
             }
 
             await trx.commit()
-            redis.del("dressCache")
             response.status(200).json({
                 message: `Data with id ${id} has been successfully deleted`
             })

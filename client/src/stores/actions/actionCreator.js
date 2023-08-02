@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3000"
+// const baseUrl = "http://localhost:3000"
+const baseUrl = "https://gowny.martiniblue.dev"
 
 import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR, FAVORITE_FETCH_SUCCESS } from "./actionType"
 
@@ -175,7 +176,7 @@ export const dressesFetchSuccess = (dresses) => (
 
 export const dressesFetch = (filter) => {
     // {categoryId: 1}
-    console.log(filter);
+    console.log("Filter from request", filter);
     return async (dispatch) => {
         try {
 
@@ -183,7 +184,7 @@ export const dressesFetch = (filter) => {
 
             let query = ""
             if (filter) {
-                const { CategoryId, name, grade, page } = filter
+                const { CategoryId, name, grade, page, StoreId } = filter
                 if (CategoryId) {
                     query = `CategoryId=${CategoryId}`
                 }
@@ -197,6 +198,9 @@ export const dressesFetch = (filter) => {
                 }
                 if (page) {
                     query = `page=${page}`
+                }
+                if (StoreId) {
+                    query = `StoreId=${StoreId}`
                 }
                 console.log(query, "ini <<<<<<<<<");
 
@@ -504,6 +508,7 @@ export const paymentQris = (data) => async (dispatch, res) => {
         });
 
         console.log(response, "dari action creator");
+        console.log(response.data, "dari action creator");
         const { Data } = response.data
         console.log(Data.Url, "ini action creator");
         // // dispatch(createInvoiceSuccess(Data.Url));
