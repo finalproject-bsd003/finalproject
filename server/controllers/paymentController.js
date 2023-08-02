@@ -23,9 +23,9 @@ class PaymentController {
                 qty: ["1"],
                 price: [amount],
                 description: [comments],
-                returnUrl: "http://localhost:5173/thank-you-page",
+                returnUrl: "https://gowny-003.web.app/thank-you-page",
                 notifyUrl: "https://webhook.site/703eb3d8-e974-45e0-b1c8-e2de6e6f2018", // your callback url
-                cancelUrl: "http://localhost:5173/failed-page",
+                cancelUrl: "https://gowny-003.web.app/failed-page",
                 "referenceId": "5678", // your reference id or transaction id
                 "paymentMethod": "qris",
                 "paymentChannel": "qris",
