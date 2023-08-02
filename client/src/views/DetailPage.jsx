@@ -58,6 +58,7 @@ function DetailPage() {
       console.log(response, "<<<<<<<<<<<< detail page");
       window.location.href = response;
     } catch (error) {
+      navigate("/")
       console.log(error);
     }
   };
@@ -129,7 +130,7 @@ function DetailPage() {
             <button
               className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#DDD9CE] focus:outline-none focus:bg-[#AC9C8D]"
               style={{ width: "500px", borderRadius: "0" }}
-              onClick={handleCreateInvoice}
+              onClick={(e) => handleCreateInvoice(e)}
             >
               Payment
             </button>

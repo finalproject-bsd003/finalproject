@@ -3,14 +3,14 @@ const { getPagination } = require('../helpers/pagination')
 const { Op } = require('sequelize')
 const { sequelize } = require('../models')
 
-// const Redis = require('ioredis')
+const Redis = require('ioredis')
 
-// const redis = new Redis(13795, process.env.REDIS)
+const redis = new Redis(13795, process.env.REDIS)
 
 class DressController {
     static async readDress(request, response, next) {
         try {
-            // let dressCache = await redis.get("dressCache");
+            let dressCache = await redis.get("dressCache");
 
             if (dressCache) {
                 let dressResult = JSON.parse(dressCache);
@@ -65,10 +65,11 @@ class DressController {
                 throw { name: 'Dress Not found' }
             }
 
-            // redis.set("dressCache", JSON.stringify(result));
+            redis.set("dressCache", JSON.stringify(result));
 
             response.status(200).json(result)
         } catch (err) {
+            console.log(err);
             next(err)
         }
     }
@@ -89,7 +90,7 @@ class DressController {
 
             response.status(200).json(result)
         } catch (err) {
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }
@@ -130,11 +131,11 @@ class DressController {
             ], { transaction: trx })
 
             await trx.commit()
-            // redis.del("dressCache")
+            redis.del("dressCache")
             response.status(201).json({ result, addImageResult })
         } catch (err) {
             await trx.rollback()
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }
@@ -184,13 +185,13 @@ class DressController {
                 }
             ], { transaction: trx })
             await trx.commit()
-            // redis.del("dressCache")
+            redis.del("dressCache")
             response.status(201).json({
                 message: `Dress with ${id} has been successfully edited `
             })
         } catch (err) {
             await trx.rollback()
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }
@@ -212,14 +213,14 @@ class DressController {
             }
 
             await trx.commit()
-            // redis.del("dressCache")
+            redis.del("dressCache")
             response.status(200).json({
                 message: `Data with id ${id} has been successfully deleted`
             })
 
         } catch (err) {
             await trx.rollback()
-            // console.log(err)
+            console.log(err)
             next(err)
         }
     }

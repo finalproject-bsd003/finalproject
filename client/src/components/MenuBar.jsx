@@ -28,7 +28,7 @@ function MenuBar() {
 
   const { categories } = useSelector((state) => state?.category);
   const { stores } = useSelector((state) => state?.store);
-
+  console.log(stores)
   const handleCategoryClick = (e, CategoryId) => {
     console.log(CategoryId);
     e.preventDefault();
@@ -60,9 +60,8 @@ function MenuBar() {
         <button className="dropdown mx-8 z-10">
           <details open={dropdownOpenGrade}>
             <summary
-              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${
-                activeLabel === "grade" ? "underline" : ""
-              }`}
+              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${activeLabel === "grade" ? "underline" : ""
+                }`}
               onClick={handleDropdownToggleGrade}
             >
               GRADE
@@ -72,9 +71,8 @@ function MenuBar() {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className={`w-4 h-4 ml-1 ${
-                  dropdownOpenGrade ? "transform rotate-180" : ""
-                }`}
+                className={`w-4 h-4 ml-1 ${dropdownOpenGrade ? "transform rotate-180" : ""
+                  }`}
               >
                 <path
                   strokeLinecap="round"
@@ -107,9 +105,8 @@ function MenuBar() {
         <button className="dropdown mx-8 z-10">
           <details open={dropdownOpenCategory}>
             <summary
-              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${
-                activeLabel === "category" ? "underline" : ""
-              }`}
+              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${activeLabel === "category" ? "underline" : ""
+                }`}
               onClick={handleDropdownToggleCategory}
             >
               CATEGORY
@@ -119,9 +116,8 @@ function MenuBar() {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className={`w-4 h-4 ml-1 ${
-                  dropdownOpenCategory ? "transform rotate-180" : ""
-                }`}
+                className={`w-4 h-4 ml-1 ${dropdownOpenCategory ? "transform rotate-180" : ""
+                  }`}
               >
                 <path
                   strokeLinecap="round"
@@ -149,9 +145,8 @@ function MenuBar() {
         <button className="dropdown mx-8 z-10">
           <details open={dropdownOpenStore}>
             <summary
-              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${
-                activeLabel === "store" ? "underline" : ""
-              }`}
+              className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${activeLabel === "store" ? "underline" : ""
+                }`}
               onClick={handleDropdownToggleStore}
             >
               STORE
@@ -161,9 +156,8 @@ function MenuBar() {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className={`w-4 h-4 ml-1 ${
-                  dropdownOpenStore ? "transform rotate-180" : ""
-                }`}
+                className={`w-4 h-4 ml-1 ${dropdownOpenStore ? "transform rotate-180" : ""
+                  }`}
               >
                 <path
                   strokeLinecap="round"

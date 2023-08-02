@@ -15,21 +15,21 @@ image.forEach((el) => {
     el.updatedAt = new Date()
 })
 
-// const Redis = require('ioredis')
+const Redis = require('ioredis')
 
-// const redis = new Redis(13795, process.env.REDIS)
+const redis = new Redis(13795, process.env.REDIS)
 
 class GoogleMapsController {
 
     static async readShop(req, res, next) {
         const placesPromise = util.promisify(googleMapsClient.places).bind(googleMapsClient);
         try {
-            // let mapCache = await redis.get("mapCache");
+            let mapCache = await redis.get("mapCache");
             console.log("masuk read shop");
-            // if (mapCache) {
-            //     let mapResult = JSON.parse(mapCache);
-            //     return res.status(200).json(mapResult)
-            // }
+            if (mapCache) {
+                let mapResult = JSON.parse(mapCache);
+                return res.status(200).json(mapResult)
+            }
             const response = await placesPromise({
                 query: 'wedding dress rental',
                 location: [-6.301455519188383, 106.65049435312483],

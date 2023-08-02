@@ -18,18 +18,18 @@ function HomePage() {
 
   const { dresses } = useSelector((state) => state?.dress);
   const { isLoading } = useSelector((state) => state?.dress);
-  console.log(isLoading, "<<<<<<<<<<<<<<<");
+  // console.log(isLoading, "<<<<<<<<<<<<<<<");
 
   const location = useLocation();
-  console.log(location, "<<<<<<<<<<");
+  // console.log(location, "<<<<<<<<<<");
 
   useEffect(() => {
+    // dispatch(storesFetch())
     dispatch(dressesFetch());
-    dispatch(storesFetch())
   }, []);
 
   const { data } = dresses;
-  console.log(dresses, "<<<<<<<<");
+  console.log(dresses, "<<<<<<<< dressssss");
   const { pagination } = dresses;
 
   const nextPageHandler = (event, page) => {
