@@ -1,4 +1,15 @@
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchHistory } from "../stores/actions/actionCreator";
+
 function ListTransactions() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchHistory())
+  })
+  const {history} = useSelector((state) => state?.payment)
+  console.log(history)
   return (
     <>
       <div className="flex flex-col justify-center items-center mt-5">

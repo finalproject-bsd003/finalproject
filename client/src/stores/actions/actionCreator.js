@@ -1,9 +1,10 @@
-const baseUrl = "http://localhost:3000"
+const baseUrl = "http://localhost:3005"
 
-import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR, FAVORITE_FETCH_SUCCESS } from "./actionType"
+import { DRESS_FETCH_SUCCESS, DRESS_DETAIL_FETCH_SUCCESS, LOADING, LOGIN_SUCCESS, LOGIN_ERROR, REGISTER_ERROR, REGISTER_SUCCESS, LOGOUT_SUCCESS, LOADING_STORE, STORE_FETCH_SUCCESS, STORE_DETAIL_FETCH_SUCCESS, ADD_DRESS_ERROR, CREATE_INVOICE_REQUEST, CREATE_INVOICE_SUCCESS, CREATE_INVOICE_FAILURE, CATEGORY_FETCH_SUCCESS, CATS_LOADING, ADD_CATS_ERROR, FAVORITE_FETCH_SUCCESS, FETCH_HISTORY_SUCCESS, FETCH_HISTORY_FAILURE, FETCH_HISTORY_REQUEST } from "./actionType"
 
 import axios from 'axios';
 import Swal from "sweetalert2";
+import CryptoJS from 'crypto-js';
 
 
 // LOGIN --- REGISTER --- LOGOUT --- //
@@ -687,3 +688,49 @@ export const deleteFavorite = (id) => {
     }
 }
 
+const fetchHistoryRequest = () => ({
+    type: FETCH_HISTORY_REQUEST,
+});
+
+const fetchHistorySuccess = (data) => ({
+    type: FETCH_HISTORY_SUCCESS,
+    payload: data,
+});
+
+const fetchHistoryFailure = (error) => ({
+    type: FETCH_HISTORY_FAILURE,
+    payload: error,
+});
+
+export const fetchHistory = () => {
+    return (dispatch) => {
+        dispatch(fetchHistoryRequest());
+
+        const FormData = require('form-data');
+        const data = new FormData();
+        const va = "0000002258387876"
+        const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6"
+
+        const config = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: 'https://sandbox.ipaymu.com/api/v2/history',
+            headers: {
+                'Content-Type': 'application/json',
+                'signature': CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA256(stringtosign, apikey)),
+                'va': va,
+                'timestamp': '20150201121045',
+                ...data.getHeaders()
+            },
+            data: data,
+        };
+
+        axios(config)
+            .then(function (response) {
+                dispatch(fetchHistorySuccess(response.data));
+            })
+            .catch(function (error) {
+                dispatch(fetchHistoryFailure(error));
+            });
+    };
+};
