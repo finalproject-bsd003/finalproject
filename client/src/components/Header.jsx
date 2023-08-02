@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../stores/actions/actionCreator";
 import Navbar from "./Navbar";
 
@@ -13,10 +13,12 @@ function Header() {
   // console.log(isLogin);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const logoutHandler = (event) => {
     event.preventDefault();
     dispatch(logout());
+    navigate("/")
   };
 
   const role = localStorage.getItem("role");

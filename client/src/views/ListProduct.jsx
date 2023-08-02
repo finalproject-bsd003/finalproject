@@ -18,7 +18,25 @@ function ListProduct() {
   }, []);
 
   const { data } = dresses
+  const { pagination } = dresses;
   console.log(data)
+
+  const nextPageHandler = (event, page) => {
+    event.preventDefault()
+    dispatch(dressesFetch({ page }))
+  }
+
+  const backPageHandler = (event, page) => {
+    event.preventDefault()
+    dispatch(dressesFetch({ page }))
+  }
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
 
   return (
     <>
@@ -54,21 +72,59 @@ function ListProduct() {
                 </tr>
               </thead>
               <tbody>
-                {data?.map((dress, index) =>
-                  <tr key={dress?.id}>
-                    <td>{index + 1}</td>
-                    <td>{dress.name} </td>
-                    <td className="w-32 p-4">  <img src={dress.mainImage} /></td>
-                    <td>{dress.description} </td>
-                    <td>{dress.Store.name} </td>
-                    <td>{dress.size} </td>
-                    <td>{dress.grade} </td>
-                    <td>CATEGORY </td>
-                    <td>{dress.price} </td>
-                    <td><NavLink to={`/detail/${dress.id}`}>See Detail </NavLink></td>
-                  </tr>)}
+                {data?.map((dress, index) => {
+                  const adjustedIndex = (pagination?.currentPage - 1) * pagination?.totalPerPage + index + 1;
+                  return (
+                    <tr key={dress?.id}>
+                      <td>{adjustedIndex}</td>
+                      <td>{dress.name}</td>
+                      <td className="w-32 p-4">
+                        <img src={dress.mainImage} alt="Dress" />
+                      </td>
+                      <td>{dress.description}</td>
+                      <td>{dress.Store.name}</td>
+                      <td>{dress.size}</td>
+                      <td>{dress.grade}</td>
+                      <td>{dress.Category.name}</td>
+                      <td>{rupiah(dress.price)}</td>
+                      <td>
+                        <NavLink to={`/detail/${dress.id}`}>See Detail</NavLink>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
+
             </table>
+          </div>
+        </div>
+      </div>
+      <div className="pagination-container">
+        <div className="flex items-center justify-center">
+          <div className="join" style={{ background: "#EFECE9" }}>
+            <button onClick={(e) => backPageHandler(e, pagination?.currentPage !== 1
+              ? pagination.currentPage - 1
+              : pagination?.currentPage)}
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
+              &laquo;
+            </button>
+            <button
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
+              {pagination?.currentPage}
+            </button>
+            <button
+              onClick={(e) => nextPageHandler(e, pagination?.nextPage !== null
+                ? pagination.currentPage + 1
+                : pagination?.currentPage)}
+              className="join-item btn btn-xs"
+              style={{ background: "#EFECE9" }}
+            >
+              &raquo;
+            </button>
           </div>
         </div>
       </div>
