@@ -5,6 +5,9 @@ import Loading from "../components/Loading";
 import { favoriteFetch } from "../stores/actions/actionCreator";
 
 const FavoritePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   const dispatch = useDispatch();
   const { favorite } = useSelector((state) => state?.favorite);
 
