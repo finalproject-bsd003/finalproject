@@ -5,13 +5,17 @@ const categoryRouter = require('./categories')
 const dressRouter = require('./dress')
 const favoriteRouter = require('./favorite')
 const storeRouter = require('./store')
-const { authentication } = require('../middlewares/authentication')
+const googleMapsRouter = require('./googleMaps')
 const paymentRouter = require('./payment')
+const { authentication } = require('../middlewares/authentication')
+
 router.use(userRouter)
 router.use(categoryRouter)
 router.use(storeRouter)
 router.use(dressRouter)
+router.use(googleMapsRouter)
 router.use(authentication)
 router.use(favoriteRouter)
 router.use(paymentRouter)
+
 module.exports = router

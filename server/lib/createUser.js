@@ -5,7 +5,7 @@ dataUser.forEach((el) => {
     el.password = hashPassword(el.password)
 })
 
-async function CreateUser() {
+function CreateUser() {
     // try {
     //     // console.log(dataUser)
     //     const result = await User.bulkCreate(dataUser)

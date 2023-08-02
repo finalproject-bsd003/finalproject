@@ -7,7 +7,7 @@ class StoreController {
                 result
             )
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -26,7 +26,7 @@ class StoreController {
 
             response.status(200).json(result)
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -48,7 +48,7 @@ class StoreController {
 
             response.status(201).json(result)
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
@@ -68,7 +68,7 @@ class StoreController {
                 msg: `Store with id ${id} is successfully deleted`
             })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             next(err)
         }
     }
