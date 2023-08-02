@@ -7,12 +7,6 @@ const { sequelize } = require('../models')
 class DressController {
     static async readDress(request, response, next) {
         try {
-<<<<<<< HEAD
-=======
-
-            const where = {}
-            const { name, CategoryId, grade, StoreId } = request.query
->>>>>>> origin
 
             const where = {}
             const { name, CategoryId, grade, StoreId } = request.query

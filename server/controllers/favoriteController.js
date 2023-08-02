@@ -33,14 +33,6 @@ class FavoriteController {
                     // Nanti buat booking
                 }
             })
-<<<<<<< HEAD
-            // console.log(result)
-            if (!result) {
-                throw { name: 'Favorite Not Found' }
-            }
-            // console.log(result)
-=======
->>>>>>> origin
             response.status(200).json(result)
         } catch (err) {
             next(err)

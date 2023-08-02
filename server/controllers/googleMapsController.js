@@ -73,64 +73,6 @@ class GoogleMapsController {
         }
     }
 
-<<<<<<< HEAD
-    static async readDirection(req, res, next) {
-        const directionsRequest = {
-            origin: {
-                lat: req.body.origin.lat,
-                lng: req.body.origin.lng
-            },
-            destination: {
-                lat: req.body.destination.lat,
-                lng: req.body.destination.lng
-            },
-            mode: 'driving'
-        };
-
-        googleMapsClient.directions(directionsRequest, (err, response) => {
-            if (!err) {
-                res.status(200).json(response.json)
-            } else {
-                // console.error(err);
-                next(err)
-            }
-        });
-    }
-
-    static async readPlacePhoto(req, res, next) {
-        try {
-            const photoBaseUrl = 'https://maps.googleapis.com/maps/api/place/photo';
-            const maxWidth = 400; // You can set this to whatever you like
-            const url = `${photoBaseUrl}?maxwidth=${maxWidth}&photoreference=${req.params.photo_reference}&key=${apikey}`;
-
-            // we are redirecting the request to the actual photo url
-            // the client will be able to use this route as if it were a direct link to the image
-            res.redirect(url);
-        } catch (err) {
-            // console.error(err);
-            next(err)
-        }
-    }
-
-    static async readPlaceDetail(req, res, next) {
-        try {
-            const { placeId } = req.params;
-            const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${apikey}`);
-
-            if (!response.ok) {
-                throw new Error('Failed to fetch place details');
-            }
-
-            const data = await response.json();
-
-            const placeDetails = data.result;
-            res.status(200).json(placeDetails);
-        } catch (err) {
-            // console.error('Error fetching place details:', err);
-            next(err)
-        }
-    }
-=======
     // static async readDirection(req, res, next) {
     //     const directionsRequest = {
     //         origin: {
@@ -187,7 +129,6 @@ class GoogleMapsController {
     //         next(err)
     //     }
     // }
->>>>>>> origin
 }
 
 module.exports = GoogleMapsController
