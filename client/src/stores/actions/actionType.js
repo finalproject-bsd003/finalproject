@@ -28,3 +28,7 @@ export const CATS_LOADING = "categories/loading"
 export const FAVORITE_FETCH_SUCCESS = "favorite/fetchSuccess"
 export const ADD_FAVORITE_SUCCESS = "favorite/addFavoriteSuccess"
 export const DELETE_FAVORITE_SUCCESS = "favorite/deleteFavoriteSuccess"
+
+export const FETCH_HISTORY_REQUEST = 'FETCH_HISTORY_REQUEST';
+export const FETCH_HISTORY_SUCCESS = 'FETCH_HISTORY_SUCCESS';
+export const FETCH_HISTORY_FAILURE = 'FETCH_HISTORY_FAILURE'; 

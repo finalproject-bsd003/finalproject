@@ -113,7 +113,7 @@ const router = createBrowserRouter([
         path: "favorite",
         element: <FavoritePage />,
         loader: () => {
-          if (localStorage.getItem("access_token")) {
+          if (!localStorage.getItem("access_token")) {
             throw redirect("/");
           }
           return null;
