@@ -34,7 +34,7 @@ class StoreController {
 
     static async createStore(request, response, next) {
         try {
-            const { name, address, phoneNumber } = request.body
+            const { name, address, phoneNumber, lat, long } = request.body
 
             if (!name || !address || !phoneNumber) {
                 throw { name: 'ErrorInput' }
@@ -43,7 +43,9 @@ class StoreController {
             const result = await Store.create({
                 name,
                 address,
-                phoneNumber
+                phoneNumber,
+                lat,
+                long
             })
 
 

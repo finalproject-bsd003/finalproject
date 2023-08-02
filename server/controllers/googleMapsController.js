@@ -44,10 +44,14 @@ class GoogleMapsController {
                     where: {
                         name: el.name,
                         address: el.formatted_address,
+                        lat: String(el.geometry.location.lat),
+                        long: String(el.geometry.location.lng)
                     },
                     defaults: {
                         name: el.name,
-                        address: el.formatted_address
+                        address: el.formatted_address,
+                        lat: el.geometry.location.lat,
+                        long: el.geometry.location.lng
                     }
                 })
                 // console.log(result[1])

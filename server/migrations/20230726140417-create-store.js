@@ -24,6 +24,12 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 'Active'
       },
+      lat: {
+        type: Sequelize.STRING
+      },
+      long: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
