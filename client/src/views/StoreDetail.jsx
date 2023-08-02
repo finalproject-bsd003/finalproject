@@ -18,7 +18,7 @@ function StoreDetail() {
 
   const { detailStore } = useSelector((state) => state?.store);
 
-  console.log(detailStore?.Dresses);
+  console.log(detailStore);
 
 
   return (
