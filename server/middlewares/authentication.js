@@ -22,12 +22,6 @@ const authentication = async (request, response, next) => {
             }
         })
 
-        if (!user) {
-            throw {
-                name: 'NotFound'
-            }
-        }
-
         request.additionalData = {
             userId: payload.id,
             username: payload.username,

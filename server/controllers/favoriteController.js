@@ -21,7 +21,6 @@ class FavoriteController {
     static async addFavorite(request, response, next) {
         try {
             const { id } = request.params
-            // console.log(id)
             const result = await Favorite.findOrCreate({
                 where: {
                     DressId: id,
@@ -34,11 +33,6 @@ class FavoriteController {
                     // Nanti buat booking
                 }
             })
-            // console.log(result)
-            if (!result) {
-                throw { name: 'Favorite Not Found' }
-            }
-            // console.log(result)
             response.status(200).json(result)
         } catch (err) {
             next(err)
