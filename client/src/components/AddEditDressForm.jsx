@@ -9,14 +9,14 @@ import {
   editDress,
 } from "../stores/actions/actionCreator";
 
-function AddEditDressForm({ detailDressFromPage }) {
-  // console.log(detailDressFromPage, "dari form");
+function AddEditDressForm({ detailDressFromPage, StoreId }) {
+  console.log(StoreId, "dari add edit form");
 
   const { id } = useParams();
   const { detailDress, error } = useSelector((state) => state?.dress);
   const { categories } = useSelector((state) => state?.category);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // const [formValue, setFormValue] = useState()
 
@@ -33,40 +33,40 @@ function AddEditDressForm({ detailDressFromPage }) {
   const [formValue, setFormValue] = useState({
     name: "",
     description: "",
-    categoryId: "",
+    CategoryId: "",
     grade: "",
     mainImage: "",
     price: "",
+    StoreId: StoreId,
     imageUrl1: "",
     imageUrl2: "",
     imageUrl3: "",
   });
+
+  console.log(formValue, "formm value");
 
   useEffect(() => {
     dispatch(categoryFetch());
     if (detailDressFromPage) {
       setFormValue({
         ...detailDressFromPage,
+        StoreId: StoreId,
         imageUrl1: detailDressFromPage?.Images?.[0]?.name || "",
         imageUrl2: detailDressFromPage?.Images?.[1]?.name || "",
         imageUrl3: detailDressFromPage?.Images?.[2]?.name || "",
       });
-
     }
   }, [detailDressFromPage]);
 
-
   const dressFormInput = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
+    console.log(event.target.name);
+    console.log(event.target.value);
     setFormValue({
       ...formValue,
-      [event.target.name]: event.target.value
-    })
-
-  }
-
-
+      [event.target.name]: event.target.value,
+      StoreId: StoreId,
+    });
+  };
 
   const dressSubmitHandler = (event, id) => {
     event.preventDefault();
@@ -83,7 +83,7 @@ function AddEditDressForm({ detailDressFromPage }) {
     } else {
       dispatch(addDress(formValue))
         .then(() => {
-          navigate("/");
+          navigate(-1);
         })
         .catch((error) => {
           console.log(error, "dariiii add dress");
@@ -92,7 +92,6 @@ function AddEditDressForm({ detailDressFromPage }) {
   };
 
   // Cinderella Divine Sleeveless Mermaid Wedding Gown
-
 
   return (
     <>
@@ -111,7 +110,9 @@ function AddEditDressForm({ detailDressFromPage }) {
           </h1>
           {error && <div className="text-red-500">{error}</div>}
           <form
-            onSubmit={(e) => (id ? dressSubmitHandler(e, id) : dressSubmitHandler(e))}
+            onSubmit={(e) =>
+              id ? dressSubmitHandler(e, id) : dressSubmitHandler(e)
+            }
             className="mt-6"
           >
             <div className="mb-2">
@@ -170,7 +171,7 @@ function AddEditDressForm({ detailDressFromPage }) {
                   <option
                     key={category.id}
                     value={category.id}
-                  // selected={formValue?.CategoryId === category.id}
+                    // selected={formValue?.CategoryId === category.id}
                   >
                     {category.name}
                   </option>

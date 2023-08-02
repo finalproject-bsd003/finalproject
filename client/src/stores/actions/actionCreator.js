@@ -636,6 +636,7 @@ export const favoriteFetch = () => {
                 }
             })
             const responseJson = await response.json()
+            console.log(responseJson, "<< fav");
 
             dispatch(favortieFecthSuccess(responseJson))
 

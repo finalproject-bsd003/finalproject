@@ -7,7 +7,6 @@ import Navbar from "../components/Navbar";
 import { dressesFetch } from "../stores/actions/actionCreator";
 
 function ListProduct() {
-
   const dispatch = useDispatch();
 
   const { dresses } = useSelector((state) => state?.dress);
@@ -17,19 +16,19 @@ function ListProduct() {
     dispatch(dressesFetch());
   }, []);
 
-  const { data } = dresses
+  const { data } = dresses;
   const { pagination } = dresses;
-  console.log(data)
+  console.log(data);
 
   const nextPageHandler = (event, page) => {
-    event.preventDefault()
-    dispatch(dressesFetch({ page }))
-  }
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
 
   const backPageHandler = (event, page) => {
-    event.preventDefault()
-    dispatch(dressesFetch({ page }))
-  }
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -40,8 +39,7 @@ function ListProduct() {
 
   return (
     <>
-      <div className="flex justify-end mt-5">
-      </div>
+      <div className="flex justify-end mt-5"></div>
       {isLoading && <Loading />}
       <div className="flex flex-col justify-center items-center mt-5">
         <h2
@@ -64,7 +62,6 @@ function ListProduct() {
                   <th>Image</th>
                   <th>Description</th>
                   <th>Store</th>
-                  <th>Size</th>
                   <th>Grade</th>
                   <th>Category</th>
                   <th>Price</th>
@@ -73,7 +70,10 @@ function ListProduct() {
               </thead>
               <tbody>
                 {data?.map((dress, index) => {
-                  const adjustedIndex = (pagination?.currentPage - 1) * pagination?.totalPerPage + index + 1;
+                  const adjustedIndex =
+                    (pagination?.currentPage - 1) * pagination?.totalPerPage +
+                    index +
+                    1;
                   return (
                     <tr key={dress?.id}>
                       <td>{adjustedIndex}</td>
@@ -83,18 +83,16 @@ function ListProduct() {
                       </td>
                       <td>{dress.description}</td>
                       <td>{dress.Store.name}</td>
-                      <td>{dress.size}</td>
                       <td>{dress.grade}</td>
                       <td>{dress.Category.name}</td>
                       <td>{rupiah(dress.price)}</td>
-                      <td>
+                      <td style={{ whiteSpace: "nowrap" }}>
                         <NavLink to={`/detail/${dress.id}`}>See Detail</NavLink>
                       </td>
                     </tr>
                   );
                 })}
               </tbody>
-
             </table>
           </div>
         </div>
@@ -102,9 +100,15 @@ function ListProduct() {
       <div className="pagination-container">
         <div className="flex items-center justify-center">
           <div className="join" style={{ background: "#EFECE9" }}>
-            <button onClick={(e) => backPageHandler(e, pagination?.currentPage !== 1
-              ? pagination.currentPage - 1
-              : pagination?.currentPage)}
+            <button
+              onClick={(e) =>
+                backPageHandler(
+                  e,
+                  pagination?.currentPage !== 1
+                    ? pagination.currentPage - 1
+                    : pagination?.currentPage
+                )
+              }
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >
@@ -117,9 +121,14 @@ function ListProduct() {
               {pagination?.currentPage}
             </button>
             <button
-              onClick={(e) => nextPageHandler(e, pagination?.nextPage !== null
-                ? pagination.currentPage + 1
-                : pagination?.currentPage)}
+              onClick={(e) =>
+                nextPageHandler(
+                  e,
+                  pagination?.nextPage !== null
+                    ? pagination.currentPage + 1
+                    : pagination?.currentPage
+                )
+              }
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >

@@ -62,7 +62,7 @@ const LoginForm = () => {
                 type="email"
                 name="email"
                 ref={inputLogin.email}
-                className="block w-full px-4 py-2 mt-2 text-[#050505] bg-[#EFECE9] border border-[#050505] rounded-md focus:border-[#050505] focus:ring-[#050505] focus:outline-none focus:ring-opacity-10"
+                className="block w-full px-4 py-2 mt-2 text-[#050505] bg-[#efece9] border border-[#050505] rounded-md focus:border-[#050505] focus:ring-[#050505] focus:outline-none focus:ring-opacity-10"
               />
             </div>
             <div className="mb-5">
@@ -81,7 +81,7 @@ const LoginForm = () => {
             </div>
 
             <div className="mt-6">
-              <button className="w-full px-4 py-2 tracking-wide text-[#efece9] transition-colors duration-200 transform bg-[#610C27] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#E3C1B4]">
+              <button className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#AC9C8D]">
                 Login
               </button>
             </div>

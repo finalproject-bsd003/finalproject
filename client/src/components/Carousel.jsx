@@ -3,7 +3,7 @@ import { Carousel } from "react-responsive-carousel";
 import pic from "../assets/Screenshot 2023-07-27 at 14.19.14.png";
 
 export default () => (
-  <div>
+  <div style={{ position: "relative", top: "-64px" }}>
     <Carousel
       autoPlay
       showThumbs={false}

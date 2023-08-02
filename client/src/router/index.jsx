@@ -49,14 +49,14 @@ const router = createBrowserRouter([
         path: "transaction",
         element: <ListTransactions />,
         loader: () => {
-          if (localStorage.getItem("role") !== "Admin") {
+          if (!localStorage.getItem("access_token")) {
             throw redirect("/");
           }
           return null;
         },
       },
       {
-        path: "add-dress",
+        path: "add-dress/:StoreId",
         element: <AddDressPage />,
         loader: () => {
           if (localStorage.getItem("role") !== "Admin") {

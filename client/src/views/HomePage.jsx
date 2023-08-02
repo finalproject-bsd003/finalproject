@@ -10,14 +10,13 @@ import { useLocation } from "react-router-dom";
 
 function HomePage() {
   useEffect(() => {
-    window.scrollTo(0, 0)
-  })
+    window.scrollTo(0, 0);
+  });
   const dispatch = useDispatch();
-
 
   const { dresses } = useSelector((state) => state?.dress);
   const { isLoading } = useSelector((state) => state?.dress);
-  console.log(isLoading, "<<<<<<<<<<<<<<<")
+  console.log(isLoading, "<<<<<<<<<<<<<<<");
 
   const location = useLocation();
   console.log(location, "<<<<<<<<<<");
@@ -41,21 +40,24 @@ function HomePage() {
   const { pagination } = dresses;
 
   const nextPageHandler = (event, page) => {
-    event.preventDefault()
-    dispatch(dressesFetch({ page }))
-  }
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
 
   const backPageHandler = (event, page) => {
-    event.preventDefault()
-    dispatch(dressesFetch({ page }))
-  }
+    event.preventDefault();
+    dispatch(dressesFetch({ page }));
+  };
 
   return (
     <>
       <TalkButton />
       <Carousel />
       {isLoading && <Loading />}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mx-20 py-10">
+      <div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mx-20"
+        style={{ position: "relative", top: "-20px" }}
+      >
         {data?.map((dress) => (
           <Card dress={dress} key={dress?.id} />
         ))}
@@ -63,9 +65,15 @@ function HomePage() {
       <div className="pagination-container">
         <div className="flex items-center justify-center">
           <div className="join" style={{ background: "#EFECE9" }}>
-            <button onClick={(e) => backPageHandler(e, pagination?.currentPage !== 1
-              ? pagination.currentPage - 1
-              : pagination?.currentPage)}
+            <button
+              onClick={(e) =>
+                backPageHandler(
+                  e,
+                  pagination?.currentPage !== 1
+                    ? pagination.currentPage - 1
+                    : pagination?.currentPage
+                )
+              }
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >
@@ -78,9 +86,14 @@ function HomePage() {
               {pagination?.currentPage}
             </button>
             <button
-              onClick={(e) => nextPageHandler(e, pagination?.nextPage !== null
-                ? pagination.currentPage + 1
-                : pagination?.currentPage)}
+              onClick={(e) =>
+                nextPageHandler(
+                  e,
+                  pagination?.nextPage !== null
+                    ? pagination.currentPage + 1
+                    : pagination?.currentPage
+                )
+              }
               className="join-item btn btn-xs"
               style={{ background: "#EFECE9" }}
             >

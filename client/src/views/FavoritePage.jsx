@@ -6,14 +6,11 @@ import { favoriteFetch } from "../stores/actions/actionCreator";
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
-  const favorite = useSelector((state) => state?.favorite);
+  const { favorite } = useSelector((state) => state?.favorite);
 
   useEffect(() => {
     dispatch(favoriteFetch());
   }, []);
-  //   if (!favorite.length) {
-  //     <div></div>;
-  //   }
 
   console.log(favorite, "<<<<<<");
   return (
@@ -30,14 +27,14 @@ const FavoritePage = () => {
         {" "}
         Welcome to Your Favorite Page
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mx-20 py-20 ">
-        {!favorite && (
-          <h1 className="flex justify-center text-xl font-semibold text-[#050505]">
-            Your favorite list is empty.
-          </h1>
-        )}
+      {!favorite && (
+        <h1 className="flex mx-6 my-32 justify-center text-xl italic text-[#610C27]">
+          Your favorite list is empty.
+        </h1>
+      )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mx-20 py-10 ">
         {favorite?.map((favorite) => (
-          <Card dress={favorite.Dress} key={favorite.Dress.id} />
+          <Card dress={favorite?.Dress} key={favorite.Dress?.id} />
         ))}
       </div>
     </>

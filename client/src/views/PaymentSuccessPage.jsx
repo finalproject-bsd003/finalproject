@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
@@ -24,9 +25,11 @@ const PaymentSuccess = () => {
             </h2>
 
             <div className="card-actions mt-12">
-              <button className=" btn w-full px-4 py-2 tracking-wide text-[#efece9] transition-colors duration-200 transform bg-[#610C27] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#E3C1B4] ">
-                Back To HomePage
-              </button>
+              <NavLink to={"/transaction"}>
+                <button className=" btn w-full px-4 py-2 tracking-wide text-[#efece9] transition-colors duration-200 transform bg-[#610C27] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#E3C1B4] ">
+                  Back To HomePage
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>

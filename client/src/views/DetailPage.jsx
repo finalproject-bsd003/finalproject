@@ -1,7 +1,7 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Carousel from "../components/CarouselDetail";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { detailDressFetch, paymentQris } from "../stores/actions/actionCreator";
 
@@ -10,16 +10,11 @@ function DetailPage() {
     window.scrollTo(0, 36);
   }, []);
 
-  const [selectedSize, setSelectedSize] = useState("XS");
   let { isLogin } = useSelector((state) => state?.user);
   const access_token = localStorage.getItem("access_token");
   if (access_token && access_token !== "undefined") {
     isLogin = true;
   }
-
-  const handleSizeChange = (size) => {
-    setSelectedSize(size);
-  };
 
   const { id } = useParams();
   console.log(id);
@@ -93,12 +88,71 @@ function DetailPage() {
             </div>
             {/* grade */}
 
-            <div className="mt-10 text-[#050505]">
+            <div className="mt-8 text-[#050505]">
               <h4>Grade: {result?.grade}</h4>
             </div>
+            <div className="mt-8 text-[#050505]">
+              <h4>Category: {result?.Category?.name}</h4>
+            </div>
+            <NavLink to={`/detail-store/${result?.Store?.id}`}>
+              <div className="mt-8 text-[#050505] cursor-pointer focus-outline hover-bg-gray">
+                <h4 className="flex items-center ">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#050505"
+                    className="mr-2"
+                    width="16px"
+                    height="16px"
+                    style={{ aspectRatio: "1", flexShrink: 0 }}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"
+                    />
+                  </svg>{" "}
+                  {result?.Store?.name}
+                </h4>
+              </div>
+            </NavLink>
 
+            {/* price */}
+            <div className="mt-12 mb-10">
+              <h4
+                className="text-m text-[#050505]"
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "36px",
+                  display: "flex",
+                }}
+              >
+                {rupiah(result?.price)}
+              </h4>
+            </div>
+
+            {/* Add to cart button */}
+            {role !== "Admin" && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: "36px",
+                }}
+              >
+                <button
+                  className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#AC9C8D]"
+                  style={{ width: "550px", borderRadius: "0" }}
+                  onClick={handleCreateInvoice}
+                >
+                  {isLogin ? "Payment" : "Please Login First"}
+                </button>
+              </div>
+            )}
             {/* description */}
-            <div className="mt-20 border-b border-[#AC9C8D] ">
+            <div className="mt-8 border-b border-[#AC9C8D] ">
               <h4
                 className="text-m mb-2 text-[#050505]"
                 style={{ fontWeight: "normal", fontSize: "20px" }}
@@ -109,39 +163,6 @@ function DetailPage() {
             </div>
             <p className="mt-8 text-[#050505]">{result?.description}</p>
           </div>
-
-          {/* price */}
-          <div className="mt-20 mb-10">
-            <h4
-              className="text-m text-[#050505]"
-              style={{
-                fontWeight: "bold",
-                fontSize: "36px",
-                display: "flex",
-              }}
-            >
-              {rupiah(result?.price)}
-            </h4>
-          </div>
-
-          {/* Add to cart button */}
-          {role !== "Admin" && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "36px",
-              }}
-            >
-              <button
-                className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#DDD9CE] focus:outline-none focus:bg-[#AC9C8D]"
-                style={{ width: "550px", borderRadius: "0" }}
-                onClick={handleCreateInvoice}
-              >
-                {isLogin ? "Payment" : "Please Login First"}
-              </button>
-            </div>
-          )}
         </div>
       </section>
     </>

@@ -124,7 +124,7 @@ const RegisterPage = () => {
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full px-4 py-2 tracking-wide text-[#efece9] transition-colors duration-200 transform bg-[#610C27] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#AC9C8D]"
+                className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#AC9C8D] focus:outline-none focus:bg-[#AC9C8D]"
               >
                 Sign up
               </button>

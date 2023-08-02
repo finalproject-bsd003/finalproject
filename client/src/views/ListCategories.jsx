@@ -14,7 +14,8 @@ function ListCategory() {
     dispatch(categoryFetch());
   }, []);
 
-  const deleteCategoryLink = (id) => {
+  const deleteCategoryLink = (event, id) => {
+    event.preventDefault();
     dispatch(deleteCategory(id));
   };
 
@@ -54,11 +55,9 @@ function ListCategory() {
                     <td>{category.name} </td>
                     <td
                       className="underline"
-                      onClick={() => deleteCategoryLink(category.id)}
+                      onClick={(e) => deleteCategoryLink(e, category.id)}
                     >
-                      <NavLink to={`/categories/${category.id}`}>
-                        Delete
-                      </NavLink>
+                      Delete
                     </td>
                   </tr>
                 ))}

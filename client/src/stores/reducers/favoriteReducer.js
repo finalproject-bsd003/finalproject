@@ -4,8 +4,9 @@ const initialState = {
     favorite: []
 }
 
-const userReducer = (state = initialState, action) => {
+const favoriteReducer = (state = initialState, action) => {
     if (action.type === FAVORITE_FETCH_SUCCESS) {
+        console.log(action.payload, "favs");
         return {
             ...state,
             favorite: action.payload
@@ -15,4 +16,4 @@ const userReducer = (state = initialState, action) => {
     return state
 }
 
-export default userReducer
+export default favoriteReducer

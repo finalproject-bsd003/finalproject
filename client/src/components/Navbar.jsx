@@ -3,7 +3,6 @@ import logo from "../assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview.p
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { dressesFetch } from "../stores/actions/actionCreator";
-
 import { createSpeechlySpeechRecognition } from "@speechly/speech-recognition-polyfill";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -13,7 +12,6 @@ const SpeechlySpeechRecognition = createSpeechlySpeechRecognition(appId);
 SpeechRecognition.applyPolyfill(SpeechlySpeechRecognition);
 // ----- MENUBAR ---- //
 import { useEffect } from "react";
-import store from "../stores";
 import { categoryFetch, storesFetch } from "../stores/actions/actionCreator";
 
 function Navbar() {
@@ -39,15 +37,11 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const handleSearchSubmit = () => {
-    // Implement your search logic here, e.g., perform an API call to fetch search results
     console.log("Searching for:", searchQuery);
     dispatch(dressesFetch({ name: searchQuery }));
     setSearchQuery("");
-
-    // Optionally, you can toggleCollapse() here if you want to automatically collapse the search bar after search
   };
 
-  // dropdown profile
   const [activeLabel, setActiveLabel] = useState(null);
   const navigate = useNavigate();
 
@@ -68,30 +62,27 @@ function Navbar() {
   };
 
   const handleMouseUp = () => {
-    // Wait for a brief moment to ensure the transcript is updated
     setTimeout(() => {
       console.log("Transcript before search:", transcript);
       setSearchQuery(transcript);
       handleSearchSubmit();
-      SpeechRecognition.stopListening(); // Stop listening after handling the search
+      SpeechRecognition.stopListening();
       resetTranscript();
-    }, 200); // Adjust the delay as needed
+    }, 200);
   };
 
   const handleStartStopClick = () => {
     if (isListening) {
-      SpeechRecognition.stopListening(); // Stop listening
-      // Wait for a brief moment to ensure the transcript is updated
+      SpeechRecognition.stopListening();
       setTimeout(() => {
         console.log("Transcript before search:", transcript);
         dispatch(dressesFetch({ name: transcript }));
-        // setSearchQuery(transcript);
-        // handleSearchSubmit();
+
         resetTranscript();
-      }, 200); // Adjust the delay as needed
+      }, 200);
     } else {
       resetTranscript();
-      SpeechRecognition.startListening({ continuous: true }); // Start listening
+      SpeechRecognition.startListening({ continuous: true });
     }
     setIsListening(!isListening);
   };
@@ -107,7 +98,6 @@ function Navbar() {
 
   const { categories } = useSelector((state) => state?.category);
   const { stores } = useSelector((state) => state?.store);
-  // console.log(categories, stores)
 
   const handleCategoryClick = (e, CategoryId) => {
     console.log(CategoryId);
@@ -127,9 +117,9 @@ function Navbar() {
     dispatch(dressesFetch({ StoreId }));
   };
 
-  const [dropdownOpenGrade, setDropdownOpenGrade] = useState(false);
-  const [dropdownOpenCategory, setDropdownOpenCategory] = useState(false);
-  const [dropdownOpenStore, setDropdownOpenStore] = useState(false);
+  const [dropdownOpenGrade, setDropdownOpenGrade] = useState(true);
+  const [dropdownOpenCategory, setDropdownOpenCategory] = useState(true);
+  const [dropdownOpenStore, setDropdownOpenStore] = useState(true);
 
   useEffect(() => {
     dispatch(categoryFetch());
@@ -147,14 +137,49 @@ function Navbar() {
   const handleDropdownToggleStore = () => {
     setDropdownOpenStore(!dropdownOpenStore);
   };
+
+  //----NAVBAR SHOWING----//
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 50) {
+        setShowNavbar(true);
+      } else {
+        setShowNavbar(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <div className="w-full top-0 z-28 flex items-center justify-between bg-[#DDD9CE]">
-        <div>
+      <div
+        className={`w-full top-0 z-28 flex items-center justify-between bg-[#DDD9CE] ${
+          showNavbar ? "sticky top-0" : "sticky -top-20"
+        }`}
+        style={{
+          width: "100%",
+          top: "0",
+          zIndex: "30",
+          position: "sticky",
+          visibility: showNavbar ? "visible" : "hidden",
+          transition: "visibility 0.2s",
+          background: "#DDD9CE",
+        }}
+      >
+        <div className="cursor-pointer focus-outline">
           <img
             onClick={logoClick}
             src={logo}
             style={{ width: "60px", height: "50px", marginBottom: "10px" }}
+            alt="Logo"
           />
         </div>
 
@@ -257,7 +282,14 @@ function Navbar() {
                   </details>
                 </button>
 
-                <button className="dropdown mx-8 z-10">
+                <button
+                  className="dropdown mx-8 z-10"
+                  style={{
+                    position: "relative",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
                   <details open={dropdownOpenStore}>
                     <summary
                       className={`m-1 bg-[#DDD9CE] flex items-center cursor-pointer ${
@@ -286,10 +318,26 @@ function Navbar() {
                     <ul
                       tabIndex={0}
                       className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-100"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        width: "500px",
+                        left: "10",
+                        gap: "5px",
+                        flexWrap: "wrap",
+                        marginTop: "8px",
+                        marginLeft: "-40px",
+                      }}
                     >
                       {stores?.map((el) => (
                         <li key={el.id}>
-                          <a onClick={(e) => handleStoreClick(e, el.id)}>
+                          <a
+                            onClick={(e) => handleStoreClick(e, el.id)}
+                            style={{
+                              padding: "10px 20px",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
                             {el.name}
                           </a>
                         </li>
