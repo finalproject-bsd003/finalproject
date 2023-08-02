@@ -11,6 +11,11 @@ function DetailPage() {
   }, []);
 
   const [selectedSize, setSelectedSize] = useState("XS");
+  let { isLogin } = useSelector((state) => state?.user);
+  const access_token = localStorage.getItem("access_token");
+  if (access_token && access_token !== "undefined") {
+    isLogin = true;
+  }
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
@@ -28,6 +33,7 @@ function DetailPage() {
   const { detailDress: result } = useSelector((state) => state?.dress);
 
   console.log(result);
+  const role = localStorage.getItem("role");
   // const { result } = detailDress
   // const { resultImages } = detailDress
 
@@ -42,14 +48,14 @@ function DetailPage() {
 
   const handleCreateInvoice = async (event) => {
     event.preventDefault();
-    const { name } = result;
+    const { name, price } = result;
 
     const data = {
-      name: "mawar",
-      phone: "08123456789",
-      amount: 10000,
-      email: "sharonrose9926@gmail.com",
-      comments: `${name} - ${selectedSize}`,
+      name: localStorage.getItem("username"),
+      phone: null,
+      amount: price,
+      email: localStorage.getItem("email"),
+      comments: `${name}`,
     };
 
     try {
@@ -119,21 +125,23 @@ function DetailPage() {
           </div>
 
           {/* Add to cart button */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "36px",
-            }}
-          >
-            <button
-              className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#DDD9CE] focus:outline-none focus:bg-[#AC9C8D]"
-              style={{ width: "550px", borderRadius: "0" }}
-              onClick={handleCreateInvoice}
+          {role !== "Admin" && (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "36px",
+              }}
             >
-              Payment
-            </button>
-          </div>
+              <button
+                className="w-full px-4 py-2 tracking-wide text-[#050505] transition-colors duration-200 transform bg-[#DDD9CE] rounded-md hover:bg-[#DDD9CE] focus:outline-none focus:bg-[#AC9C8D]"
+                style={{ width: "550px", borderRadius: "0" }}
+                onClick={handleCreateInvoice}
+              >
+                {isLogin ? "Payment" : "Please Login First"}
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </>

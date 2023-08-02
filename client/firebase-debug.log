@@ -1,0 +1,111 @@
+[debug] [2023-08-02T18:30:32.935Z] ----------------------------------------------------------------------
+[debug] [2023-08-02T18:30:32.936Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2023-08-02T18:30:32.936Z] CLI Version:   12.4.0
+[debug] [2023-08-02T18:30:32.937Z] Platform:      darwin
+[debug] [2023-08-02T18:30:32.937Z] Node Version:  v18.15.0
+[debug] [2023-08-02T18:30:32.938Z] Time:          Thu Aug 03 2023 01:30:32 GMT+0700 (Western Indonesia Time)
+[debug] [2023-08-02T18:30:32.938Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-02T18:30:32.970Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-02T18:30:32.971Z] > authorizing via signed-in user (martinishu93@gmail.com)
+[debug] [2023-08-02T18:30:32.971Z] [iam] checking project gowny-003 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-08-02T18:30:32.972Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/gowny-003:testIamPermissions [none]
+[debug] [2023-08-02T18:30:32.972Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/gowny-003:testIamPermissions x-goog-quota-user=projects/gowny-003
+[debug] [2023-08-02T18:30:32.972Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/gowny-003:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-02T18:30:33.460Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/gowny-003:testIamPermissions 200
+[debug] [2023-08-02T18:30:33.460Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/gowny-003:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-08-02T18:30:33.462Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/gowny-003 [none]
+[debug] [2023-08-02T18:30:33.927Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/gowny-003 200
+[debug] [2023-08-02T18:30:33.928Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/gowny-003 {"projectId":"gowny-003","projectNumber":"986852562425","displayName":"gowny-003","name":"projects/gowny-003","resources":{"hostingSite":"gowny-003"},"state":"ACTIVE","etag":"1_bdbd1491-01d8-407f-96b8-3849fad22348"}
+[info] 
+[info] === Deploying to 'gowny-003'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2023-08-02T18:30:33.936Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions [none]
+[debug] [2023-08-02T18:30:33.936Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2023-08-02T18:30:35.286Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions 200
+[debug] [2023-08-02T18:30:35.287Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions {"name":"projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[gowny-003]: beginning deploy... 
+[info] i  hosting[gowny-003]: found 6 files in dist 
+[debug] [2023-08-02T18:30:35.296Z] [hosting] uploading with 200 concurrency
+[debug] [2023-08-02T18:30:35.297Z] [hosting] hash cache [ZGlzdA] not populated
+[debug] [2023-08-02T18:30:35.479Z] [hosting] hash cache [ZGlzdA] stored for 6 files
+[debug] [2023-08-02T18:30:35.479Z] [hosting][hash queue][FINAL] {"max":178,"min":4,"avg":36.666666666666664,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":180}
+[debug] [2023-08-02T18:30:35.479Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959:populateFiles [none]
+[debug] [2023-08-02T18:30:35.479Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959:populateFiles {"files":{"/index.html":"27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504","/vite.svg":"d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923","/assets/index-62c9cfb3.css":"71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975","/assets/Screenshot_2023-07-27_at_17.11.04-removebg-preview-eb4313fb.png":"79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346","/assets/index-90cede12.js":"81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a","/assets/Screenshot 2023-07-27 at 14.19.14-39ca8dd0.png":"7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764"}}
+[debug] [2023-08-02T18:30:36.190Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959:populateFiles 200
+[debug] [2023-08-02T18:30:36.191Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959:populateFiles {"uploadRequiredHashes":["d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923","71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975","79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346","81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a","7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764","27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files"}
+[debug] [2023-08-02T18:30:36.192Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923 [none]
+[debug] [2023-08-02T18:30:36.192Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923 [stream]
+[debug] [2023-08-02T18:30:36.193Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975 [none]
+[debug] [2023-08-02T18:30:36.193Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975 [stream]
+[debug] [2023-08-02T18:30:36.194Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346 [none]
+[debug] [2023-08-02T18:30:36.194Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346 [stream]
+[debug] [2023-08-02T18:30:36.194Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a [none]
+[debug] [2023-08-02T18:30:36.194Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a [stream]
+[debug] [2023-08-02T18:30:36.195Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764 [none]
+[debug] [2023-08-02T18:30:36.195Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764 [stream]
+[debug] [2023-08-02T18:30:36.196Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504 [none]
+[debug] [2023-08-02T18:30:36.196Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504 [stream]
+[debug] [2023-08-02T18:30:36.197Z] [hosting][populate queue][FINAL] {"max":714,"min":714,"avg":714,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":719}
+[debug] [2023-08-02T18:30:36.197Z] [hosting] uploads queued: 6
+[debug] [2023-08-02T18:30:37.491Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923 200
+[debug] [2023-08-02T18:30:37.492Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/d3bbbc44b3ea71906a72bf2ec1a4716903e2e3d9f85a5007205a65d1f12e2923 [stream]
+[debug] [2023-08-02T18:30:37.628Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504 200
+[debug] [2023-08-02T18:30:37.633Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/27b5d57122a68c3cf3a061e1dc34991bf9fb943f88100d6222575f12c073c504 [stream]
+[debug] [2023-08-02T18:30:37.649Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975 200
+[debug] [2023-08-02T18:30:37.650Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/71c4b87495842b258a85e6cbfac0b39cce2f6c11f03d7131c63c6d0e9233f975 [stream]
+[debug] [2023-08-02T18:30:37.818Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346 200
+[debug] [2023-08-02T18:30:37.818Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/79675ea5daf8120cf5db74f2536443e58313adfdf81af3f31aca22f60dd79346 [stream]
+[debug] [2023-08-02T18:30:38.190Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a 200
+[debug] [2023-08-02T18:30:38.190Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/81affe91ecf043e2726282c46203ab5417975fde0cf8bc46d4ce340e0978404a [stream]
+[debug] [2023-08-02T18:30:41.683Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764 200
+[debug] [2023-08-02T18:30:41.684Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/gowny-003/versions/b5e4a867075e6959/files/7987bdc08b45723901e0595c606dd8791dd4f29b9532c9dbeacfe9ddcdddc764 [stream]
+[debug] [2023-08-02T18:30:41.684Z] [hosting][upload queue][FINAL] {"max":5492,"min":1301,"avg":2220,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":5493}
+[info] ✔  hosting[gowny-003]: file upload complete 
+[debug] [2023-08-02T18:30:41.686Z] [hosting] deploy completed after 6397ms
+[debug] [2023-08-02T18:30:41.689Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "gowny-003"
+    },
+    "version": "projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959"
+  }
+]
+[info] i  hosting[gowny-003]: finalizing version... 
+[debug] [2023-08-02T18:30:41.692Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions/b5e4a867075e6959 updateMask=status%2Cconfig
+[debug] [2023-08-02T18:30:41.692Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions/b5e4a867075e6959 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2023-08-02T18:30:42.578Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions/b5e4a867075e6959 200
+[debug] [2023-08-02T18:30:42.579Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/versions/b5e4a867075e6959 {"name":"projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-08-02T18:30:34.784085Z","createUser":{"email":"MartiniShu93@gmail.com"},"finalizeTime":"2023-08-02T18:30:42.465251Z","finalizeUser":{"email":"MartiniShu93@gmail.com"}}
+[debug] [2023-08-02T18:30:42.579Z] [hosting] finalized version for gowny-003:[object Object]
+[info] ✔  hosting[gowny-003]: version finalized 
+[info] i  hosting[gowny-003]: releasing new version... 
+[debug] [2023-08-02T18:30:42.580Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/channels/live/releases versionName=projects%2F986852562425%2Fsites%2Fgowny-003%2Fversions%2Fb5e4a867075e6959
+[debug] [2023-08-02T18:30:42.580Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/channels/live/releases {}
+[debug] [2023-08-02T18:30:43.521Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/channels/live/releases 200
+[debug] [2023-08-02T18:30:43.522Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/gowny-003/channels/live/releases {"name":"projects/986852562425/sites/gowny-003/channels/live/releases/1691001042868000","version":{"name":"projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-08-02T18:30:34.784085Z","createUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"},"finalizeTime":"2023-08-02T18:30:42.465251Z","finalizeUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"}},"type":"DEPLOY","releaseTime":"2023-08-02T18:30:42.868Z","releaseUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"}}
+[debug] [2023-08-02T18:30:43.522Z] [hosting] release: {"name":"projects/986852562425/sites/gowny-003/channels/live/releases/1691001042868000","version":{"name":"projects/986852562425/sites/gowny-003/versions/b5e4a867075e6959","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2023-08-02T18:30:34.784085Z","createUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"},"finalizeTime":"2023-08-02T18:30:42.465251Z","finalizeUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"}},"type":"DEPLOY","releaseTime":"2023-08-02T18:30:42.868Z","releaseUser":{"email":"MartiniShu93@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AAcHTtcJMnF4hkkkjMZYk-IVxmG0S_WQYBB2k1obzKy3ocB5Hwi8"}}
+[info] ✔  hosting[gowny-003]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/gowny-003/overview
+[info] Hosting URL: https://gowny-003.web.app
+[debug] [2023-08-02T18:30:48.907Z] Error: Timed out.
+    at Timeout.<anonymous> (/usr/local/lib/node_modules/firebase-tools/lib/utils.js:253:49)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
+[error] 
+[error] Error: An unexpected error has occurred.

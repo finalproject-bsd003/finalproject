@@ -40,7 +40,7 @@ export const login = (data) => {
             console.log(responseJson, "ini dari backend");
 
             const { access_token } = responseJson
-            const { role, username } = responseJson
+            const { role, username, email } = responseJson
 
             console.log(access_token, role, username);
 
@@ -64,12 +64,13 @@ export const login = (data) => {
                     title: `Login success!`,
                 });
             }
-            dispatch(loginSuccess({ role, username }))
+            dispatch(loginSuccess({ role, username, email }))
 
 
             localStorage.setItem("access_token", access_token)
             localStorage.setItem("role", role)
             localStorage.setItem("username", username)
+            localStorage.setItem("email", email)
             return Promise.resolve();
 
         } catch (error) {
