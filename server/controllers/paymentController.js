@@ -68,6 +68,16 @@ class PaymentController {
             next(err)
         }
     }
+
+    static async historyPayment(req, res, next) {
+        try {
+            const apikey = "SANDBOX952E0321-0A01-4F86-93C9-1BE729F9DDC6";
+            const va = "0000002258387876";
+            const url = 'https://sandbox.ipaymu.com/api/v2/payment';
+        } catch (err) {
+            next(err)
+        }
+    }
 }
 
 module.exports = PaymentController;
