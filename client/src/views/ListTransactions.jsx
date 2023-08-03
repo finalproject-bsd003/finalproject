@@ -17,7 +17,7 @@ function ListTransactions() {
     dispatch(fetchHistory());
   }, []);
 
-  console.log(isLoading, "iss loading")
+  console.log(isLoading, "iss loading");
 
   useEffect(() => {
     if (userRole === "Admin") {
@@ -30,9 +30,16 @@ function ListTransactions() {
     }
   }, [history, userRole, loggedInUsername]);
 
-  const pagination = history?.Data?.Pagination
+  const pagination = history?.Data?.Pagination;
   // console.log(Pagination, "iniii pagination")
-  console.log(history)
+  console.log(history);
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
+  };
 
   return (
     <>
@@ -70,17 +77,21 @@ function ListTransactions() {
                   </tr>
                 )}
                 {data?.map((el, index) => {
-                  const adjustedIndex = (pagination?.current_page - 1) * pagination?.per_page + index + 1;
+                  const adjustedIndex =
+                    (pagination?.current_page - 1) * pagination?.per_page +
+                    index +
+                    1;
                   return (
                     <tr key={el?.TransactionId}>
                       <td>{adjustedIndex}</td>
                       <td>{el?.TransactionId}</td>
-                      <td>{el?.Amount}</td>
+                      <td>{rupiah(el?.Amount)}</td>
                       <td>{el?.BuyerName}</td>
                       <td>{el?.BuyerEmail}</td>
                       <td>{el?.StatusDesc}</td>
                       <td>{el?.SuccessDate}</td>
-                    </tr>)
+                    </tr>
+                  );
                 })}
               </tbody>
             </table>

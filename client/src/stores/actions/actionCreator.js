@@ -337,7 +337,9 @@ export const editDress = (dress, id) => {
                 price,
                 mainImage,
                 CategoryId,
-                StoreId } = dress
+                StoreId, imageUrl1,
+                imageUrl2,
+                imageUrl3 } = dress
 
             const response = await fetch(`${baseUrl}/dress/${id}`, {
                 method: "PUT",

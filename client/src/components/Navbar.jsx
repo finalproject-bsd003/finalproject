@@ -358,9 +358,9 @@ function Navbar() {
                     type="text"
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="border border-[#050505]  w-full py-2 pl-4 pr-10 text-[#050505] placeholder-[#DDD9CE]-50 focus:outline-none focus:ring-1"
+                    className="border border-[#050505]  w-full py-2 pl-4 pr-10 text-[#050505] placeholder-[#DDD9CE]-50 focus:outline-none focus:ring-1 "
                     placeholder="Search"
-                    style={{ background: "#EFECE9" }}
+                    style={{ background: "#EFECE9", borderRadius: "4px" }}
                   />
                   <button
                     onClick={handleSearchSubmit}

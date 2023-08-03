@@ -75,7 +75,7 @@ function AddEditDressForm({ detailDressFromPage, StoreId }) {
       dispatch(editDress(formValue, id))
         // console.log("masuk edit gan")
         .then(() => {
-          // navigate("/");
+          navigate("/");
         })
         .catch((error) => {
           console.log(error, "dariiii edit dress");
