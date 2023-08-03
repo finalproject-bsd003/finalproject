@@ -52,7 +52,7 @@ function Card({ dress }) {
               src={dress?.mainImage}
               className="h-full w-full object-cover rounded-sm"
               alt="Dress"
-              style={{ borderRadius: "2px" }}
+              style={{ borderRadius: "1px" }}
             />
           </figure>
         </NavLink>
