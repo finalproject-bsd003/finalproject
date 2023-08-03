@@ -43,19 +43,20 @@ function ListTransactions() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center mt-5">
+      <div className="flex flex-col justify-center items-center mt-5 mb-60">
         <h2
           style={{
             fontSize: "28px",
             fontWeight: "bold",
             fontFamily: "serif",
+            marginTop: "10px",
           }}
         >
           User Transaction
         </h2>
         <div className=" w-[90vw] ">
           <div className="overflow-x-auto">
-            <table className="table">
+            <table className="table mt-10">
               {/* head */}
               <thead>
                 <tr>

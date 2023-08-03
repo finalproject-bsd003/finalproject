@@ -13,18 +13,18 @@ function App() {
     if (talkLoaded) {
       const currentUser = new Talk.User({
         id: "1",
-        name: "Admin",
+        name: "User",
         email: "martinishu93@gmail.com",
         welcomeMessage: "Hello!",
-        role: "Admin",
+        role: "User",
       });
 
       const otherUser = new Talk.User({
         id: "2",
-        name: "User",
+        name: "Admin",
         email: "sharonrose9926@gmail.com",
         welcomeMessage: "Hello!",
-        role: "Buyer",
+        role: "Admin",
       });
 
       const session = new Talk.Session({
