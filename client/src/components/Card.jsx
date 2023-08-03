@@ -9,7 +9,7 @@ import {
 function Card({ dress }) {
   const { pathname } = useLocation();
 
-  console.log(dress);
+  // console.log(dress);
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -43,7 +43,7 @@ function Card({ dress }) {
   return (
     <>
       <div className="card w-300 bg-[#EFECE9] ">
-        <NavLink to={`detail/${dress.id}`}>
+        <NavLink to={`/detail/${dress.id}`}>
           <figure
             className="px-3 pt-5 h-300 overflow-hidden"
             style={{ height: "500px", backgroundPosition: "center" }}

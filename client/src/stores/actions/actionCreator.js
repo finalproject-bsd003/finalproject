@@ -37,12 +37,12 @@ export const login = (data) => {
 
             )
             const responseJson = await response.json()
-            console.log(responseJson, "ini dari backend");
+            // console.log(responseJson, "ini dari backend");
 
             const { access_token } = responseJson
             const { role, username, email } = responseJson
 
-            console.log(access_token, role, username);
+            // console.log(access_token, role, username);
 
             if (!response.ok) {
                 Swal.fire({
@@ -74,7 +74,7 @@ export const login = (data) => {
             return Promise.resolve();
 
         } catch (error) {
-            console.log(error, "dari action creator");
+            // console.log(error, "dari action creator");
             dispatch(loginError(error.message))
             return Promise.reject(error);
         }
@@ -123,7 +123,7 @@ export const register = (data) => {
             return Promise.resolve();
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             dispatch(registerError(error.message))
             return Promise.reject(error);
         }
@@ -148,7 +148,7 @@ export const logout = () => {
             });
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             Swal.fire({
                 icon: "error",
                 title: `Logout failed!`,
@@ -177,7 +177,7 @@ export const dressesFetchSuccess = (dresses) => (
 
 export const dressesFetch = (filter) => {
     // {categoryId: 1}
-    console.log("Filter from request", filter);
+    // console.log("Filter from request", filter);
     return async (dispatch) => {
         try {
 
@@ -203,7 +203,7 @@ export const dressesFetch = (filter) => {
                 if (StoreId) {
                     query = `StoreId=${StoreId}`
                 }
-                console.log(query, "ini <<<<<<<<<");
+                // console.log(query, "ini <<<<<<<<<");
 
             }
             // if (!filter) {
@@ -213,12 +213,12 @@ export const dressesFetch = (filter) => {
             const response = await fetch(`${baseUrl}/dress?${query}`)
             const responseJson = await response.json()
 
-            console.log(responseJson, "ini response JSON");
+            // console.log(responseJson, "ini response JSON");
 
             dispatch(dressesFetchSuccess(responseJson))
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -239,12 +239,12 @@ export const detailDressFetch = (id) => {
             const response = await fetch(`${baseUrl}/dress/${id}`)
             const responseJson = await response.json()
 
-            console.log(responseJson, "ini response JSON");
+            // console.log(responseJson, "ini response JSON");
 
             dispatch(dressDetailFetchSuccess(responseJson))
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -254,7 +254,7 @@ export const deleteDress = (id) => {
     return async (dispatch) => {
         try {
 
-            console.log(id);
+            // console.log(id);
             const response = await fetch(`${baseUrl}/dress/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -263,16 +263,16 @@ export const deleteDress = (id) => {
                 },
             })
 
-            console.log("berhasil delete");
+            // console.log("berhasil delete");
             dispatch(dressesFetch())
             Swal.fire({
                 icon: "success",
                 title: `Dress with ID ${id} deleted successfully`,
             });
-            console.log(response, "ini res");
+            // console.log(response, "ini res");
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             Swal.fire({
                 icon: "error",
                 title: `Dress with ID ${id} cannot be deleted`,
@@ -289,7 +289,7 @@ export const addDressError = (error) => ({
 export const addDress = (dress) => {
     return async (dispatch) => {
         try {
-            console.log(dress, "dari action creator");
+            // console.log(dress, "dari action creator");
 
             const response = await fetch(`${baseUrl}/dress`, {
                 method: "POST",
@@ -301,7 +301,7 @@ export const addDress = (dress) => {
             })
 
             const responseJson = await response.json()
-            console.log(responseJson, "dari action 273");
+            // console.log(responseJson, "dari action 273");
 
             if (!response.ok) {
                 Swal.fire({
@@ -320,7 +320,7 @@ export const addDress = (dress) => {
             return Promise.resolve();
 
         } catch (error) {
-            console.log(error, "from action creator");
+            // console.log(error, "from action creator");
             dispatch(addDressError(error.message))
             return Promise.reject(error);
         }
@@ -330,7 +330,7 @@ export const addDress = (dress) => {
 export const editDress = (dress, id) => {
     return async (dispatch) => {
         try {
-            console.log(dress, "dari action creator");
+            // console.log(dress, "dari action creator");
             const { name,
                 description,
                 grade,
@@ -363,8 +363,8 @@ export const editDress = (dress, id) => {
 
             const responseJson = await response.json()
 
-            console.log("kelar edit")
-            console.log(responseJson, "<<<<<<<<<<<<<ini response>>>>>>>>>>>>>");
+            // console.log("kelar edit")
+            // console.log(responseJson, "<<<<<<<<<<<<<ini response>>>>>>>>>>>>>");
 
             if (!response.ok) {
                 Swal.fire({
@@ -383,7 +383,7 @@ export const editDress = (dress, id) => {
             return Promise.resolve();
 
         } catch (error) {
-            console.log(error.message, "dari action creator");
+            // console.log(error.message, "dari action creator");
             Swal.fire({
                 icon: "error",
                 title: `${error.message}`,
@@ -415,17 +415,17 @@ export const storesFetch = () => {
         try {
 
             dispatch(loading())
-            console.log("masuk stores");
+            // console.log("masuk stores");
             const responseShop = await fetch(`${baseUrl}/nearestShop`, { method: "POST" })
             const response = await fetch(`${baseUrl}/store`)
             const responseJson = await response.json()
 
-            // console.log(responseJson, "ini response JSON");
+            console.log(responseJson, "ini response JSON");
 
             dispatch(storesFetchSuccess(responseJson))
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -446,12 +446,12 @@ export const detailStoreFetch = (id) => {
             const response = await fetch(`${baseUrl}/store/${id}`)
             const responseJson = await response.json()
 
-            console.log(responseJson, "ini response JSON");
+            // console.log(responseJson, "ini response JSON");
 
             dispatch(storeDetailFetchSuccess(responseJson))
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -461,12 +461,12 @@ export const deleteStore = (id) => {
     return async (dispatch) => {
         try {
 
-            console.log(id);
+            // console.log(id);
             const response = await fetch(`${baseUrl}/store/${id}`, {
                 method: "DELETE",
             })
 
-            console.log("berhasil delete");
+            // console.log("berhasil delete");
             dispatch(storesFetch())
             Swal.fire({
                 icon: "success",
@@ -474,7 +474,7 @@ export const deleteStore = (id) => {
             });
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             Swal.fire({
                 icon: "error",
                 title: `${error}`,
@@ -501,8 +501,8 @@ export const createInvoiceFailure = (error) => ({
 export const paymentQris = (data) => async (dispatch, res) => {
     dispatch(createInvoiceRequest());
     try {
-        console.log("masukkk payment");
-        console.log(data);
+        // console.log("masukkk payment");
+        // console.log(data);
         const response = await axios.post(`${baseUrl}/payment`, data, {
             headers: {
                 access_token: localStorage.getItem('access_token'),
@@ -510,10 +510,10 @@ export const paymentQris = (data) => async (dispatch, res) => {
             }
         });
 
-        console.log(response, "dari action creator");
-        console.log(response.data, "dari action creator");
+        // console.log(response, "dari action creator");
+        // console.log(response.data, "dari action creator");
         const { Data } = response.data
-        console.log(Data.Url, "ini action creator");
+        // console.log(Data.Url, "ini action creator");
         // // dispatch(createInvoiceSuccess(Data.Url));
         return Data.Url
 
@@ -550,7 +550,7 @@ export const categoryFetch = () => {
 
             dispatch(categoryFetchSuccess(responseJson))
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -558,7 +558,7 @@ export const categoryFetch = () => {
 export const addCategorySuccess = (category) => {
     return async (dispatch) => {
         try {
-            console.log(category, "dari action creator");
+            // console.log(category, "dari action creator");
 
             const response = await fetch(`${baseUrl}/categories`, {
                 method: "POST",
@@ -586,7 +586,7 @@ export const addCategorySuccess = (category) => {
             });
             return Promise.resolve();
         } catch (error) {
-            console.log(error, "from action creator");
+            // console.log(error, "from action creator");
             dispatch(addCategoryError(error.message))
             return Promise.reject(error);
         }
@@ -608,7 +608,7 @@ export const deleteCategory = (id) => {
                 title: `Category with ID ${id} deleted!`,
             });
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             Swal.fire({
                 icon: "error",
                 title: `${err}`,
@@ -638,12 +638,12 @@ export const favoriteFetch = () => {
                 }
             })
             const responseJson = await response.json()
-            console.log(responseJson, "<< fav");
+            // console.log(responseJson, "<< fav");
 
             dispatch(favortieFecthSuccess(responseJson))
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
         }
     }
 }
@@ -651,7 +651,7 @@ export const favoriteFetch = () => {
 export const addFavoriteSuccess = (id) => {
     return async (dispatch) => {
         try {
-            console.log(id);
+            // console.log(id);
             const response = await fetch(`${baseUrl}/favorite/${id}`, {
                 method: "POST",
                 headers: {
@@ -670,7 +670,7 @@ export const addFavoriteSuccess = (id) => {
             });
             return Promise.resolve();
         } catch (error) {
-            console.log(error, "from action creator");
+            // console.log(error, "from action creator");
         }
     }
 }
@@ -687,7 +687,7 @@ export const deleteFavorite = (id) => {
             dispatch(favoriteFetch())
 
         } catch (err) {
-            console.log(err);
+            // console.log(err);
             // Swal.fire({
             //     icon: "error",
             //     title: `${err}`,
@@ -744,11 +744,11 @@ export const fetchHistory = () => {
 
         axios(config)
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 dispatch(fetchHistorySuccess(response.data));
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
                 dispatch(fetchHistoryFailure(error));
             });
     };

@@ -16,10 +16,10 @@ function HomePage() {
 
   const { dresses } = useSelector((state) => state?.dress);
   const { isLoading } = useSelector((state) => state?.dress);
-  console.log(isLoading, "<<<<<<<<<<<<<<<");
+  // console.log(isLoading, "<<<<<<<<<<<<<<<");
 
   const location = useLocation();
-  console.log(location, "<<<<<<<<<<");
+  // console.log(location, "<<<<<<<<<<");
 
   useEffect(() => {
     dispatch(storesFetch())
@@ -27,7 +27,7 @@ function HomePage() {
         dispatch(dressesFetch());
       })
       .catch((error) => {
-        console.error("Error fetching stores or dresses:", error);
+        // console.error("Error fetching stores or dresses:", error);
       });
   }, []);
 
@@ -36,7 +36,7 @@ function HomePage() {
   }, [dresses]);
 
   const { data } = dresses;
-  console.log(dresses, "<<<<<<<<");
+  // console.log(dresses, "<<<<<<<<");
   const { pagination } = dresses;
 
   const nextPageHandler = (event, page) => {

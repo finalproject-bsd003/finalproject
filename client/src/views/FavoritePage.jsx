@@ -15,7 +15,7 @@ const FavoritePage = () => {
     dispatch(favoriteFetch());
   }, []);
 
-  console.log(favorite, "<<<<<<");
+  // console.log(favorite, "<<<<<<");
   return (
     <>
       <h2

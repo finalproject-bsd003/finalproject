@@ -112,7 +112,10 @@ const router = createBrowserRouter([
         path: "favorite",
         element: <FavoritePage />,
         loader: () => {
-          if (!localStorage.getItem("access_token")) {
+          if (
+            !localStorage.getItem("access_token") &&
+            localStorage.getItem("role") !== "Admin"
+          ) {
             throw redirect("/");
           }
           return null;

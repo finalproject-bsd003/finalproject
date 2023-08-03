@@ -37,7 +37,7 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const handleSearchSubmit = () => {
-    console.log("Searching for:", searchQuery);
+    // console.log("Searching for:", searchQuery);
     dispatch(dressesFetch({ name: searchQuery }));
     setSearchQuery("");
   };
@@ -53,7 +53,7 @@ function Navbar() {
 
   // ----- VOICE ----- //
   if (!browserSupportsSpeechRecognition) {
-    console.log("Browser doesn't support speech recognition.");
+    // console.log("Browser doesn't support speech recognition.");
   }
 
   const handleMouseDown = () => {
@@ -63,7 +63,7 @@ function Navbar() {
 
   const handleMouseUp = () => {
     setTimeout(() => {
-      console.log("Transcript before search:", transcript);
+      // console.log("Transcript before search:", transcript);
       setSearchQuery(transcript);
       handleSearchSubmit();
       SpeechRecognition.stopListening();
@@ -75,7 +75,7 @@ function Navbar() {
     if (isListening) {
       SpeechRecognition.stopListening();
       setTimeout(() => {
-        console.log("Transcript before search:", transcript);
+        // console.log("Transcript before search:", transcript);
         dispatch(dressesFetch({ name: transcript }));
 
         resetTranscript();
@@ -100,19 +100,19 @@ function Navbar() {
   const { stores } = useSelector((state) => state?.store);
 
   const handleCategoryClick = (e, CategoryId) => {
-    console.log(CategoryId);
+    // console.log(CategoryId);
     e.preventDefault();
     dispatch(dressesFetch({ CategoryId }));
   };
 
   const handleGradeClick = (e, grade) => {
-    console.log(grade);
+    // console.log(grade);
     e.preventDefault();
     dispatch(dressesFetch({ grade }));
   };
 
   const handleStoreClick = (e, StoreId) => {
-    console.log(StoreId);
+    // console.log(StoreId);
     e.preventDefault();
     dispatch(dressesFetch({ StoreId }));
   };
@@ -144,7 +144,7 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      if (scrollY > 50) {
+      if (scrollY > 100) {
         setShowNavbar(true);
       } else {
         setShowNavbar(false);
@@ -158,19 +158,27 @@ function Navbar() {
     };
   }, []);
 
+  const role = localStorage.getItem("role");
+  let { isLogin } = useSelector((state) => state?.user);
+  const access_token = localStorage.getItem("access_token");
+  if (access_token && access_token !== "undefined") {
+    isLogin = true;
+  }
+  // console.log(isLogin);
+
   return (
     <>
       <div
         className={`w-full top-0 z-28 flex items-center justify-between bg-[#DDD9CE] ${
-          showNavbar ? "sticky top-0" : "sticky -top-20"
-        }`}
+          showNavbar
+            ? "sticky top-0 opacity-100 translate-y-0"
+            : "sticky -top-20 opacity-0 translate-y-[-100%]"
+        } transition-opacity duration-300 ease-in-out`}
         style={{
           width: "100%",
           top: "0",
           zIndex: "30",
           position: "sticky",
-          visibility: showNavbar ? "visible" : "hidden",
-          transition: "visibility 0.2s",
           background: "#DDD9CE",
         }}
       >
@@ -345,9 +353,11 @@ function Navbar() {
                     </ul>
                   </details>
                 </button>
-                <NavLink to={"favorite"}>
-                  <button className="mx-8 mt-1">MY FAVORITE</button>
-                </NavLink>
+                {role !== "Admin" && isLogin && (
+                  <NavLink to={"favorite"}>
+                    <button className="mx-8 mt-1">MY FAVORITE</button>
+                  </NavLink>
+                )}
               </div>
             </div>
 

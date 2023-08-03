@@ -17,7 +17,7 @@ function ListTransactions() {
     dispatch(fetchHistory());
   }, []);
 
-  console.log(isLoading, "iss loading");
+  // console.log(isLoading, "iss loading");
 
   useEffect(() => {
     if (userRole === "Admin") {
@@ -32,7 +32,7 @@ function ListTransactions() {
 
   const pagination = history?.Data?.Pagination;
   // console.log(Pagination, "iniii pagination")
-  console.log(history);
+  // console.log(history);
 
   const rupiah = (number) => {
     return new Intl.NumberFormat("id-ID", {
