@@ -144,7 +144,7 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      if (scrollY > 100) {
+      if (scrollY > 50) {
         setShowNavbar(true);
       } else {
         setShowNavbar(false);
@@ -170,15 +170,15 @@ function Navbar() {
     <>
       <div
         className={`w-full top-0 z-28 flex items-center justify-between bg-[#DDD9CE] ${
-          showNavbar
-            ? "sticky top-0 opacity-100 translate-y-0"
-            : "sticky -top-20 opacity-0 translate-y-[-100%]"
-        } transition-opacity duration-300 ease-in-out`}
+          showNavbar ? "sticky top-0" : "sticky -top-20"
+        }`}
         style={{
           width: "100%",
           top: "0",
           zIndex: "30",
           position: "sticky",
+          visibility: showNavbar ? "visible" : "hidden",
+          transition: "visibility 0.s, top 0.3s",
           background: "#DDD9CE",
         }}
       >
